@@ -1,10 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="normal"
+            android:text="Welcome To "
+            android:textColor="@color/dark"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/text_logo_dark"
+            android:scaleType="fitXY"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/twotone_account_circle_24"
+            android:textColorHint="@color/black"
+            android:padding="10dp"/>
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textColorHint="@color/dark"
+            android:padding="10dp"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnLogin"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbg"
+            android:text="Login"
+            android:textStyle="bold"
+            android:textSize="18sp">
+
+        </Button>
+        <TextView
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="New user? Signup"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Continue as a guest"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
