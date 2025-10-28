@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestauYou">
         <activity
+            android:name=".UserHomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
