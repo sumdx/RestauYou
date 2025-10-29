@@ -59,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent guestIntent = new Intent(LoginActivity.this, UserHomePageActivity.class);
                 startActivity(guestIntent);
+
+
+
             }
         });
     }

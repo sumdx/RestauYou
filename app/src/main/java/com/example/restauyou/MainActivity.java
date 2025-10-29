@@ -9,7 +9,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +27,17 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        boolean user = true;
 
-        if(user){
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+//        boolean user = true;
+
+        if(user == null){
             Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(loginIntent);
         }
+
+
     }
 }
