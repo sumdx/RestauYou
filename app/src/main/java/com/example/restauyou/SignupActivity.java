@@ -2,6 +2,7 @@ package com.example.restauyou;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignupActivity extends AppCompatActivity {
@@ -78,15 +80,17 @@ public class SignupActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(SignupActivity.this, "Authentication Successful.",
                                         Toast.LENGTH_SHORT).show();
                                 Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
                                 startActivity(userHomeIntent);
-                            }else {
+                            } else {
+                                Log.w("ERROR-66", "signInWithEmail:failure", task.getException());
                                 Toast.makeText(SignupActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
