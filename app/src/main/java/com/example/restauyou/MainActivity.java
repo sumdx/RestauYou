@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(loginIntent);
+        }else {
+            Intent userHome = new Intent(MainActivity.this, UserHomePageActivity.class);
+            startActivity(userHome);
         }
 
 

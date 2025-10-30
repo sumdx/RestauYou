@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -84,8 +85,23 @@ public class SignupActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(SignupActivity.this, "Authentication Successful.",
                                         Toast.LENGTH_SHORT).show();
-                                Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
-                                startActivity(userHomeIntent);
+
+                                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(name).build();
+                                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isComplete()){
+                                            Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
+                                            startActivity(userHomeIntent);
+                                        }else {
+                                            Log.w("ERROR-66", "updateProfile:failure", task.getException());
+                                            Toast.makeText(SignupActivity.this, "Profile update failed.",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+
                             } else {
                                 Log.w("ERROR-66", "signInWithEmail:failure", task.getException());
                                 Toast.makeText(SignupActivity.this, "Authentication failed.",
