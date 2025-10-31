@@ -24,9 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
 
     @Override
@@ -42,7 +48,7 @@ public class SignupActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
+        db = FirebaseFirestore.getInstance();
         //Componanet Intialization
 
         TextView tvLogin = findViewById(R.id.tvLogin);
@@ -78,6 +84,10 @@ public class SignupActivity extends AppCompatActivity {
                 if (name.isEmpty()) {
                     etName.setError("Please fill up this field");
                 }else {
+                    Map<String, Object> userData = new HashMap();
+                    userData.put("name", name);
+                    userData.put("email", email);
+
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -85,14 +95,26 @@ public class SignupActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(SignupActivity.this, "Authentication Successful.",
                                         Toast.LENGTH_SHORT).show();
-
                                 UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(name).build();
                                 user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isComplete()){
-                                            Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
-                                            startActivity(userHomeIntent);
+
+                                            db.collection("users").add(userData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                    if (task.isComplete()){
+                                                        Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
+                                                        startActivity(userHomeIntent);
+                                                    }else {
+                                                        Log.w("ERROR-66", "updateToDatabase:failure", task.getException());
+                                                        Toast.makeText(SignupActivity.this, "Profile update to database failed.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
                                         }else {
                                             Log.w("ERROR-66", "updateProfile:failure", task.getException());
                                             Toast.makeText(SignupActivity.this, "Profile update failed.",
