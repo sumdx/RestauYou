@@ -17,6 +17,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +29,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,9 +75,9 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String password = etPassWord.getText().toString();
-                String name = etName.getText().toString();
+                String email = etEmail.getText().toString().trim();
+                String password = etPassWord.getText().toString().trim();
+                String name = etName.getText().toString().trim();
                 if(email.isEmpty()){
                     etEmail.setError(email);
                 }
@@ -84,36 +87,53 @@ public class SignupActivity extends AppCompatActivity {
                 if (name.isEmpty()) {
                     etName.setError("Please fill up this field");
                 }else {
-                    Map<String, Object> userData = new HashMap();
-                    userData.put("name", name);
-                    userData.put("email", email);
 
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("name", name);
+                                userData.put("email", email);
+                                userData.put("role", "user");
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                String uid = user.getUid();
                                 Toast.makeText(SignupActivity.this, "Authentication Successful.",
                                         Toast.LENGTH_SHORT).show();
                                 UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(name).build();
                                 user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isComplete()){
+                                        if (task.isSuccessful()){
 
-                                            db.collection("users").add(userData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                            db.collection("users").document(uid).set(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                    if (task.isComplete()){
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
                                                         Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
                                                         startActivity(userHomeIntent);
-                                                    }else {
+                                                    }else{
                                                         Log.w("ERROR-66", "updateToDatabase:failure", task.getException());
-                                                        Toast.makeText(SignupActivity.this, "Profile update to database failed.",
-                                                                Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(SignupActivity.this, "Profile update to database failed.",Toast.LENGTH_SHORT).show();
                                                     }
+
                                                 }
                                             });
+
+//                                            db.collection("users").add(userData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//                                                @Override
+//                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+//                                                    if (task.isSuccessful()){
+//                                                        Intent userHomeIntent = new Intent(SignupActivity.this, UserHomePageActivity.class);
+//                                                        startActivity(userHomeIntent);
+//                                                    }else {
+//                                                        Log.w("ERROR-66", "updateToDatabase:failure", task.getException());
+//                                                        Toast.makeText(SignupActivity.this, "Profile update to database failed.",
+//                                                                Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                }
+//                                            });
 
                                         }else {
                                             Log.w("ERROR-66", "updateProfile:failure", task.getException());
