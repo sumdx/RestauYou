@@ -7,22 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".AdminHomePageActivity"
     android:orientation="vertical"
-    android:gravity="bottom"
     >
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/adminViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/adminBottomNavigationView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:itemRippleColor="@color/accent"
-        app:itemTextAppearanceActive="@color/accent"
-        app:itemTextAppearanceActiveBoldEnabled="true"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/admin_bottom_navigation_menu" />
+        android:gravity="bottom"
+        android:baselineAligned="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/adminBottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemRippleColor="@color/accent"
+            app:itemTextAppearanceActive="@color/accent"
+            app:itemTextAppearanceActiveBoldEnabled="true"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/admin_bottom_navigation_menu" />
+    </LinearLayout>
+
+
 
 </LinearLayout>
