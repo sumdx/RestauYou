@@ -83,7 +83,6 @@
         android:layout_height="0dp" />
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -92,14 +91,12 @@
 
         <Button
             android:id="@+id/menuBtn"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Menu" />
 
         <Button
             android:id="@+id/reserveBtn"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -108,7 +105,6 @@
 
         <Button
             android:id="@+id/demoLogout"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout"
