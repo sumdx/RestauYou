@@ -40,6 +40,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.amount.setText(food.getAmount());
         holder.price.setText(food.getPrice());
         holder.img.setImageResource(food.getImg());
+
+        holder.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                food.setAmount(Integer.toString(Integer.parseInt(food.getAmount()) + 1));
+                holder.amount.setText(food.getAmount());
+            }
+        });
+
+        holder.subBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int current = Integer.parseInt(food.getAmount());;
+                if (current > 0) {
+                    food.setAmount(String.valueOf(current - 1));
+                    holder.amount.setText(food.getAmount());
+                }
+            }
+        });
     }
 
     @Override

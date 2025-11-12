@@ -30,7 +30,7 @@ public class CustomerHomeFragment extends Fragment {
 
         // Add test items
         for (int i = 1; i <= 10; i++) {
-            foods.add(new FoodItem(R.drawable.burger_img, "Burger " + i, "This is a standard Burger ", "1", "$99.99 "));
+            foods.add(new FoodItem(R.drawable.burger_img, "Burger " + i, "This is a standard Burger ", "0", "$99.99 "));
         }
 
         // Set adapter
