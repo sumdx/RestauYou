@@ -1,7 +1,12 @@
 package com.example.restauyou;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.window.OnBackInvokedDispatcher;
+
 import com.example.restauyou.R;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.AdminAdapters.AdminBottomNavigationAdapter;
@@ -19,7 +25,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class AdminHomePageActivity extends AppCompatActivity {
-
+    private  ViewPager2 adminViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +38,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.adminBottomNavigationView);
-        ViewPager2 adminViewPager = findViewById(R.id.adminViewPager);
+        adminViewPager = findViewById(R.id.adminViewPager);
 
         AdminBottomNavigationAdapter adminBottomNavigationAdapter = new AdminBottomNavigationAdapter(getSupportFragmentManager(), getLifecycle());
         adminViewPager.setAdapter(adminBottomNavigationAdapter);
@@ -63,6 +69,10 @@ public class AdminHomePageActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
-
     }
+
+
+
+
+
 }

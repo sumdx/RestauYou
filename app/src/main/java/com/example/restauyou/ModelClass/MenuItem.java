@@ -3,6 +3,12 @@ package com.example.restauyou.ModelClass;
 import android.widget.TextView;
 
 public class MenuItem {
+
+    String itemTitle;
+    String itemDescription;
+    String itemAvailability;
+    String itemPrice ;
+    String itemImageUrl;
     private String itemTitle, itemDescription,
             itemAvailability, // Acts as a boolean "Available" / "Not Available"
             itemPrice; // Acts as a double "$30.00"
@@ -12,6 +18,7 @@ public class MenuItem {
     public String getItemPrice() {
         return itemPrice;
     }
+
 
     public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
@@ -75,6 +82,18 @@ public class MenuItem {
         itemImg = 0;
         selected = false;
     }
+    public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice,String itemImageUrl) {
+        this.itemTitle = itemTitle;
+        this.itemDescription = itemDescription;
+        this.itemAvailability = itemAvailability;
+        this.itemPrice = itemPrice;
+        this.itemImageUrl= itemImageUrl;
+    }
+    public MenuItem() {
+
+    }
+
+
 
     // For customer side
     public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice, int amount, int itemImg, boolean selected) {

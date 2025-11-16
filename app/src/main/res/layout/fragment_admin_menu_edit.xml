@@ -5,19 +5,29 @@
     android:layout_height="match_parent"
     tools:context=".AdminFragment.AdminMenuEditFragment">
 
+    <!-- DEFAULT CONTENT SHOWN FIRST -->
     <LinearLayout
+        android:id="@+id/editMenuContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:textStyle="bold"
                 android:text="Menu Edit"/>
+
             <Button
+                android:id="@+id/btnAddNewItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add new Item"/>
@@ -29,5 +39,11 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <!-- EMPTY CONTAINER FOR AddNewItemFragment -->
+    <FrameLayout
+        android:id="@+id/menuEditContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
