@@ -3,11 +3,11 @@ package com.example.restauyou.ModelClass;
 import android.widget.TextView;
 
 public class MenuItem {
-
-    String itemTitle;
-    String itemDescription;
-    String itemAvailability;
-    String itemPrice ;
+    private String itemTitle, itemDescription,
+            itemAvailability, // Acts as a boolean "Available" / "Not Available"
+            itemPrice; // Acts as a double "$30.00"
+    private int amount, itemImg;
+    private boolean selected;
 
     public String getItemPrice() {
         return itemPrice;
@@ -41,16 +41,49 @@ public class MenuItem {
         this.itemTitle = itemTitle;
     }
 
+    public int getItemImg() {
+        return itemImg;
+    }
 
+    public void setItemImg(int itemImg) {
+        this.itemImg = itemImg;
+    }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    // For admin side
     public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice) {
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
         this.itemAvailability = itemAvailability;
         this.itemPrice = itemPrice;
+        amount = 0;
+        itemImg = 0;
+        selected = false;
     }
 
-
-
-
+    // For customer side
+    public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice, int amount, int itemImg, boolean selected) {
+        this.itemTitle = itemTitle;
+        this.itemDescription = itemDescription;
+        this.itemAvailability = itemAvailability;
+        this.itemPrice = itemPrice;
+        this.amount = amount;
+        this.itemImg = itemImg;
+        this.selected = selected;
+    }
 }
