@@ -8,10 +8,12 @@ public class MenuItem {
     String itemDescription;
     String itemAvailability;
     String itemPrice ;
+    String itemImageUrl;
 
     public String getItemPrice() {
         return itemPrice;
     }
+
 
     public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
@@ -49,6 +51,18 @@ public class MenuItem {
         this.itemAvailability = itemAvailability;
         this.itemPrice = itemPrice;
     }
+    public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice,String itemImageUrl) {
+        this.itemTitle = itemTitle;
+        this.itemDescription = itemDescription;
+        this.itemAvailability = itemAvailability;
+        this.itemPrice = itemPrice;
+        this.itemImageUrl= itemImageUrl;
+    }
+    public MenuItem() {
+
+    }
+
+
 
 
 

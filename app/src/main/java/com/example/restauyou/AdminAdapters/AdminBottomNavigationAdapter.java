@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.restauyou.AdminFragment.AdminMenuEditFragment;
+import com.example.restauyou.AdminFragment.AdminMenuItemAddFragment;
 import com.example.restauyou.AdminFragment.AdminScheduleMakerFragment;
 import com.example.restauyou.AdminFragment.AdminSettingsFragment;
 import com.example.restauyou.AdminFragment.AdminStaffManagementFragment;

@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.restauyou.AdminAdapters.AdminMenuEditAdapter;
+import com.example.restauyou.AdminHomePageActivity;
 import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.R;
 
@@ -32,27 +34,46 @@ public class AdminMenuEditFragment extends Fragment {
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
-
+        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
+        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
+        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
+        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
+        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
         menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
 
-        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
-        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
-        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
-        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
-        menuItemArraylist.add(new MenuItem("Burger","hjfbsjhHBFJHSBJHFB","avaialble","$30.0"));
+        recyclerView = view.findViewById(R.id.adminMenuItemRecyclerView);
 
-        RecyclerView recyclerView = view.findViewById(R.id.adminMenuItemRecyclerView);
-
+        Button btnAddNewItem = view.findViewById(R.id.btnAddNewItem);
         AdminMenuEditAdapter adminMenuEditAdapter = new AdminMenuEditAdapter(getContext(),menuItemArraylist);
         recyclerView.setAdapter(adminMenuEditAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+
+        btnAddNewItem.setOnClickListener(v -> {
+            // Hide the default content (RecyclerView + Title)
+            View contentLayout = getView().findViewById(R.id.editMenuContent);
+            contentLayout.setVisibility(View.GONE);
+
+            // Load AddNewItemFragment
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.menuEditContainer, new AdminMenuItemAddFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+
         return view;
+    }
+
+    public void loadFragment(int id){
+
     }
 
 }
