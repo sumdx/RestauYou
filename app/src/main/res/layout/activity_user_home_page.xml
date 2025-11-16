@@ -5,20 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserHomePageActivity"
+    tools:context=".CustomerHomePageActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvDisplayName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"/>
 
-    <Button
-        android:id="@+id/demoLogout"
-        android:layout_width="wrap_content"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/userVP2"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/userBottomNavigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="287dp" />
+        app:labelVisibilityMode="labeled"
+        app:itemRippleColor="#7FFFAE00"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:itemTextColor="@drawable/bottom_nav_selector"
+        android:layout_gravity="bottom"
+        app:itemGravity="center"
+        app:menu="@menu/user_bottom_navigation" />
 </LinearLayout>

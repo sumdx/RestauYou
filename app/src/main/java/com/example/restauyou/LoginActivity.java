@@ -2,7 +2,6 @@ package com.example.restauyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         tvGuestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent guestIntent = new Intent(LoginActivity.this, UserHomePageActivity.class);
+                Intent guestIntent = new Intent(LoginActivity.this, CustomerHomePageActivity.class);
                 startActivity(guestIntent);
 
 
