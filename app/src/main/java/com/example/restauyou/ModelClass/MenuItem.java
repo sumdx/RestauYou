@@ -4,16 +4,18 @@ import android.widget.TextView;
 
 public class MenuItem {
 
-    String itemTitle;
-    String itemDescription;
-    String itemAvailability;
-    String itemPrice ;
-    String itemImageUrl;
-    private String itemTitle, itemDescription,
-            itemAvailability, // Acts as a boolean "Available" / "Not Available"
-            itemPrice; // Acts as a double "$30.00"
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl;
     private int amount, itemImg;
     private boolean selected;
+
+    public String getItemImageUrl() {
+        return itemImageUrl;
+    }
+
+    public void setItemImageUrl(String itemImageUrl) {
+        this.itemImageUrl = itemImageUrl;
+    }
+
 
     public String getItemPrice() {
         return itemPrice;
@@ -92,9 +94,6 @@ public class MenuItem {
     public MenuItem() {
 
     }
-
-
-
     // For customer side
     public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice, int amount, int itemImg, boolean selected) {
         this.itemTitle = itemTitle;
