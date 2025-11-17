@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,7 +130,6 @@ public class AdminMenuItemAddFragment extends Fragment {
 
 
                 uploadMenuImageToStorage(etMenuItemName.getText().toString(), etMenuItemDescription.getText().toString(), etMenuItemPrice.getText().toString(), imageUri);
-                Toast.makeText(getContext(),etMenuItemName.getText().toString(),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -139,6 +139,7 @@ public class AdminMenuItemAddFragment extends Fragment {
     private void uploadMenuImageToStorage(String itemName, String itemDescription, String itemPrice, Uri imageUri) {
         if(imageUri == null){
             Toast.makeText(getContext(),"Empty URI", Toast.LENGTH_SHORT).show();
+            return;
         }
         String fileName = "menu_items/"+ System.currentTimeMillis() + ".jpg";
         StorageReference storageReference= firebaseStorage.getReference().child(fileName);
@@ -155,12 +156,24 @@ public class AdminMenuItemAddFragment extends Fragment {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(getContext(), "Menu item added successfully", Toast.LENGTH_SHORT).show();
+                                // Go back to previous fragment
+                                if (getParentFragmentManager() != null) {
+                                    getParentFragmentManager().popBackStack();
+                                }
+
+                                // Show the main content (if hidden)
+                                if (getActivity() != null) {
+                                    View mainContent = getActivity().findViewById(R.id.editMenuContent);
+                                    if (mainContent != null) {
+                                        mainContent.setVisibility(View.VISIBLE);
+                                    }
+                                }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(getContext(), "Menu Item Upload Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                                Log.d("eMess", e.getMessage());
                             }
                         });
                     }

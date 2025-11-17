@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.restauyou.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class AdminSettingsFragment extends Fragment {
