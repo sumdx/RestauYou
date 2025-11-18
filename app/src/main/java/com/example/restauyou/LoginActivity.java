@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(userName,passWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isComplete()){
-                            Intent userHomeIntent = new Intent(LoginActivity.this, UserHomePageActivity.class);
+                        if (task.isSuccessful()){
+                            Intent userHomeIntent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(userHomeIntent);
                         }else{
                             // If sign in fails, display a message to the user.
