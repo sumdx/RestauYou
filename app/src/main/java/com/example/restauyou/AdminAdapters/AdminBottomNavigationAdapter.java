@@ -11,6 +11,7 @@ import com.example.restauyou.AdminFragment.AdminScheduleMakerFragment;
 import com.example.restauyou.AdminFragment.AdminSettingsFragment;
 import com.example.restauyou.AdminFragment.AdminStaffManagementFragment;
 
+
 public class AdminBottomNavigationAdapter extends FragmentStateAdapter {
     public AdminBottomNavigationAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
