@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +28,6 @@ public class UserHomePageActivity extends AppCompatActivity {
         });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        TextView displayName = findViewById(R.id.tvDisplayName);
-        displayName.setText(user.getDisplayName());
 
         Button logoutBtn = findViewById(R.id.demoLogout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
