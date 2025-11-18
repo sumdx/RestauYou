@@ -12,14 +12,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
     ArrayList<MenuItem> foods;
+
+    public ArrayList<MenuItem> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(ArrayList<MenuItem> foods) {
+        this.foods = foods;
+        notifyDataSetChanged();
+    }
 
     public MenuAdapter(Context context, ArrayList<MenuItem> foods){
         this.context = context;
@@ -40,8 +51,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.title.setText(food.getItemTitle());
         holder.desc.setText(food.getItemDescription());
         holder.amount.setText(String.valueOf(food.getAmount()));
-        holder.price.setText(food.getItemPrice());
-        holder.img.setImageResource(food.getItemImg());
+        holder.price.setText(String.format(Locale.CANADA,"$%.2f", Double.parseDouble(food.getItemPrice())));
+        Glide.with(context).load(food.getItemImageUrl()).into(holder.img);
 
         // Check if added to cart
         if (food.getSelected()) {
