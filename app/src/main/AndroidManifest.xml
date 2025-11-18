@@ -21,7 +21,7 @@
             android:name=".AdminHomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".UserHomePageActivity"
+            android:name=".CustomerHomePageActivity"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"

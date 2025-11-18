@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.R;
 
@@ -20,6 +21,17 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
 
     Context context;
     ArrayList<MenuItem> menuItemArraylist;
+    public ArrayList<MenuItem> getMenuItemArraylist() {
+        return menuItemArraylist;
+
+    }
+
+    public void setMenuItemArraylist(ArrayList<MenuItem> menuItemArraylist) {
+        this.menuItemArraylist = menuItemArraylist;
+        notifyDataSetChanged();
+    }
+
+
     public AdminMenuEditAdapter (Context context, ArrayList<MenuItem> menuItemArraylist){
         this.context = context;
         this.menuItemArraylist = menuItemArraylist;
@@ -36,9 +48,10 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MenuItem menuItem = menuItemArraylist.get(position);
         holder.itemTitle.setText(menuItem.getItemTitle());
-        holder.itemPrice.setText(menuItem.getItemPrice());
+        holder.itemPrice.setText(String.format("$ %s", menuItem.getItemPrice()));
         holder.itemDescription.setText(menuItem.getItemDescription());
         holder.itemAvailability.setText(menuItem.getItemAvailability());
+        Glide.with(context).load(menuItem.getItemImageUrl()).into(holder.itemImage);
 
     }
 
@@ -46,13 +59,13 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
 
     @Override
     public int getItemCount() {
-        return menuItemArraylist.size();
+        return menuItemArraylist != null ? menuItemArraylist.size() : 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView itemTitle, itemDescription, itemAvailability, itemPrice ;
-//        ImageView itemImage;
+        ImageView itemImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,7 +73,7 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
             itemDescription = itemView.findViewById(R.id.itemDescription);
             itemAvailability = itemView.findViewById(R.id.itemAvailability);
             itemPrice = itemView.findViewById(R.id.itemPrice);
-//            itemImage = itemView.findViewById(R.id.itemImage);
+            itemImage = itemView.findViewById(R.id.itemImage);
         }
     }
 }

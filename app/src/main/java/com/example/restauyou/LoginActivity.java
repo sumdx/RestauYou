@@ -2,7 +2,6 @@ package com.example.restauyou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,6 +63,12 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Authentication failed."+e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
         });
@@ -79,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         tvGuestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent guestIntent = new Intent(LoginActivity.this, UserHomePageActivity.class);
+                Intent guestIntent = new Intent(LoginActivity.this, CustomerHomePageActivity.class);
                 startActivity(guestIntent);
 
 
