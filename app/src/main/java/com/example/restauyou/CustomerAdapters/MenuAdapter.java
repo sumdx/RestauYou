@@ -10,10 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.restauyou.ModelClass.CartItem;
 import com.example.restauyou.ModelClass.MenuItem;
+import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ import java.util.Locale;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
     ArrayList<MenuItem> foods;
-
+    SharedCartModel sharedCartModel;
     public ArrayList<MenuItem> getFoods() {
         return foods;
     }
@@ -32,9 +35,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public MenuAdapter(Context context, ArrayList<MenuItem> foods){
+    public MenuAdapter(Context context, ArrayList<MenuItem> foods,SharedCartModel sharedCartModel){
         this.context = context;
         this.foods = foods;
+        this.sharedCartModel = sharedCartModel;
     }
 
     @NonNull
@@ -58,6 +62,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         if (food.getSelected()) {
             holder.addCartBtn.setVisibility(View.GONE);
             holder.layout.setVisibility(View.VISIBLE);
+            
         } else {
             holder.addCartBtn.setVisibility(View.VISIBLE);
             holder.layout.setVisibility(View.GONE);
@@ -69,6 +74,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             public void onClick(View v) {
                 food.setSelected(true);
                 food.setAmount(1);
+                sharedCartModel.addToCart(food);
                 notifyItemChanged(pos); // To redraw the list
             }
         });
@@ -77,8 +83,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                food.setAmount(food.getAmount() + 1);
+
+                food.setAmount(sharedCartModel.getQuantity(food)+ 1);
                 holder.amount.setText(String.valueOf(food.getAmount()));
+                sharedCartModel.addToCart(food);
             }
         });
 
@@ -87,12 +95,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             public void onClick(View v) {
                 int current = food.getAmount();
                 if (current > 1) {
-                    food.setAmount(current - 1);
+                    food.setAmount(sharedCartModel.getQuantity(food) - 1);
                     holder.amount.setText(String.valueOf(food.getAmount()));
+                    sharedCartModel.removeFromCart(food);
                 } else {
                     food.setSelected(false);
                     food.setAmount(0);
                     notifyItemChanged(pos); // To redraw the list
+                    sharedCartModel.removeFromCart(food);
                 }
             }
         });
@@ -103,7 +113,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         return foods.size();
     }
 
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         ImageView img;
         TextView title, desc, amount, price;
         Button addCartBtn, addBtn, subBtn;
@@ -122,4 +135,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             layout = itemView.findViewById(R.id.countAmount);
         }
     }
+
+
 }
