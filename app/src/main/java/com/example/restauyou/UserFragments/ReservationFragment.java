@@ -28,7 +28,7 @@ public class ReservationFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_reservation, container, false);
 
-        GridLayout timeGrid = view.findViewById(R.id.timeGrid);
+        GridLayout timeGrid = view.findViewById(R.id.timeContainer);
 
         // Loop through all time buttons and set click listener
         for (int i = 0; i < timeGrid.getChildCount(); i++) {
