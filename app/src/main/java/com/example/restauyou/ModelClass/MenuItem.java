@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 public class MenuItem {
 
-    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl;
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory;
     private int amount, itemImg;
     private boolean selected;
 
@@ -72,6 +72,22 @@ public class MenuItem {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemCategory() {
+        return itemCategory;
+    }
+
+    public void setItemCategory(String itemCategory) {
+        this.itemCategory = itemCategory;
     }
 
     // For admin side

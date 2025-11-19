@@ -13,18 +13,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.restauyou.ModelClass.CartItem;
 import com.example.restauyou.ModelClass.MenuItem;
+import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     Context context;
-    ArrayList<MenuItem> foods;
+    ArrayList<CartItem> foods;
+    SharedCartModel sharedCartModel;
+    public ArrayList<CartItem> getCartItems() {
+        return foods;
+    }
 
-    public CartAdapter (Context context, ArrayList<MenuItem> foods){
+    public void setCartItems(ArrayList<CartItem> foods) {
+        this.foods = foods;
+    }
+
+
+    public CartAdapter (Context context, ArrayList<CartItem> foods,SharedCartModel sharedCartModel){
         this.context = context;
         this.foods = foods;
+        this.sharedCartModel = sharedCartModel;
     }
 
     @NonNull
@@ -35,30 +48,34 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
-        MenuItem food = foods.get(position);
+        MenuItem food = foods.get(position).getMenuItem();
         holder.title.setText(food.getItemTitle());
         holder.amount.setText(String.valueOf(food.getAmount()));
-        holder.price.setText(food.getItemPrice());
-        holder.img.setImageResource(food.getItemImg());
+        holder.price.setText(String.valueOf(foods.get(position).getTotalPrice()));
+//        holder.img.setImageResource(food.getItemImg());
+        Glide.with(context).load(food.getItemImageUrl()).into(holder.img);
 
         // Count amount listeners
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                food.setAmount(food.getAmount() + 1);
+                food.setAmount(foods.get(position).getQuantity() + 1);
                 holder.amount.setText(String.valueOf(food.getAmount()));
+                sharedCartModel.addToCart(food);
             }
         });
 
         holder.subBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int current = food.getAmount();
+                int current = foods.get(position).getQuantity();
                 if (current > 1) {
                     food.setAmount(current - 1);
                     holder.amount.setText(String.valueOf(food.getAmount()));
+                    sharedCartModel.removeFromCart(food);
                 } else {
                     removeItem(holder.getAbsoluteAdapterPosition());
+                    sharedCartModel.removeFromCart(food);
                 }
             }
         });
@@ -67,6 +84,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 removeItem(holder.getAbsoluteAdapterPosition());
+
             }
         });
     }
@@ -76,14 +94,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return foods.size();
     }
 
-    // Remove item from list
-    private void removeItem(int position) {
-        MenuItem food = foods.get(position);
-        food.setSelected(false);
-        food.setAmount(0);
-        foods.remove(position);
-        notifyItemRemoved(position);
 
+    private void removeItem(int position) {
 
     }
 

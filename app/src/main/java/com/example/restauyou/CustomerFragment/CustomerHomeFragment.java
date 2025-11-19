@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,8 +18,10 @@ import android.widget.ImageButton;
 import com.example.restauyou.CustomerAdapters.MenuFilterAdapter;
 import com.example.restauyou.CustomerAdapters.MenuAdapter;
 import com.example.restauyou.CustomerHomePageActivity;
+import com.example.restauyou.ModelClass.CartItem;
 import com.example.restauyou.ModelClass.MenuFilter;
 import com.example.restauyou.ModelClass.MenuItem;
+import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -33,6 +37,7 @@ public class CustomerHomeFragment extends Fragment {
     FirebaseFirestore firebaseFirestore;
     ArrayList<MenuItem> foods = new ArrayList<>();
     MenuAdapter menuAdapter;
+    SharedCartModel sharedCartItemsList ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +45,7 @@ public class CustomerHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cusomter_home, container, false);
         firebaseFirestore = FirebaseFirestore.getInstance();
-
+        sharedCartItemsList = new ViewModelProvider(requireActivity()).get(SharedCartModel.class);
         // Initial objects by ids
         chooseRv = view.findViewById(R.id.chooseRecyclerView);
         displayRv = view.findViewById(R.id.displayRecyclerView);
@@ -55,11 +60,17 @@ public class CustomerHomeFragment extends Fragment {
         choose.add(new MenuFilter("Sushi", false));
 
 
+
         // Set adapter
-        menuAdapter = new MenuAdapter(getContext(), foods);
+        menuAdapter = new MenuAdapter(getContext(), foods,sharedCartItemsList);
         displayRv.setAdapter(menuAdapter);
         chooseRv.setAdapter(new MenuFilterAdapter(getContext(), choose));
-
+        sharedCartItemsList.getCartList().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartItem>>() {
+            @Override
+            public void onChanged(ArrayList<CartItem> cartItems) {
+                menuAdapter.notifyDataSetChanged();
+            }
+        });
         // Set layout
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -102,6 +113,7 @@ public class CustomerHomeFragment extends Fragment {
                     foods.clear();
                     for(DocumentSnapshot doc: value.getDocuments() ){
                         MenuItem item = doc.toObject(MenuItem.class);
+                        item.setItemId(doc.getId());
                         foods.add(item);
 
                     }
