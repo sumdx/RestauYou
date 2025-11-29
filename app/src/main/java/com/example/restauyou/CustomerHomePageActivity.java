@@ -58,20 +58,17 @@ public class CustomerHomePageActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                Intent i;
                 if (id == R.id.menuItem) {
                     vp2.setCurrentItem(0);
                 }
-                else if (id == R.id.reserveItem) {
+                else if (id == R.id.orderItem) {
                     vp2.setCurrentItem(1);
                 }
-                else if (id == R.id.cartItem) {
+                else if (id == R.id.reserveItem) {
                     vp2.setCurrentItem(2);
                 }
-                else {  // Log out function
-                    FirebaseAuth.getInstance().signOut();
-                    i = new Intent(CustomerHomePageActivity.this, LoginActivity.class);
-                    startActivity(i);
+                else {
+                    vp2.setCurrentItem(3);
                 }
                 return false;
             }
@@ -80,8 +77,8 @@ public class CustomerHomePageActivity extends AppCompatActivity {
 
     // For cartBtm in the Home Fragment
     public void cartBtnClicked() {
-        vp2.setCurrentItem(2);
-        bnv.setSelectedItemId(R.id.cartItem);
+        vp2.setCurrentItem(1);
+        bnv.setSelectedItemId(R.id.orderItem);
     }
 }
 

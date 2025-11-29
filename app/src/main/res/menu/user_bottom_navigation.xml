@@ -6,18 +6,18 @@
         android:enabled="true"
         android:title="Menu" />
     <item
+        android:id="@+id/orderItem"
+        android:enabled="true"
+        android:icon="@drawable/shopping_cart_24px"
+        android:title="Orders" />
+    <item
         android:id="@+id/reserveItem"
         android:enabled="true"
         android:icon="@drawable/outline_calendar_today_24"
         android:title="Reserve" />
     <item
-        android:id="@+id/cartItem"
-        android:enabled="true"
-        android:icon="@drawable/shopping_cart_24px"
-        android:title="Your Cart" />
-    <item
         android:id="@+id/logoutItem"
         android:enabled="true"
-        android:icon="@drawable/logout_24px"
-        android:title="Logout" />
+        android:icon="@drawable/settings_24px"
+        android:title="Settings" />
 </menu>
