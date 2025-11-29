@@ -71,6 +71,7 @@ public class CustomerHomeFragment extends Fragment {
                 menuAdapter.notifyDataSetChanged();
             }
         });
+
         // Set layout
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
