@@ -150,6 +150,16 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //  Guest login text listener
+        tvGuestLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent guestIntent = new Intent(SignupActivity.this, CustomerHomePageActivity.class);
+                startActivity(guestIntent);
+            }
+        });
+
     }
 
 

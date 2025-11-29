@@ -6,14 +6,19 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:padding="5dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="5dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_box"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_gravity="start"
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgView"
+        android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedCornersStyle"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout

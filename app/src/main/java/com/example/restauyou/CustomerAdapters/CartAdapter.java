@@ -20,6 +20,7 @@ import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     Context context;
@@ -51,7 +52,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         MenuItem food = foods.get(position).getMenuItem();
         holder.title.setText(food.getItemTitle());
         holder.amount.setText(String.valueOf(food.getAmount()));
-        holder.price.setText(String.valueOf(foods.get(position).getTotalPrice()));
+        holder.price.setText(String.format(Locale.CANADA, "$%.2f", foods.get(position).getTotalPrice()));
 //        holder.img.setImageResource(food.getItemImg());
         Glide.with(context).load(food.getItemImageUrl()).into(holder.img);
 

@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(signupIntent);
             }
         });
+
 //      Guest login text listener
         tvGuestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
