@@ -1,4 +1,4 @@
-package com.example.restauyou.UserFragments;
+package com.example.restauyou.CustomerFragment;
 
 import android.os.Bundle;
 
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.restauyou.R;
 
-public class ReservationFragment extends Fragment {
+public class CustomerReservationFragment extends Fragment {
     private Button selectedTimeButton;
     private String selectedTime = "";
 
