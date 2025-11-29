@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.restauyou.CustomerFragment.CustomerCartFragment;
 import com.example.restauyou.CustomerFragment.CustomerHomeFragment;
+import com.example.restauyou.SettingsFragment;
 import com.example.restauyou.UserFragments.ReservationFragment;
 
 public class CustomerAdapter extends FragmentStateAdapter {
@@ -19,12 +20,12 @@ public class CustomerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0:
-                return new CustomerHomeFragment();
             case 1:
-                return new ReservationFragment();
-            case 2:
                 return new CustomerCartFragment();
+            case 2:
+                return new ReservationFragment();
+            case 3:
+                return new SettingsFragment();
             default:
                 return new CustomerHomeFragment();
         }
