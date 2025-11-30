@@ -53,6 +53,7 @@ public class AdminMenuEditFragment extends Fragment {
         loadMenuItems();
         btnAddNewItem.setOnClickListener(v -> {
             // Hide the default content (RecyclerView + Title)
+            assert getView() != null;
             View contentLayout = getView().findViewById(R.id.editMenuContent);
             contentLayout.setVisibility(View.GONE);
 

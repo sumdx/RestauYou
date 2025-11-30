@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 public class SharedCartModel extends ViewModel {
 
-    private final MutableLiveData<ArrayList<CartItem>> cartList =
-            new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<ArrayList<CartItem>> cartList = new MutableLiveData<>(new ArrayList<>());
 
     public LiveData<ArrayList<CartItem>> getCartList() {
         return cartList;
@@ -54,9 +53,9 @@ public class SharedCartModel extends ViewModel {
 
     public int getQuantity(MenuItem food) {
         ArrayList<CartItem> current = cartList.getValue();
-        for (CartItem cartItem : current) {
+        for (CartItem cartItem: current) {
             if (cartItem.getMenuItem().getItemId().equals(food.getItemId())) {
-                return  cartItem.getQuantity();
+                return cartItem.getQuantity();
             }
         }
        return 0;
