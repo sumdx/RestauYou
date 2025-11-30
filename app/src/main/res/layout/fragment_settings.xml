@@ -1,562 +1,584 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".SettingsFragment">
-
     <LinearLayout
+        android:id="@+id/settingsContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="Settings" />
-
-    </LinearLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:elevation="4dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:background="@drawable/rounded_box"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Profile"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:padding="10dp">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/profileImg"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:scaleType="centerCrop"
-                        app:shapeAppearanceOverlay="@style/CircularStyle"
-                        tools:srcCompat="@tools:sample/avatars" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/nameText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Guest User"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="View and edit profile"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:contentDescription="Email Icon"
-                        android:src="@drawable/outline_attach_email_24"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/emailText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="guest@example.com"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:contentDescription="Phone Icon"
-                        android:src="@drawable/ic_phone"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text="Phone" />
-
-                        <TextView
-                            android:id="@+id/phoneText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/gray"
-                            android:text="+1 (555) 123-4567" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_box"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Delivery Address"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="20dp"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:contentDescription="Location Icon"
-                        android:src="@drawable/distance_24px"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Home"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/addressText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="123 Main St, Apt 4B"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/addAddressText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/accent"
-                    android:text="+\t\t\tAdd New Address"  />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_box"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Payment Methods"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp">
-
-                    <ImageView
-                        android:contentDescription="Notification"
-                        android:src="@drawable/outline_circle_notifications_24"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/cardText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="•••• •••• •••• 4242"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/CVCText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Expires 12/25"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/addCardText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@color/accent"
-                    android:text="+\t\t\tAdd New Card"  />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_box"
-                android:layout_width="match_parent"
-                android:layout_height="325dp"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Notifications"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:contentDescription="Credit Card Icon"
-                        android:src="@drawable/outline_add_card_24"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Push Notifications"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Enable notifications"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/notifiSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Order Updates"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Get updates on your orders"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/orderUpdateSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Promotions"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Receive special offers"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/promotionSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:background="@drawable/rounded_box"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:padding="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Account"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp">
-
-                    <ImageView
-                        android:contentDescription="Lock Icon"
-                        android:src="@drawable/lock_24px"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingStart="5dp"
-                        android:paddingEnd="5dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Change Password"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:contentDescription="Question Icon"
-                        android:src="@drawable/outline_contact_support_24"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text="Help &amp; Support" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/logoutItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:contentDescription="Logout Icon"
-                        android:src="@drawable/logout_24px"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="30dp"
-                        android:layout_height="50dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text="Log out" />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
             <TextView
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Restaurant App v1.0.0" />
-
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:text="© 2025 All rights reserved" />
+                android:layout_height="match_parent"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="Settings" />
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:background="@drawable/rounded_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Profile"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:padding="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profileImg"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/CircularStyle"
+                            tools:srcCompat="@tools:sample/avatars" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/nameText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Guest User"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="View and edit profile"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:contentDescription="Email Icon"
+                            android:src="@drawable/outline_attach_email_24"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Email"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/emailText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="guest@example.com"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:contentDescription="Phone Icon"
+                            android:src="@drawable/ic_phone"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Phone" />
+
+                            <TextView
+                                android:id="@+id/phoneText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray"
+                                android:text="+1 (555) 123-4567" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/rounded_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Delivery Address"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:contentDescription="Location Icon"
+                            android:src="@drawable/distance_24px"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Home"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/addressText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="123 Main St, Apt 4B"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/addAddressText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/accent"
+                        android:text="+\t\t\tAdd New Address"  />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/rounded_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Payment Methods"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <ImageView
+                            android:contentDescription="Notification"
+                            android:src="@drawable/outline_circle_notifications_24"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/cardText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="•••• •••• •••• 4242"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/CVCText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Expires 12/25"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/addCardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/accent"
+                        android:text="+\t\t\tAdd New Card"  />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/rounded_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="325dp"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Notifications"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:contentDescription="Credit Card Icon"
+                            android:src="@drawable/outline_add_card_24"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Push Notifications"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Enable notifications"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/notifiSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Order Updates"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Get updates on your orders"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/orderUpdateSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Promotions"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Receive special offers"
+                                android:textColor="@color/gray" />
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/promotionSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/rounded_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Account"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <ImageView
+                            android:contentDescription="Lock Icon"
+                            android:src="@drawable/lock_24px"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Change Password"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:contentDescription="Question Icon"
+                            android:src="@drawable/outline_contact_support_24"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Help &amp; Support" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/logoutItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:contentDescription="Logout Icon"
+                            android:src="@drawable/logout_24px"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="50dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Log out" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btnApplyForJob"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apply For Job"/>
+                </LinearLayout>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Restaurant App v1.0.0" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:text="© 2025 All rights reserved" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+    <!-- EMPTY CONTAINER FOR AddNewItemFragment -->
+    <FrameLayout
+        android:id="@+id/settingsApplyForJobContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
+
+
