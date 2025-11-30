@@ -17,12 +17,13 @@ import android.widget.LinearLayout;
 import com.example.restauyou.AdminFragment.AdminMenuItemAddFragment;
 import com.example.restauyou.CustomerFragment.CustomerApplyForEmployeeFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsFragment extends Fragment {
     LinearLayout logout;
     Button btnApplyForJob;
     View rootView;
-
+    FirebaseUser firebaseUser;
     View contentLayout;
     FragmentManager fragmentManager;
 
@@ -37,12 +38,17 @@ public class SettingsFragment extends Fragment {
         logout = rootView.findViewById(R.id.logoutItem);
         btnApplyForJob = rootView.findViewById(R.id.btnApplyForJob);
         fragmentManager = getParentFragmentManager();
-
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         btnApplyForJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (firebaseUser == null){
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 contentLayout = getView().findViewById(R.id.settingsContainer);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.settingsApplyForJobContainer, new CustomerApplyForEmployeeFragment())
