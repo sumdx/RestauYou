@@ -26,9 +26,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
     ArrayList<MenuItem> foods;
     SharedCartModel sharedCartModel;
-    public ArrayList<MenuItem> getFoods() {
-        return foods;
-    }
 
     public void setFoods(ArrayList<MenuItem> foods) {
         this.foods = foods;
@@ -51,6 +48,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder holder, int position) {
         int pos = holder.getAbsoluteAdapterPosition();
         MenuItem food = foods.get(pos);
+        food.setAmount(sharedCartModel.getQuantity(food));
+        food.setSelected(food.getAmount() > 0);
+
         // Set up texts
         holder.title.setText(food.getItemTitle());
         holder.desc.setText(food.getItemDescription());
@@ -74,7 +74,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             public void onClick(View v) {
                 food.setSelected(true);
                 food.setAmount(1);
-                sharedCartModel.addToCart(food);
+                sharedCartModel.addToCart(context, food);
                 notifyItemChanged(pos); // To redraw the list
             }
         });
@@ -86,7 +86,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
                 food.setAmount(sharedCartModel.getQuantity(food)+ 1);
                 holder.amount.setText(String.valueOf(food.getAmount()));
-                sharedCartModel.addToCart(food);
+                sharedCartModel.addToCart(context, food);
             }
         });
 
@@ -97,12 +97,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                 if (current > 1) {
                     food.setAmount(sharedCartModel.getQuantity(food) - 1);
                     holder.amount.setText(String.valueOf(food.getAmount()));
-                    sharedCartModel.removeFromCart(food);
+                    sharedCartModel.removeFromCart(context, food);
                 } else {
                     food.setSelected(false);
                     food.setAmount(0);
                     notifyItemChanged(pos); // To redraw the list
-                    sharedCartModel.removeFromCart(food);
+                    sharedCartModel.removeFromCart(context, food);
                 }
             }
         });
@@ -112,8 +112,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public int getItemCount() {
         return foods.size();
     }
-
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -2,7 +2,6 @@ package com.example.restauyou.CustomerFragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,10 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.restauyou.AdminFragment.AdminMenuItemAddFragment;
 import com.example.restauyou.CustomerAdapters.MenuFilterAdapter;
 import com.example.restauyou.CustomerAdapters.MenuAdapter;
-import com.example.restauyou.CustomerHomePageActivity;
 import com.example.restauyou.ModelClass.CartItem;
 import com.example.restauyou.ModelClass.MenuFilter;
 import com.example.restauyou.ModelClass.MenuItem;
@@ -50,8 +47,11 @@ public class CustomerHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cusomter_home, container, false);
+
+        // Load sharedCartItems List (if present)
         firebaseFirestore = FirebaseFirestore.getInstance();
         sharedCartItemsList = new ViewModelProvider(requireActivity()).get(SharedCartModel.class);
+        sharedCartItemsList.loadSharedPrefCart(getContext());
 
         // Initialize objects by ids
         chooseRv = view.findViewById(R.id.chooseRecyclerView);
@@ -71,10 +71,12 @@ public class CustomerHomeFragment extends Fragment {
 
 
 
-        // Set adapter
-        menuAdapter = new MenuAdapter(getContext(), foods,sharedCartItemsList);
+        // Set adapters
+        menuAdapter = new MenuAdapter(getContext(), foods, sharedCartItemsList);
         displayRv.setAdapter(menuAdapter);
         chooseRv.setAdapter(new MenuFilterAdapter(getContext(), choose));
+
+        // When cart changes, update menu UI
         sharedCartItemsList.getCartList().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartItem>>() {
             @Override
             public void onChanged(ArrayList<CartItem> cartItems) {
@@ -135,15 +137,23 @@ public class CustomerHomeFragment extends Fragment {
                     Log.d("FirebaseError", Objects.requireNonNull(error.getMessage()));
                     return;
                 }
+
                 if(value != null && !value.isEmpty()){
                     foods.clear();
                     for(DocumentSnapshot doc: value.getDocuments() ){
                         MenuItem item = doc.toObject(MenuItem.class);
                         assert item != null;
                         item.setItemId(doc.getId());
-                        foods.add(item);
 
+                        // Check if already in cart (from shared preference)
+                        int cartedAmount = sharedCartItemsList.getQuantity(item);
+                        item.setAmount(cartedAmount);
+                        item.setSelected(cartedAmount > 0);
+
+                        foods.add(item);
                     }
+
+
                     menuAdapter.setFoods(foods);
                 }
             }

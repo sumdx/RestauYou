@@ -51,6 +51,7 @@ public class CustomerCartFragment extends Fragment {
         // Initialize selected cart items list
         sharedCartItemsList = new ViewModelProvider(requireActivity()).get(SharedCartModel.class);
         cartAdapter = new CartAdapter(getContext(), new ArrayList<>(), sharedCartItemsList);
+        sharedCartItemsList.loadSharedPrefCart(getContext());
 
         // Get item from Menu Fragment
         sharedCartItemsList.getCartList().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartItem>>() {
@@ -103,9 +104,13 @@ public class CustomerCartFragment extends Fragment {
 
     // Update cost texts
     public void updateCost() {
+        ArrayList<CartItem> cart = sharedCartItemsList.getCartList().getValue();
         double cost = 0;
 
-        for (CartItem cartItem: sharedCartItemsList.getCartList().getValue())
+        if (cart == null)
+            return;
+
+        for (CartItem cartItem: cart)
             cost += cartItem.getTotalPrice();
 
         double tax = cost * 0.08, total = cost + tax;

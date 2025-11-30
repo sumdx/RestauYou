@@ -57,7 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View v) {
                 food.setAmount(foods.get(holder.getAbsoluteAdapterPosition()).getQuantity() + 1);
                 holder.amount.setText(String.valueOf(food.getAmount()));
-                sharedCartModel.addToCart(food);
+                sharedCartModel.addToCart(context, food);
             }
         });
 
@@ -69,7 +69,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 if (current > 0) {
                     food.setAmount(--current);
                     holder.amount.setText(String.valueOf(food.getAmount()));
-                    sharedCartModel.removeFromCart(food);
+                    sharedCartModel.removeFromCart(context, food);
                     if (current == 0)
                         food.setSelected(false);
                 }
@@ -81,7 +81,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View v) {
                 food.setSelected(false);
                 for (int i = 0; i < food.getAmount(); i++)
-                    sharedCartModel.removeFromCart(food);
+                    sharedCartModel.removeFromCart(context, food);
             }
         });
     }
