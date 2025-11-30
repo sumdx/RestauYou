@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/menuBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -79,7 +79,7 @@
                 android:id="@+id/subTotalText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cost" />
+                android:text="$0.00" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +97,7 @@
                 android:id="@+id/taxText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tax" />
+                android:text="$0.00" />
         </LinearLayout>
 
         <View
@@ -124,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Total" />
+                android:text="$0.00" />
         </LinearLayout>
         <Button
             android:id="@+id/checkoutBtn"

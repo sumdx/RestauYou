@@ -10,9 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.CustomerAdapters.CustomerAdapter;
+import com.example.restauyou.CustomerFragment.CustomerCartFragment;
+import com.example.restauyou.CustomerFragment.CustomerHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,8 +79,8 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         });
     }
 
-    // For cartBtm in the Home Fragment
-    public void cartBtnClicked() {
+    // For checkoutBtn in the Cart Fragment
+    public void checkoutBtnClicked() {
         vp2.setCurrentItem(1);
         bnv.setSelectedItemId(R.id.orderItem);
     }
