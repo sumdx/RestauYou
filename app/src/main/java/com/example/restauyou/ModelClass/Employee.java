@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Employee extends User{
     private String position, startingDate, currentStatus;
+    private boolean isEmployeePending;
     private double hourlyRate;
     private double ytdHoursWorked, ytdTotalIncome;
     public Employee(){
@@ -22,6 +23,13 @@ public class Employee extends User{
         this.ytdTotalIncome = 0;
     }
 
+    public boolean isEmployeePending() {
+        return isEmployeePending;
+    }
+
+    public void setEmployeePending(boolean employeePending) {
+        isEmployeePending = employeePending;
+    }
 
     public String getPosition() {
         return position;
