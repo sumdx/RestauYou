@@ -68,15 +68,14 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:text="+\t\t\tAdd to Cart"
             android:textColor="@color/white"
             android:backgroundTint="@color/accent"
+            app:rippleColor="@color/active_accent"
             app:cornerRadius="10dp" />
 
         <LinearLayout
             android:id="@+id/countAmount"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
@@ -87,8 +86,11 @@
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/accent"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                app:rippleColor="@color/light_gray"
+                app:strokeColor="@color/light_gray"
+                app:strokeWidth="2dp"
                 app:cornerRadius="10dp" />
 
             <TextView
@@ -106,6 +108,7 @@
                 android:text="+"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/accent"
+                app:rippleColor="@color/active_accent"
                 app:cornerRadius="10dp" />
 
         </LinearLayout>
