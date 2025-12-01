@@ -12,14 +12,19 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.restauyou.AdminAdapters.OrderAdapter;
+import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdminOrderManagementFragment extends Fragment {
     RecyclerView orderRV;
-    //ArrayList<Order> orderList;
+    ArrayList<Order> orderList;
     TextView pendingText, preparingText, readyText;
+
+    private int numPending, numPreparing, numReady;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,14 +38,37 @@ public class AdminOrderManagementFragment extends Fragment {
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
 
-//        // Hard-coding values
-//        orderList = new ArrayList<>();
-//
-//        // Set adapter & layout manager
-//        orderRV.setAdapter(new OrderAdapter(getContext(), orderList));
-//        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        orderRV.setLayoutManager(llm);
+        // Hard-coding values
+        orderList = new ArrayList<>();
+        orderList.add(new Order());
+        orderList.add(new Order());
+        orderList.add(new Order());
+
+        // Categorize orders by state (Also hard-coded)
+        numPending = numPreparing = numReady = 0;
+        for (Order order: orderList)
+            switch (order.getOrderStatus()) {
+                case "received":
+                    numPending++;
+                    break;
+                case "preparing":
+                    numPreparing++;
+                    break;
+                case "ready":
+                    numReady++;
+                    break;
+            }
+
+        // Update Text
+        pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
+        preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
+        readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
+
+        // Set adapter & layout manager
+        orderRV.setAdapter(new OrderAdapter(getContext(), orderList));
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        orderRV.setLayoutManager(llm);
 
         return view;
     }

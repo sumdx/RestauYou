@@ -56,7 +56,10 @@ public class AdminHomePageActivity extends AppCompatActivity {
                     adminViewPager.setCurrentItem(2);
                 } else if (itemId == R.id.adminMenuItem4) {
                     adminViewPager.setCurrentItem(3);
+                } else if (itemId == R.id.adminMenuItem5) {
+                    adminViewPager.setCurrentItem(4);
                 }
+
                 return true;
             }
         });
