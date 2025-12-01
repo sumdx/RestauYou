@@ -24,7 +24,18 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
-    public Order() {}
+    // For testing purposes only
+    public Order() {
+        this.cartItems = new ArrayList<>();
+        this.orderId = "1234";
+        this.userId = "Greg";
+        this.tableNo = "12";
+        this.orderStatus = "received";
+        this.totalPrice = 1;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+
+    }
 
     public ArrayList<CartItem> getCartItems() {
         return cartItems;

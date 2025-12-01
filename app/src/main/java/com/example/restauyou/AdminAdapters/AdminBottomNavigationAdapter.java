@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.restauyou.AdminFragment.AdminMenuEditFragment;
 import com.example.restauyou.AdminFragment.AdminMenuItemAddFragment;
+import com.example.restauyou.AdminFragment.AdminOrderManagementFragment;
 import com.example.restauyou.AdminFragment.AdminScheduleMakerFragment;
 import com.example.restauyou.AdminFragment.AdminSettingsFragment;
 import com.example.restauyou.AdminFragment.AdminStaffManagementFragment;
@@ -22,15 +23,15 @@ public class AdminBottomNavigationAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
-            case 0:
-                return new AdminMenuEditFragment();
             case 1 :
                 return new AdminStaffManagementFragment();
             case 2:
-                return new AdminScheduleMakerFragment();
+                return new AdminOrderManagementFragment();
             case 3:
+                return new AdminScheduleMakerFragment();
+            case 4:
                 return new AdminSettingsFragment();
-            default:
+            default: // Case 0
                 return new AdminMenuEditFragment();
         }
     }
