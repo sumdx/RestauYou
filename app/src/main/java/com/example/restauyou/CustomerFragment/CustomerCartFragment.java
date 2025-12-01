@@ -96,14 +96,19 @@ public class CustomerCartFragment extends Fragment {
                     startActivity(intent);
                     return;
                 }
+                if (sharedCartItemsList.getCartList().getValue().isEmpty()){
+                    Toast.makeText(getContext(), "Empty Cart. Please add some food!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Date now = Calendar.getInstance().getTime();
                 DocumentReference docRef = db.collection("orders").document();
                 Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","recieved",cost, now, now);
                 docRef.set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-
+                        sharedCartItemsList.clearCart(getContext());
                         Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                        sharedCartItemsList.loadSharedPrefCart(getContext());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -112,15 +117,6 @@ public class CustomerCartFragment extends Fragment {
                     }
                 });
 
-//                View home = requireActivity().getWindow().getDecorView().getRootView();
-//                home.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (getActivity() instanceof CustomerHomePageActivity)
-//                            ((CustomerHomePageActivity) getActivity()).checkoutBtnClicked();
-//                    }
-//                });
-                //Log.d("list", sharedCartItemsList.getCartList().getValue().get(1).getQuantity()+"");
             }
         });
 

@@ -78,6 +78,11 @@ public class SharedCartModel extends ViewModel {
        return 0;
     }
 
+    public void clearCart(Context context){
+        cartList.getValue().clear();
+        CartSharedPrefManager.saveCart(context, new ArrayList<>());
+    }
+
     private void saveCart(Context context, ArrayList<CartItem> arr) {
         CartSharedPrefManager.saveCart(context, arr);
     }
