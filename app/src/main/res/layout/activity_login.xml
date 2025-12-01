@@ -57,14 +57,14 @@
             android:inputType="textPassword"/>
 
         <Button
-            android:layout_marginTop="20dp"
             android:id="@+id/btnLogin"
-            android:layout_width="370dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/buttonbg"
             android:text="Login"
-            android:textStyle="bold"
-            android:textSize="18sp">
+            android:textSize="18sp"
+            android:textStyle="bold">
 
         </Button>
         <TextView

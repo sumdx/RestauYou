@@ -15,6 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#d3d3d3" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/userBottomNavigation"
         android:layout_width="match_parent"

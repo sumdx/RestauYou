@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:padding="10dp"
-    android:background="@color/white"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_box"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgView"
+        android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Food Image"
         android:layout_marginEnd="10dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedCornersStyle"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
@@ -63,25 +65,31 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/subBtn"
-                    android:layout_width="60dp"
+                    android:layout_width="55dp"
                     android:layout_height="wrap_content"
-                    android:text="-" />
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/accent"
+                    app:cornerRadius="10dp" />
 
                 <TextView
                     android:id="@+id/amountText"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Amount" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/addBtn"
-                    android:layout_width="60dp"
+                    android:layout_width="55dp"
                     android:layout_height="wrap_content"
-                    android:text="+" />
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/accent"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <TextView

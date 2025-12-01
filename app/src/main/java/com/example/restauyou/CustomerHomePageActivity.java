@@ -10,9 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.CustomerAdapters.CustomerAdapter;
+import com.example.restauyou.CustomerFragment.CustomerCartFragment;
+import com.example.restauyou.CustomerFragment.CustomerHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,30 +62,27 @@ public class CustomerHomePageActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                Intent i;
                 if (id == R.id.menuItem) {
                     vp2.setCurrentItem(0);
                 }
-                else if (id == R.id.reserveItem) {
+                else if (id == R.id.orderItem) {
                     vp2.setCurrentItem(1);
                 }
-                else if (id == R.id.cartItem) {
+                else if (id == R.id.reserveItem) {
                     vp2.setCurrentItem(2);
                 }
-                else {  // Log out function
-                    FirebaseAuth.getInstance().signOut();
-                    i = new Intent(CustomerHomePageActivity.this, LoginActivity.class);
-                    startActivity(i);
+                else {
+                    vp2.setCurrentItem(3);
                 }
                 return false;
             }
         });
     }
 
-    // For cartBtm in the Home Fragment
-    public void cartBtnClicked() {
-        vp2.setCurrentItem(2);
-        bnv.setSelectedItemId(R.id.cartItem);
+    // For checkoutBtn in the Cart Fragment
+    public void checkoutBtnClicked() {
+        vp2.setCurrentItem(1);
+        bnv.setSelectedItemId(R.id.orderItem);
     }
 }
 

@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F8F8"
-    android:padding="24dp">
+    android:background="#F8F8F8">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:text="Table Reservation"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="4dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:padding="10dp"
+            android:paddingBottom="0dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:text="Book a table for your visit"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#777"
-            android:layout_marginBottom="20dp"/>
+            <TextView
+                android:text="Table Reservation"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
+            <TextView
+                android:text="Book a table for your visit"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#777"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_box"
             android:orientation="vertical"
+            android:layout_margin="12dp"
             android:padding="20dp">
 
             <LinearLayout
@@ -46,7 +55,7 @@
                 <ImageView
                     android:src="@drawable/ic_person"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"/>
+                    android:layout_height="20dp" />
 
                 <TextView
                     android:text="Full Name"
@@ -55,7 +64,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginStart="8dp"
-                    android:textColor="#444"/>
+                    android:textColor="#444" />
             </LinearLayout>
 
             <EditText
@@ -65,7 +74,7 @@
                 android:layout_height="50dp"
                 android:padding="15dp"
                 android:textSize="15sp"
-                android:background="@drawable/input_box"/>
+                android:background="@drawable/input_box" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -78,7 +87,7 @@
                 <ImageView
                     android:src="@drawable/ic_phone"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"/>
+                    android:layout_height="20dp" />
 
                 <TextView
                     android:text="Phone Number"
@@ -87,7 +96,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginStart="8dp"
-                    android:textColor="#444"/>
+                    android:textColor="#444" />
             </LinearLayout>
 
             <EditText
@@ -96,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="15dp"
-                android:background="@drawable/input_box"/>
+                android:background="@drawable/input_box" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -110,7 +119,7 @@
                     android:src="@drawable/outline_calendar_today_24"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:tint="#444"/>
+                    app:tint="#444" />
 
                 <TextView
                     android:text="Date"
@@ -143,7 +152,7 @@
                     android:src="@drawable/ic_time"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:tint="@null"/>
+                    app:tint="@null" />
 
                 <TextView
                     android:text="Time"
@@ -162,17 +171,17 @@
                 android:columnCount="3"
                 android:layout_marginTop="10dp">
 
-                <Button android:text="17:00" style="@style/timeButton"/>
-                <Button android:text="17:30" style="@style/timeButton"/>
-                <Button android:text="18:00" style="@style/timeButton"/>
-                <Button android:text="18:30" style="@style/timeButton"/>
-                <Button android:text="19:00" style="@style/timeButton"/>
-                <Button android:text="19:30" style="@style/timeButton"/>
-                <Button android:text="20:00" style="@style/timeButton"/>
-                <Button android:text="20:30" style="@style/timeButton"/>
-                <Button android:text="21:00" style="@style/timeButton"/>
-                <Button android:text="21:30" style="@style/timeButton"/>
-                <Button android:text="22:00" style="@style/timeButton"/>
+                <com.google.android.material.button.MaterialButton android:text="17:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="17:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="18:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="18:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="18:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="19:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="20:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="20:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="21:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="21:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="22:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
 
             </GridLayout>
 
@@ -188,7 +197,7 @@
                     android:src="@drawable/ic_people"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:tint="@null"/>
+                    app:tint="@null" />
 
                 <TextView
                     android:text="Number of Guests"
@@ -206,6 +215,41 @@
                 android:background="@drawable/input_box"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:src="@drawable/outline_chat_bubble_24"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="@null" />
+
+                <TextView
+                    android:text="Special Request (Optional)"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/sRequest"
+                android:hint="Any special requests or dietary restriction?"
+                android:gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="textMultiLine"
+                android:padding="15dp"
+                android:background="@drawable/input_box" />
 
         </LinearLayout>
 

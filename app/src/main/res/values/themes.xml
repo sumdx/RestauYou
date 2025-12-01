@@ -1,9 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.RestauYou" parent="Theme.Material3.Light.NoActionBar">
-
         <item name="colorPrimary">@color/accent</item>
-
     </style>
 
     <style name="Theme.RestauYou" parent="Base.Theme.RestauYou" />
@@ -19,6 +17,16 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <!-- For images -->
+    <style name="RoundedCornersStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
+
+    <style name="CircularStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
 </resources>
 
 

@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.restauyou.ModelClass.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -86,10 +87,15 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Map<String, Object> userData = new HashMap<>();
-                                userData.put("name", name);
-                                userData.put("email", email);
-                                userData.put("role", "user");
+
+//                              New way
+                                User userData = new User(name, email, "user");
+
+//                              previous way
+//                                Map<String, Object> userData = new HashMap<>();
+//                                userData.put("name", name);
+//                                userData.put("email", email);
+//                                userData.put("role", "user");
                                 FirebaseUser user = mAuth.getCurrentUser();
 
                                 String uid = user.getUid();
@@ -150,6 +156,16 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //  Guest login text listener
+        tvGuestLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent guestIntent = new Intent(SignupActivity.this, CustomerHomePageActivity.class);
+                startActivity(guestIntent);
+            }
+        });
+
     }
 
 

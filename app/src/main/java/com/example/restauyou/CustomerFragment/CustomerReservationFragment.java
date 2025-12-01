@@ -1,24 +1,19 @@
-package com.example.restauyou.UserFragments;
+package com.example.restauyou.CustomerFragment;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.restauyou.R;
 
-public class ReservationFragment extends Fragment {
+public class CustomerReservationFragment extends Fragment {
     private Button selectedTimeButton;
     private String selectedTime = "";
 
@@ -26,7 +21,7 @@ public class ReservationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_reservation, container, false);
+        View view = inflater.inflate(R.layout.fragment_customer_reservation, container, false);
 
         GridLayout timeGrid = view.findViewById(R.id.timeContainer);
 

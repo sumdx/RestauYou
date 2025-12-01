@@ -6,9 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.restauyou.CustomerFragment.CustomerCartFragment;
 import com.example.restauyou.CustomerFragment.CustomerHomeFragment;
-import com.example.restauyou.UserFragments.ReservationFragment;
+import com.example.restauyou.CustomerFragment.CustomerOrdersFragment;
+import com.example.restauyou.SettingsFragment;
+import com.example.restauyou.CustomerFragment.CustomerReservationFragment;
 
 public class CustomerAdapter extends FragmentStateAdapter {
     public CustomerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
@@ -19,12 +20,12 @@ public class CustomerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0:
-                return new CustomerHomeFragment();
             case 1:
-                return new ReservationFragment();
+                return new CustomerOrdersFragment();
             case 2:
-                return new CustomerCartFragment();
+                return new CustomerReservationFragment();
+            case 3:
+                return new SettingsFragment();
             default:
                 return new CustomerHomeFragment();
         }

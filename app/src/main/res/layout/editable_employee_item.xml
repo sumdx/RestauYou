@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_box"
+    android:layout_margin="20dp"
+    android:padding="20dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvEmployeeName"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee Name"/>
+            <TextView
+                android:id="@+id/tvEmployeeRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Employee Role"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvEmployeeStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:textColor="@color/white"
+            android:padding="5dp"
+            android:background="@drawable/sm_rounded_bg_transparent"
+            android:backgroundTint="@color/black"
+            android:text="active" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvEmployeeEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@gmail.com"/>
+        <TextView
+            android:id="@+id/tvEmployeePhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123-456-7890"/>
+        <TextView
+            android:id="@+id/tvEmployeeHourlyRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.45"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            app:icon="@drawable/edit_document_24px"
+            app:iconTint="@android:color/background_dark"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="2px"
+            app:cornerRadius="10dp"
+            android:layout_marginEnd="20dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:icon="@drawable/edit_document_24px"
+            app:iconTint="@android:color/holo_red_light"
+            android:textColor="@color/red"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="2px"
+            app:cornerRadius="10dp"
+            android:layout_marginEnd="5dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
