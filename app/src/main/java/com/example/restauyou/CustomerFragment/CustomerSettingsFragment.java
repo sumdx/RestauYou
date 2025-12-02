@@ -1,8 +1,10 @@
 package com.example.restauyou.CustomerFragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -85,7 +87,24 @@ public class CustomerSettingsFragment extends Fragment {
         getSupportItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Contact Support");
+                builder.setIcon(R.drawable.outline_contact_support_24);
+                builder.setMessage("Do you want to get support from our online staff?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(), "Support Requested", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(), "Support Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
             }
         });
 //        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
