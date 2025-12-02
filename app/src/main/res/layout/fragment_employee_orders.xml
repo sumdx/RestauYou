@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="16dp">
 
@@ -117,25 +118,30 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
                         android:id="@+id/ivReceived1"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:src="@drawable/schedule_24px" />
+                        android:background="@color/accent"
+                        android:src="@drawable/outline_clock_loader_40_24_green" />
 
                     <ImageView
+
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
                         android:id="@+id/Cooking1"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
-                        android:tint="@color/black"
-                        android:src="@drawable/cooking" />
+                        app:tint="@color/blue"
+                        android:src="@drawable/cook" />
 
                     <ImageView
                         android:id="@+id/Ready1"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
+                        app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24" />
 
                     <ImageView
@@ -143,8 +149,8 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
-                        android:tint="@color/black"
-                        android:src="@drawable/ship" />
+                        app:tint="@color/black"
+                        android:src="@drawable/done" />
                 </LinearLayout>
 
                 <View
@@ -273,21 +279,23 @@
                         android:id="@+id/Received2"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:src="@drawable/schedule_24px"/>
+                        android:src="@drawable/schedule_24px"
+                        app:tint="@color/accent" />
 
                     <ImageView
                         android:id="@+id/Cooking2"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
-                        android:tint="@color/black"
-                        android:src="@drawable/cooking"/>
+                        app:tint="@color/blue"
+                        android:src="@drawable/cook"/>
 
                     <ImageView
                         android:id="@+id/Ready2"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
+                        app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24"/>
 
                     <ImageView
@@ -295,8 +303,8 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginStart="30dp"
-                        android:tint="@color/black"
-                        android:src="@drawable/ship"/>
+                        app:tint="@color/black"
+                        android:src="@drawable/done"/>
                 </LinearLayout>
 
                 <View
