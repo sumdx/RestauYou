@@ -61,20 +61,20 @@ public class CustomerHomeFragment extends Fragment {
         // Initialize manager
         fm = getParentFragmentManager();
 
-        // Test values for now
-        ArrayList<MenuFilter> choose = new ArrayList<>();
-        choose.add(new MenuFilter("All", true));
-        choose.add(new MenuFilter("Burgers", false));
-        choose.add(new MenuFilter("Pizza", false));
-        choose.add(new MenuFilter("Pasta", false));
-        choose.add(new MenuFilter("Sushi", false));
+//        // Test values for now
+//        ArrayList<MenuFilter> choose = new ArrayList<>();
+//        choose.add(new MenuFilter("All", true));
+//        choose.add(new MenuFilter("Burgers", false));
+//        choose.add(new MenuFilter("Pizza", false));
+//        choose.add(new MenuFilter("Pasta", false));
+//        choose.add(new MenuFilter("Sushi", false));
 
 
 
         // Set adapters
         menuAdapter = new MenuAdapter(getContext(), foods, sharedCartItemsList);
         displayRv.setAdapter(menuAdapter);
-        chooseRv.setAdapter(new MenuFilterAdapter(getContext(), choose));
+//        chooseRv.setAdapter(new MenuFilterAdapter(getContext(), choose));
 
         // When cart changes, update menu UI
         sharedCartItemsList.getCartList().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartItem>>() {
