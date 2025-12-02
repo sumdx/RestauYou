@@ -65,7 +65,7 @@ public class CustomerSettingsFragment extends Fragment {
         addAddressText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                comingSoon();
             }
         });
 
@@ -73,7 +73,7 @@ public class CustomerSettingsFragment extends Fragment {
         addCardText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                comingSoon();
             }
         });
 
@@ -81,10 +81,12 @@ public class CustomerSettingsFragment extends Fragment {
         notifiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                String message = "Notifications ";
                 if (isChecked)
-                    Toast.makeText(getContext(), "Notifications Enabled", Toast.LENGTH_SHORT).show();
+                    message += "enabled";
                 else
-                    Toast.makeText(getContext(), "Notifications Disabled", Toast.LENGTH_SHORT).show();
+                    message += "disabled";
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,10 +94,12 @@ public class CustomerSettingsFragment extends Fragment {
         orderUpdateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                String message = "Order Updates ";
                 if (isChecked)
-                    Toast.makeText(getContext(), "Order Updates Enabled", Toast.LENGTH_SHORT).show();
+                    message += "enabled";
                 else
-                    Toast.makeText(getContext(), "Order Updates Disabled", Toast.LENGTH_SHORT).show();
+                    message += "disabled";
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,10 +107,12 @@ public class CustomerSettingsFragment extends Fragment {
         promotionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                String message = "Promotions ";
                 if (isChecked)
-                    Toast.makeText(getContext(), "Promotions Enabled", Toast.LENGTH_SHORT).show();
+                    message += "enabled";
                 else
-                    Toast.makeText(getContext(), "Promotions Disabled", Toast.LENGTH_SHORT).show();
+                    message += "disabled";
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -114,7 +120,7 @@ public class CustomerSettingsFragment extends Fragment {
         changePswdItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+                comingSoon();
             }
         });
 
@@ -184,5 +190,9 @@ public class CustomerSettingsFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    private void comingSoon() {
+        Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
     }
 }
