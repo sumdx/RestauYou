@@ -71,6 +71,7 @@
                             android:layout_marginEnd="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearanceOverlay="@style/CircularStyle"
+                            android:src="@drawable/ic_people"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <LinearLayout

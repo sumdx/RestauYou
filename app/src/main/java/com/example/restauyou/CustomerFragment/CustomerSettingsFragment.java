@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +74,39 @@ public class CustomerSettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Notification Switch Listener
+        notifiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    Toast.makeText(getContext(), "Notifications Enabled", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(), "Notifications Disabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Order Update Switch Listener
+        orderUpdateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    Toast.makeText(getContext(), "Order Updates Enabled", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(), "Order Updates Disabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Promotion Switch Listener
+        promotionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    Toast.makeText(getContext(), "Promotions Enabled", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(), "Promotions Disabled", Toast.LENGTH_SHORT).show();
             }
         });
 
