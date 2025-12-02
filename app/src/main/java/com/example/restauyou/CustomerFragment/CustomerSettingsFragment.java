@@ -1,4 +1,4 @@
-package com.example.restauyou;
+package com.example.restauyou.CustomerFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,19 +7,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.restauyou.AdminFragment.AdminMenuItemAddFragment;
-import com.example.restauyou.CustomerFragment.CustomerApplyForEmployeeFragment;
+import com.example.restauyou.LoginActivity;
+import com.example.restauyou.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SettingsFragment extends Fragment {
+public class CustomerSettingsFragment extends Fragment {
     LinearLayout logout;
     Button btnApplyForJob;
     View rootView;
@@ -33,7 +32,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+        rootView = inflater.inflate(R.layout.fragment_customer_settings, container, false);
         contentLayout = rootView.findViewById(R.id.settingsContainer);
         logout = rootView.findViewById(R.id.logoutItem);
         btnApplyForJob = rootView.findViewById(R.id.btnApplyForJob);
