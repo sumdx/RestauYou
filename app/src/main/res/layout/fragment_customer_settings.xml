@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".SettingsFragment">
+    tools:context=".CustomerFragment.CustomerSettingsFragment">
     <LinearLayout
         android:id="@+id/settingsContainer"
         android:layout_width="match_parent"
@@ -71,6 +71,7 @@
                             android:layout_marginEnd="10dp"
                             android:scaleType="centerCrop"
                             app:shapeAppearanceOverlay="@style/CircularStyle"
+                            android:src="@drawable/ic_people"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <LinearLayout
@@ -453,9 +454,11 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
+                        android:id="@+id/changePswdItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:gravity="center"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp">
 
@@ -467,28 +470,24 @@
                             android:layout_width="30dp"
                             android:layout_height="50dp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Change Password"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp" />
 
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/getSupportItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -499,20 +498,12 @@
                             android:layout_width="30dp"
                             android:layout_height="50dp" />
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="Help &amp; Support" />
-
-                        </LinearLayout>
+                            android:text="Help &amp; Support" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -521,6 +512,7 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -531,20 +523,12 @@
                             android:layout_width="30dp"
                             android:layout_height="50dp" />
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
                             android:padding="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="Log out" />
-
-                        </LinearLayout>
+                            android:text="Log out" />
 
                     </LinearLayout>
                     <Button

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Error loading user", Toast.LENGTH_SHORT).show();
                         return;
                     }
-//                  Check the task before proceding to avoid error
+//                  Check the task before proceeding to avoid error
                     if (isFinishing() || isDestroyed()) return;
 
                     DocumentSnapshot document = task.getResult();

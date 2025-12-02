@@ -9,5 +9,8 @@
     <color name="light_gray">#E9E9E9</color>
     <color name="ash">#EDEFF2</color>
     <color name="red">#FF0000</color>
+    <color name="gold">#EFAE0A</color>
+    <color name="green">#08C108</color>
+    <color name="blue">#2E50FF</color>
 
 </resources>

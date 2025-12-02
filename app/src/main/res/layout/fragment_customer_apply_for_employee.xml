@@ -7,8 +7,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+
         >
 
         <TextView
@@ -21,6 +22,8 @@
             android:layout_gravity="center"
             android:text="Welcome to RestauYou\n Career page"/>
         <LinearLayout
+            android:id="@+id/formEmployee"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -37,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:id="@+id/etPhone"
                 android:hint="Your Phone Number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -48,12 +52,22 @@
 
 
             <Button
+                android:id="@+id/btnApply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Apply Now"/>
 
-        </LinearLayout>
 
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvApplied"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="You Already applied for a Job, admin will look into your acceptance and you will get email. \n Thank You"/>
 
     </LinearLayout>
 </FrameLayout>
