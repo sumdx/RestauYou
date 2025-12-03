@@ -83,7 +83,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 food.setAmount(sharedCartModel.getQuantity(food)+ 1);
                 holder.amount.setText(String.valueOf(food.getAmount()));
                 sharedCartModel.addToCart(context, food);
