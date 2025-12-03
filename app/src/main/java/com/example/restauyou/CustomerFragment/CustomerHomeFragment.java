@@ -152,8 +152,6 @@ public class CustomerHomeFragment extends Fragment {
 
                         foods.add(item);
                     }
-
-
                     menuAdapter.setFoods(foods);
                 }
             }
