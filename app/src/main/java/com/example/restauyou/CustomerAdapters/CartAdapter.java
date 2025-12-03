@@ -30,7 +30,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         this.foods = foods;
     }
 
-
     public CartAdapter (Context context, ArrayList<CartItem> foods,SharedCartModel sharedCartModel){
         this.context = context;
         this.foods = foods;
