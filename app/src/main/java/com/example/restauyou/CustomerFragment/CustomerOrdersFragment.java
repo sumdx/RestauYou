@@ -4,16 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.restauyou.CustomerAdapters.CustomerOrderAdapter;
 import com.example.restauyou.CustomerHomePageActivity;
+import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+
+import java.util.ArrayList;
 
 public class CustomerOrdersFragment extends Fragment {
     RecyclerView customerOrderRV;
@@ -26,6 +30,17 @@ public class CustomerOrdersFragment extends Fragment {
         customerOrderRV = view.findViewById(R.id.customerOrderRV);
         backBtn = view.findViewById(R.id.backBtn);
 
+        // Harding-coding values for now
+        ArrayList<Order> orderList = new ArrayList<>();
+        orderList.add(new Order());
+        orderList.add(new Order());
+        orderList.add(new Order());
+
+        // Set adapter & layout manager
+        customerOrderRV.setAdapter(new CustomerOrderAdapter(getContext(), orderList));
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        customerOrderRV.setLayoutManager(llm);
 
         // Back button logic
         backBtn.setOnClickListener(new View.OnClickListener() {

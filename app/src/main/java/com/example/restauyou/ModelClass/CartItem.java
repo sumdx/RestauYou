@@ -29,4 +29,8 @@ public class CartItem {
         return (double) quantity*(Integer.parseInt(menuItem.getItemPrice()));
 
     }
+
+    public CartItem(){
+
+    }
 }
