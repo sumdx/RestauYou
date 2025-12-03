@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +17,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private ArrayList<Order> orderList;
+    private Map<String, String> userNameCache = new HashMap<>();
     Context context;
 
     public OrderAdapter(Context context, ArrayList<Order> orderList) {
         this.context = context;
         this.orderList = orderList;
+    }
+
+    public void setOrderList(ArrayList<Order> newOrderList){
+        this.orderList = newOrderList;
+        notifyDataSetChanged();
     }
 
 
@@ -41,13 +52,36 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         Order order = orderList.get(position);
         holder.orderNumText.setText(String.format(Locale.CANADA, "Order#%s", order.getOrderId()));
         holder.costText.setText(String.format(Locale.CANADA, "$%.2f", order.getTotalPrice()));
-        holder.customerText.setText(String.format(Locale.CANADA, "Customer: %s", order.getUserId()));
+
         holder.dateText.setText(String.format(Locale.CANADA, "%s", order.getCreatedAt()));
         //holder.costText.setText("$0.00");
+
+        String userId = order.getUserId();
+
+        // Check cache first
+        if (userNameCache.containsKey(userId)) {
+            holder.customerText.setText("Customer: " + userNameCache.get(userId));
+        } else {
+            holder.customerText.setText("Customer: loading...");
+
+            FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(userId)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            String name = doc.getString("name");
+                            userNameCache.put(userId, name);
+
+                            holder.customerText.setText("Customer: " + name);
+                        }
+                    });
+        }
 
         // Set nested recycler view
         RecyclerView rv = holder.nestedOrderRV;
         rv.setAdapter(new NestedOrderAdapter(context, order.getCartItems()));
+        Log.d("cartlen",String.valueOf(order.getCartItems().size()));
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
@@ -60,7 +94,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.preparingStateText.setVisibility(GONE);
                 holder.readyStateText.setVisibility(GONE);
                 holder.deliveredStateText.setVisibility(GONE);
-
                 holder.markBtn.setText("Mark Preparing");
                 holder.markBtn.setBackgroundColor(context.getResources().getColor(R.color.gold, context.getTheme()));
                 break;
