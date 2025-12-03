@@ -102,6 +102,7 @@
             <EditText
                 android:id="@+id/etPhone"
                 android:hint="Enter phone number"
+                android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="15dp"
@@ -135,6 +136,7 @@
             <EditText
                 android:id="@+id/etDate"
                 android:hint="dd/mm/yyyy"
+                android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="15dp"
@@ -214,7 +216,8 @@
                 android:id="@+id/spinnerGuests"
                 android:background="@drawable/input_box"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:entries="@array/numGuestsArray"/>
 
             <LinearLayout
                 android:orientation="horizontal"
