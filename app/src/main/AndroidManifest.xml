@@ -46,5 +46,8 @@
         <service
             android:name=".Services.AdminOrderNotification"
             android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name=".Services.PreparingNotification"
+            android:foregroundServiceType="mediaPlayback" />
     </application>
 </manifest>

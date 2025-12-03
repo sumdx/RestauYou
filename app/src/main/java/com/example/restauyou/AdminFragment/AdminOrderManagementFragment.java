@@ -19,6 +19,7 @@ import com.example.restauyou.AdminAdapters.OrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
 import com.example.restauyou.Services.AdminOrderNotification;
+import com.example.restauyou.Services.PreparingNotification;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -83,7 +84,8 @@ public class AdminOrderManagementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Context context = requireContext();
-                context.startService(new Intent(context, AdminOrderNotification.class));
+//                context.startService(new Intent(context, AdminOrderNotification.class));
+                context.startService(new Intent(context, PreparingNotification.class));
             }
         });
         return view;

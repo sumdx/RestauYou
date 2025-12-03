@@ -1,16 +1,9 @@
 package com.example.restauyou;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.window.OnBackInvokedDispatcher;
-
-import com.example.restauyou.R;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,15 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.AdminAdapters.AdminBottomNavigationAdapter;
 import com.example.restauyou.Services.AdminOrderNotification;
+import com.example.restauyou.Services.PreparingNotification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class AdminHomePageActivity extends AppCompatActivity {
     private  ViewPager2 adminViewPager;
@@ -85,12 +76,16 @@ public class AdminHomePageActivity extends AppCompatActivity {
             adminViewPager.setCurrentItem(2);
             bottomNavigationView.getMenu().getItem(2).setChecked(true);
 
-            // Stop service
-            stopService(new Intent(this, AdminOrderNotification.class));
+            // Get notification id
+            NotificationManager notifiManager = getSystemService(NotificationManager.class);
+            int id = iGet.getIntExtra("NOTIFICATION_ID", -1);
 
-            // Close notification
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.cancel(AdminOrderNotification.NOTIFICATION_ID);
+            // Cancel notification & service
+            notifiManager.cancel(id);
+            if (id == 1001)
+                stopService(new Intent(this, AdminOrderNotification.class));
+            else if (id != -1)
+                stopService(new Intent(this, PreparingNotification.class));
         }
     }
 }

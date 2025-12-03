@@ -20,12 +20,11 @@ import com.example.restauyou.R;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AdminOrderNotification extends Service {
-    private static final String TAG = "AdminOrderNotification";
-    private static final String CHANNEL_ID = "Order ALERT";
-    private static final int NOTIFICATION_ID = 1001;
+public class PreparingNotification extends Service {
+    private static final String TAG = "PreparingNotification";
+    private static final String CHANNEL_ID = "Order Notification";
     private ExecutorService executor;
-    private MediaPlayer mediaPlayer;
+
 
     @Override
     public void onCreate() {
@@ -33,42 +32,57 @@ public class AdminOrderNotification extends Service {
 
         super.onCreate();
         createNotificationChannel();
-        mediaPlayer = MediaPlayer.create(this, R.raw.order_notifcation_alert);
-        executor = Executors.newSingleThreadExecutor();
+        executor = Executors.newCachedThreadPool();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // Get a notification id
+        final int notificationId =  (int) (Math.random() * 10000);
+
         // Intent & Pending Intent
         Intent iGo = new Intent(this, AdminHomePageActivity.class);
+        iGo.putExtra("NOTIFICATION_ID", notificationId);
         iGo.setAction("ACTION_REDIRECT_ORDER_MANAGEMENT");
-        iGo.putExtra("NOTIFICATION_ID", NOTIFICATION_ID);
 
         PendingIntent pI = PendingIntent.getActivity(
                 this,
-                NOTIFICATION_ID,
+                notificationId,
                 iGo,
                 PendingIntent.FLAG_IMMUTABLE
         );
 
         // Build notification
         Notification noti = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Order Alert")
-                .setContentText("You have a new order! Click here to check!")
+                .setContentTitle("Preparing Order")
+                .setContentText("The order is being prepared.")
                 .setSmallIcon(R.drawable.baseline_fastfood_24)
                 .setContentIntent(pI).build();
 
-        // Start media
+        // Start foreground
+        startForeground(notificationId, noti);
+
         executor.submit(new Runnable() {
             @Override
             public void run() {
+                MediaPlayer mediaPlayer = MediaPlayer.create(PreparingNotification.this, R.raw.preparing_notification);
+                // Start media
                 mediaPlayer.start();
+
+                // Wait 10 seconds
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // Destroy media
+                if (mediaPlayer.isPlaying())
+                    mediaPlayer.stop();
+                mediaPlayer.release();
+                stopSelf();
             }
         });
-
-        // Start foreground
-        startForeground(NOTIFICATION_ID, noti);
-
         return START_NOT_STICKY;
     }
 
@@ -77,14 +91,7 @@ public class AdminOrderNotification extends Service {
         Log.d(TAG, "The notification is destroyed.");
         stopForeground(true);
 
-        // Stop media
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying())
-                mediaPlayer.stop();
-            mediaPlayer.release();
-        }
-
-        // Stop thread
+        // Stop thread(s)
         if (executor != null && !executor.isShutdown())
             executor.shutdown();
 
@@ -99,8 +106,8 @@ public class AdminOrderNotification extends Service {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Order Alert", NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription("Admin: Order Alert Channel");
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Order Status", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Admin: Order Status Notification Channel");
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
         }
         else
