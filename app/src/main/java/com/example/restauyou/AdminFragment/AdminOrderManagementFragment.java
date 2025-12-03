@@ -1,5 +1,7 @@
 package com.example.restauyou.AdminFragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.restauyou.AdminAdapters.OrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.example.restauyou.Services.AdminOrderNotification;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,6 +27,9 @@ public class AdminOrderManagementFragment extends Fragment {
     RecyclerView orderRV;
     ArrayList<Order> orderList;
     TextView pendingText, preparingText, readyText;
+
+    // TEST
+    Button notiBtn;
 
     private int numPending, numPreparing, numReady;
 
@@ -37,6 +44,7 @@ public class AdminOrderManagementFragment extends Fragment {
         pendingText = view.findViewById(R.id.pendingText);
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
+        notiBtn = view.findViewById(R.id.testNotiBtn);
 
         // Hard-coding values
         orderList = new ArrayList<>();
@@ -70,6 +78,14 @@ public class AdminOrderManagementFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
 
+        // TEST SERVICES
+        notiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = requireContext();
+                context.startService(new Intent(context, AdminOrderNotification.class));
+            }
+        });
         return view;
     }
 }

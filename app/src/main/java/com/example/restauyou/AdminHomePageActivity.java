@@ -3,6 +3,9 @@ package com.example.restauyou;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.window.OnBackInvokedDispatcher;
@@ -19,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.AdminAdapters.AdminBottomNavigationAdapter;
+import com.example.restauyou.Services.AdminOrderNotification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
@@ -64,7 +68,6 @@ public class AdminHomePageActivity extends AppCompatActivity {
             }
         });
 
-
         adminViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -72,10 +75,22 @@ public class AdminHomePageActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
         });
+
+        // Handle pending intent
+        Intent iGet = getIntent();
+        String action = iGet.getAction();
+
+        if (action != null && action.equals("ACTION_REDIRECT_ORDER_MANAGEMENT")) {
+            // Redirect to order management
+            adminViewPager.setCurrentItem(2);
+            bottomNavigationView.getMenu().getItem(2).setChecked(true);
+
+            // Stop service
+            stopService(new Intent(this, AdminOrderNotification.class));
+
+            // Close notification
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancel(AdminOrderNotification.NOTIFICATION_ID);
+        }
     }
-
-
-
-
-
 }
