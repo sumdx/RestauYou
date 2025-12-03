@@ -79,10 +79,10 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         });
     }
 
-    // For checkoutBtn in the Cart Fragment
-    public void checkoutBtnClicked() {
-        vp2.setCurrentItem(1);
-        bnv.setSelectedItemId(R.id.orderItem);
+    // For backBtn from CustomerOrder Fragment
+    public void orderBackBtnClicked() {
+        vp2.setCurrentItem(0);
+        bnv.setSelectedItemId(R.id.menuItem);
     }
 }
 
