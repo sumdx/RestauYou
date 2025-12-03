@@ -1,5 +1,7 @@
 package com.example.restauyou.AdminFragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,6 +52,7 @@ public class AdminOrderManagementFragment extends Fragment {
         pendingText = view.findViewById(R.id.pendingText);
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
+        notiBtn = view.findViewById(R.id.testNotiBtn);
 
 
         db = FirebaseFirestore.getInstance();
@@ -68,6 +72,15 @@ public class AdminOrderManagementFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
 
+        // TEST SERVICES
+        notiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = requireContext();
+//                context.startService(new Intent(context, AdminOrderNotification.class));
+                context.startService(new Intent(context, PreparingNotification.class));
+            }
+        });
         return view;
     }
 
