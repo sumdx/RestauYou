@@ -59,6 +59,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/chooseRecyclerView"
                 android:padding="10dp"
                 android:layout_width="match_parent"
