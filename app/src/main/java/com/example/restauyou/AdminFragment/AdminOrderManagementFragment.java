@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,13 @@ import android.widget.TextView;
 import com.example.restauyou.AdminAdapters.OrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
-import com.example.restauyou.Services.AdminOrderNotification;
-import com.example.restauyou.Services.PreparingNotification;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,8 +36,8 @@ public class AdminOrderManagementFragment extends Fragment {
     ArrayList<Order> orderList;
     TextView pendingText, preparingText, readyText;
 
-    // TEST
-    Button notiBtn;
+    OrderAdapter orderAdapter;
+    FirebaseFirestore db;
 
     private int numPending, numPreparing, numReady;
 
@@ -47,34 +54,20 @@ public class AdminOrderManagementFragment extends Fragment {
         readyText = view.findViewById(R.id.readyText);
         notiBtn = view.findViewById(R.id.testNotiBtn);
 
+
+        db = FirebaseFirestore.getInstance();
+
         // Hard-coding values
         orderList = new ArrayList<>();
-        orderList.add(new Order());
-        orderList.add(new Order());
-        orderList.add(new Order());
+        orderAdapter = new OrderAdapter(getContext(), orderList);
 
-        // Categorize orders by state (Also hard-coded)
-        numPending = numPreparing = numReady = 0;
-        for (Order order: orderList)
-            switch (order.getOrderStatus()) {
-                case "received":
-                    numPending++;
-                    break;
-                case "preparing":
-                    numPreparing++;
-                    break;
-                case "ready":
-                    numReady++;
-                    break;
-            }
 
-        // Update Text
-        pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
-        preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
-        readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
+
+        loadOrders();
 
         // Set adapter & layout manager
-        orderRV.setAdapter(new OrderAdapter(getContext(), orderList));
+
+        orderRV.setAdapter(orderAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
@@ -90,4 +83,52 @@ public class AdminOrderManagementFragment extends Fragment {
         });
         return view;
     }
+
+    private void loadOrders() {
+
+        db.collection("orders").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error!=null){
+                    Log.d("FirebaseError", error.getMessage());
+                    return;
+                }
+                if (value==null) return;
+                orderList.clear();
+                numPending = numPreparing = numReady = 0;
+                for(DocumentSnapshot doc : value.getDocuments()){
+                    Log.d("value",value.toString());
+                    Order newOrder = doc.toObject(Order.class);
+                    newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
+                    orderList.add(newOrder);
+
+
+                    for (Order order: orderList)
+                        switch (order.getOrderStatus()) {
+                            case "received":
+                                numPending++;
+                                break;
+                            case "preparing":
+                                numPreparing++;
+                                break;
+                            case "ready":
+                                numReady++;
+                                break;
+
+                        }
+                    // Update Text
+                    pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
+                    preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
+                    readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
+
+                }
+
+                orderAdapter.setOrderList(orderList);
+            }
+        });
+
+
+    }
+
+
 }
