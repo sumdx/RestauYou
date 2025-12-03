@@ -18,10 +18,6 @@ import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
 
 import java.util.ArrayList;
-<<<<<<< Updated upstream
-=======
-import java.util.HashMap;
->>>>>>> Stashed changes
 import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
@@ -45,10 +41,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         Order order = orderList.get(position);
         holder.orderNumText.setText(String.format(Locale.CANADA, "Order#%s", order.getOrderId()));
         holder.costText.setText(String.format(Locale.CANADA, "$%.2f", order.getTotalPrice()));
-<<<<<<< Updated upstream
-        holder.customerText.setText(String.format(Locale.CANADA, "Customer: %s", order.getUserId()));
-=======
->>>>>>> Stashed changes
         holder.dateText.setText(String.format(Locale.CANADA, "%s", order.getCreatedAt()));
 
         // Set nested recycler view

@@ -9,24 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< Updated upstream
-import android.widget.LinearLayout;
-=======
->>>>>>> Stashed changes
 import android.widget.TextView;
 
 import com.example.restauyou.AdminAdapters.OrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
-<<<<<<< Updated upstream
-=======
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
->>>>>>> Stashed changes
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -48,12 +40,6 @@ public class AdminOrderManagementFragment extends Fragment {
         pendingText = view.findViewById(R.id.pendingText);
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
-<<<<<<< Updated upstream
-=======
-
-
-        db = FirebaseFirestore.getInstance();
->>>>>>> Stashed changes
 
         // Hard-coding values
         orderList = new ArrayList<>();
@@ -76,7 +62,6 @@ public class AdminOrderManagementFragment extends Fragment {
                     break;
             }
 
-<<<<<<< Updated upstream
         // Update Text
         pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
         preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
@@ -88,15 +73,6 @@ public class AdminOrderManagementFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
 
-=======
-        loadOrders();
-
-        // Set adapter & layout manager
-        orderRV.setAdapter(orderAdapter);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        orderRV.setLayoutManager(llm);
->>>>>>> Stashed changes
         return view;
     }
 }
