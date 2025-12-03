@@ -30,9 +30,8 @@
 
     <style name="CircularStyleSmall">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">15dp</item>
+        <item name="cornerSize">16dp</item>
     </style>
-
 
 </resources>
 
