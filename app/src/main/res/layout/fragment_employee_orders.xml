@@ -67,7 +67,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvOrderNumber1"
+                        android:id="@+id/OrderNumber1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -82,6 +82,8 @@
                         android:layout_height="wrap_content"
                         android:padding="6dp"
                         android:text="Order Received"
+                        android:background="@drawable/rounded_box"
+                        android:backgroundTint="#FAF1A7"
                         android:textSize="12sp" />
 
                     <TextView
@@ -116,41 +118,111 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         app:shapeAppearanceOverlay="@style/CircularStyleSmall"
                         android:id="@+id/ivReceived1"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:background="@color/accent"
                         android:src="@drawable/outline_clock_loader_40_24_green" />
 
-                    <ImageView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Received"
+                        android:textColor="#777"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
                         app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/light_gray"
+                        android:padding="5dp"
                         android:id="@+id/Cooking1"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
-                        app:tint="@color/blue"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:tint="@color/black"
                         android:src="@drawable/cook" />
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cooking"
+                            android:textColor="#777"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/light_gray"
                         android:id="@+id/Ready1"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+
                         app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24" />
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ready"
+                            android:textColor="#777"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/light_gray"
+                        android:padding="5dp"
                         android:id="@+id/Done1"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         app:tint="@color/black"
                         android:src="@drawable/done" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Done"
+                                android:textColor="#777"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"/>
+                        </LinearLayout>
                 </LinearLayout>
 
                 <View
@@ -171,13 +243,14 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
                     android:background="#E0E0E0" />
 
                 <!-- Estimated time -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -240,7 +313,8 @@
                         android:text="Ready for Pickup"
                         android:padding="6dp"
                         android:textSize="12sp"
-                        android:background="@drawable/ic_ready"/>
+                        android:background="@drawable/rounded_box"
+                        android:backgroundTint="#B8DCB8"/>
 
                     <TextView
                         android:id="@+id/OrderPrice2"
@@ -275,41 +349,115 @@
                     android:gravity="center"
                     android:layout_marginVertical="14dp">
 
-                    <ImageView
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/green"
                         android:id="@+id/Received2"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/schedule_24px"
                         app:tint="@color/accent" />
 
-                    <ImageView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Received"
+                            android:textColor="#777"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/green"
                         android:id="@+id/Cooking2"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         app:tint="@color/blue"
                         android:src="@drawable/cook"/>
 
-                    <ImageView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cooking"
+                        android:textColor="#777"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/accent"
                         android:id="@+id/Ready2"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24"/>
 
-                    <ImageView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ready"
+                        android:textColor="#777"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        app:shapeAppearanceOverlay="@style/CircularStyleSmall"
+                        android:background="@color/light_gray"
                         android:id="@+id/Done2"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="30dp"
+                        android:padding="5dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         app:tint="@color/black"
                         android:src="@drawable/done"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="#777"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
                     android:background="#E0E0E0"/>
 
                 <TextView
@@ -320,6 +468,29 @@
                     android:textSize="14sp"
                     android:textColor="#444"
                     android:layout_marginTop="12dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#E0E0E0" />
+
+                <ImageView
+                    android:id="@+id/Date"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/outline_check_circle_24" />
+
+                <TextView
+                    android:id="@+id/EstimatedTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Ready for Pickup"
+                    android:textColor="#777"
+                    android:textSize="12sp" />
+
 
 
             </LinearLayout>
