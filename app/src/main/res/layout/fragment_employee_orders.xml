@@ -124,8 +124,8 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -149,8 +149,8 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -160,7 +160,6 @@
                         android:id="@+id/Cooking1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
                         app:tint="@color/black"
                         android:src="@drawable/cook" />
 
@@ -177,6 +176,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -186,7 +186,7 @@
                         android:padding="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
+
                         app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24" />
 
@@ -212,7 +212,6 @@
                         android:id="@+id/Done1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
                         app:tint="@color/black"
                         android:src="@drawable/done" />
 
@@ -354,6 +353,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -379,6 +379,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -388,7 +389,6 @@
                         android:padding="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
                         app:tint="@color/blue"
                         android:src="@drawable/cook"/>
 
@@ -405,6 +405,7 @@
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_width="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -414,7 +415,6 @@
                         android:padding="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
                         app:tint="@color/green"
                         android:src="@drawable/outline_check_circle_24"/>
 
@@ -440,7 +440,6 @@
                         android:padding="5dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
                         app:tint="@color/black"
                         android:src="@drawable/done"/>
 
@@ -480,14 +479,14 @@
                     android:id="@+id/Date"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@drawable/Ready"
-                    />
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/outline_check_circle_24" />
 
                 <TextView
                     android:id="@+id/EstimatedTime1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="10dp"
                     android:text="Ready for Pickup"
                     android:textColor="#777"
                     android:textSize="12sp" />
