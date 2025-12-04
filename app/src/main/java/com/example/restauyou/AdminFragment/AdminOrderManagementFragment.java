@@ -1,5 +1,7 @@
 package com.example.restauyou.AdminFragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -37,6 +39,7 @@ public class AdminOrderManagementFragment extends Fragment {
     FirebaseFirestore db;
 
     private int numPending, numPreparing, numReady;
+    private boolean isInitialLoad = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,22 +75,20 @@ public class AdminOrderManagementFragment extends Fragment {
                     Log.d("FirebaseError", error.getMessage());
                     return;
                 }
-                if (value==null) return;
+                if (value == null) return;
                 orderList.clear();
                 numPending = numPreparing = numReady = 0;
-                for (DocumentChange dc : value.getDocumentChanges()){
-
-                    if(dc.getType()== DocumentChange.Type.ADDED){
+                for (DocumentChange dc: value.getDocumentChanges())
+                    if(!isInitialLoad && dc.getType()== DocumentChange.Type.ADDED) {
                         Context context = requireContext();
-//                      context.startService(new Intent(context, AdminOrderNotification.class));
                         context.startService(new Intent(context, AdminOrderNotification.class));
-
                     }
-                }
-                for(DocumentSnapshot doc : value.getDocuments()){
+
+                for(DocumentSnapshot doc: value.getDocuments()){
 
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
+                    assert newOrder != null;
                     newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
                     orderList.add(newOrder);
                     for (Order order: orderList)
@@ -101,7 +102,6 @@ public class AdminOrderManagementFragment extends Fragment {
                             case "ready":
                                 numReady++;
                                 break;
-
                         }
 
                     // Update Text
@@ -109,7 +109,10 @@ public class AdminOrderManagementFragment extends Fragment {
                     preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
                     readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
                 }
+
+                // Update adapter & state
                 orderAdapter.setOrderList(orderList);
+                isInitialLoad = false;
             }
         });
 
