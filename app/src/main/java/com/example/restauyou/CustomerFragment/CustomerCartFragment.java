@@ -102,7 +102,7 @@ public class CustomerCartFragment extends Fragment {
                 }
                 Date now = Calendar.getInstance().getTime();
                 DocumentReference docRef = db.collection("orders").document();
-                Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","recieved",cost, now, now);
+                Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","received",cost, now, now);
                 docRef.set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

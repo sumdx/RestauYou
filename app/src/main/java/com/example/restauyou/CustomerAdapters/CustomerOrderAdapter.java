@@ -36,6 +36,10 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
         //notifyDataSetChanged();
     }
 
+    public void setOrderList(ArrayList<Order> orderList){
+        this.orderList = orderList;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -89,7 +93,7 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(GREEN));
                 holder.imgDone.setBackgroundTintList(ColorStateList.valueOf(ACCENT));
                 holder.textDone.setTextColor(BLACK);
-
+ 
                 holder.EstimatedTime.setText("Enjoy your meal!");
                 holder.removeOrderBtn.setVisibility(VISIBLE);
                 break;
