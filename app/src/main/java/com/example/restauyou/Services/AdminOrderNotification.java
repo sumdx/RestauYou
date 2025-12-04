@@ -63,7 +63,7 @@ public class AdminOrderNotification extends Service {
 
         // Check if sound is enabled
         boolean sound = intent.getBooleanExtra("soundStatus", true);
-        if (sound) {
+        if (sound)
             // Start media
             executor.submit(new Runnable() {
                 @Override
@@ -71,7 +71,6 @@ public class AdminOrderNotification extends Service {
                     mediaPlayer.start();
                 }
             });
-        }
         else {
             getSystemService(NotificationManager.class).cancel(NOTIFICATION_ID);
             stopForeground(false);
