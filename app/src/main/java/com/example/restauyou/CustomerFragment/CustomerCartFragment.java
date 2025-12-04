@@ -142,8 +142,6 @@ public class CustomerCartFragment extends Fragment {
     // Update cost texts
     public void updateCost() {
         ArrayList<CartItem> cart = sharedCartItemsList.getCartList().getValue();
-
-
         if (cart == null)
             return;
 

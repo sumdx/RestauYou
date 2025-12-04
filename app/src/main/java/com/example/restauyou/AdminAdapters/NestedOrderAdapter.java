@@ -33,7 +33,7 @@ public class NestedOrderAdapter extends RecyclerView.Adapter<NestedOrderAdapter.
     @Override
     public void onBindViewHolder(@NonNull NestedOrderAdapter.ViewHolder holder, int position) {
         CartItem cartItem = cartItems.get(position);
-        holder.itemTitleText.setText(cartItem.getMenuItem().getItemTitle());
+        holder.itemTitleText.setText(String.format(Locale.CANADA, "%dx %s", cartItem.getQuantity(),cartItem.getMenuItem().getItemTitle()));
         holder.itemCostText.setText(String.format(Locale.CANADA, "$%.2f", cartItem.getTotalPrice()));
     }
 

@@ -26,16 +26,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerSettingsFragment extends Fragment {
-    LinearLayout logout, changePswdItem, getSupportItem;
+    LinearLayout logout, changePswdItem, getSupportItem, userItem, emailItem, phoneItem;
     Button btnApplyForJob;
     View rootView;
     FirebaseUser firebaseUser;
     View contentLayout;
-    FragmentManager fragmentManager;
+    FragmentManager fm;
     TextView addAddressText, addCardText;
-
     SwitchCompat notifiSwitch, orderUpdateSwitch, promotionSwitch;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +42,7 @@ public class CustomerSettingsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_customer_settings, container, false);
 
         // Fragment manager
-        fragmentManager = getParentFragmentManager();
+        fm = getParentFragmentManager();
 
         // Initialize objects by ids
         contentLayout = rootView.findViewById(R.id.settingsContainer);
@@ -57,9 +55,36 @@ public class CustomerSettingsFragment extends Fragment {
         promotionSwitch = rootView.findViewById(R.id.promotionSwitch);
         changePswdItem = rootView.findViewById(R.id.changePswdItem);
         getSupportItem = rootView.findViewById(R.id.getSupportItem);
+        userItem = rootView.findViewById(R.id.userItem);
+        emailItem = rootView.findViewById(R.id.emailItem);
+        phoneItem = rootView.findViewById(R.id.phoneItem);
 
         // Connect to Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        // User linear layout listener
+        userItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comingSoon();
+            }
+        });
+
+        // Email linear layout listener
+        emailItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comingSoon();
+            }
+        });
+
+        // Phone linear layout listener
+        phoneItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comingSoon();
+            }
+        });
 
         // Add address listener
         addAddressText.setOnClickListener(new View.OnClickListener() {
@@ -148,17 +173,6 @@ public class CustomerSettingsFragment extends Fragment {
                 builder.show();
             }
         });
-//        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-//            @Override
-//            public void onBackStackChanged() {
-//                if (isVisible()){
-//                    if (contentLayout != null)
-//                        contentLayout = getView().findViewById(R.id.settingsContainer);
-//                        contentLayout.setVisibility(View.VISIBLE);
-//                }
-//
-//            }
-//        });
 
         // Logout button
         logout.setOnClickListener(new View.OnClickListener() {
@@ -169,24 +183,37 @@ public class CustomerSettingsFragment extends Fragment {
             }
         });
 
-        // Apply button
+        // Apply btn listener
         btnApplyForJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (firebaseUser == null){
+                // Prevent guest
+                if (firebaseUser == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                     return;
                 }
-                assert getView() != null;
-                contentLayout = getView().findViewById(R.id.settingsContainer);
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.settingsApplyForJobContainer, new CustomerApplyForEmployeeFragment())
-                        .addToBackStack(null).commit();
 
+                assert getView() != null;
+                contentLayout = getView().findViewById(R.id.defaultSettings);
                 contentLayout.setVisibility(View.GONE);
 
+                fm.beginTransaction()
+                    .replace(R.id.settingsApplyForJobContainer, new CustomerApplyForEmployeeFragment())
+                    .addToBackStack(null)
+                    .commit();
+            }
+        });
+
+        // Handle device's back button
+        fm.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                // Checks if the Home Fragment is resumed
+                if (isResumed()) {
+                    if (contentLayout != null)
+                        contentLayout.setVisibility(View.VISIBLE);
+                }
             }
         });
         return rootView;
