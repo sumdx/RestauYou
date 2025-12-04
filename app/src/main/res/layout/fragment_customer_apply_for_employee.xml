@@ -9,65 +9,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
+        android:background="@color/white"
+        android:padding="10dp"
         >
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Welcome to RestauYou\n Career page"
             android:textAlignment="center"
             android:textSize="26sp"
-            android:layout_gravity="center"
-            android:text="Welcome to RestauYou\n Career page"/>
+            android:textStyle="bold" />
+
         <LinearLayout
             android:id="@+id/formEmployee"
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="10dp"
-            android:orientation="vertical">
+            android:visibility="visible">
 
             <EditText
                 android:id="@+id/etName"
-                android:hint="Your Name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Your Name" />
+
             <EditText
                 android:id="@+id/etEmail"
-                android:hint="Your Email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Your Email" />
+
             <EditText
                 android:id="@+id/etPhone"
-                android:hint="Your Phone Number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Your Phone Number" />
+
             <EditText
                 android:id="@+id/tvIntendedPosition"
-                android:hint="Intended Position"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Intended Position" />
 
 
             <Button
                 android:id="@+id/btnApply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Apply Now"/>
+                android:layout_marginTop="30dp"
+                android:text="Apply Now" />
+
+            <Button
+                android:id="@+id/SettingGoBackBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Go Back" />
 
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/tvApplied"
-            android:visibility="gone"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="You Already applied for a Job, admin will look into your acceptance and you will get email. \n Thank You"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="You Already applied for a Job, admin will look into your acceptance and you will get email. \n Thank You"
+            android:textAlignment="center"
+            android:visibility="gone" />
 
     </LinearLayout>
 </FrameLayout>

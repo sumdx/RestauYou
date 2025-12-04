@@ -32,17 +32,14 @@ public class CustomerApplyForEmployeeFragment extends Fragment {
 
     EditText etName, etEmail, etPhone, etPosition;
     LinearLayout formEmployee;
-    Button btnApply;
+    Button btnApply, btnBack;
     FirebaseAuth mAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore db;
-    Employee employee;
     TextView tvApplied;
-    boolean isEmployeePending;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_customer_apply_for_employee, container, false);
     }
 
@@ -55,11 +52,14 @@ public class CustomerApplyForEmployeeFragment extends Fragment {
         etPhone = view.findViewById(R.id.etPhone);
         etPosition = view.findViewById(R.id.tvIntendedPosition);
         btnApply = view.findViewById(R.id.btnApply);
+        btnBack = view.findViewById(R.id.SettingGoBackBtn);
         formEmployee = view.findViewById(R.id.formEmployee);
         tvApplied = view.findViewById(R.id.tvApplied);
+
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
         db.collection("users")
                 .document(firebaseUser.getUid())
                 .get()
@@ -86,9 +86,8 @@ public class CustomerApplyForEmployeeFragment extends Fragment {
                     }
                 });
 
-
+        // Apply button listener
         btnApply.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String name = etName.getText().toString().trim();
@@ -117,12 +116,25 @@ public class CustomerApplyForEmployeeFragment extends Fragment {
                             Log.d("errorH", e.toString());
                         }
                     });
-
                 }catch (Exception e){
                     Log.d("errorH", e.toString());
                 }
+            }
+        });
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Go back to previous fragment
+                getParentFragmentManager().popBackStack();
 
+                // Show the default settings (if hidden)
+                if (getActivity() != null) {
+                    View mainContent = getActivity().findViewById(R.id.defaultSettings);
+                    if (mainContent != null) {
+                        mainContent.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
     }

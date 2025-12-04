@@ -1,7 +1,5 @@
 package com.example.restauyou.AdminFragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,8 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.restauyou.AdminAdapters.OrderAdapter;
@@ -25,8 +21,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -52,40 +46,23 @@ public class AdminOrderManagementFragment extends Fragment {
         pendingText = view.findViewById(R.id.pendingText);
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
-        notiBtn = view.findViewById(R.id.testNotiBtn);
 
 
+        // Get values from firebase
         db = FirebaseFirestore.getInstance();
-
-        // Hard-coding values
         orderList = new ArrayList<>();
         orderAdapter = new OrderAdapter(getContext(), orderList);
-
-
-
         loadOrders();
 
         // Set adapter & layout manager
-
         orderRV.setAdapter(orderAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
-
-        // TEST SERVICES
-        notiBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = requireContext();
-//                context.startService(new Intent(context, AdminOrderNotification.class));
-                context.startService(new Intent(context, PreparingNotification.class));
-            }
-        });
         return view;
     }
 
     private void loadOrders() {
-
         db.collection("orders").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -116,13 +93,12 @@ public class AdminOrderManagementFragment extends Fragment {
                                 break;
 
                         }
+
                     // Update Text
                     pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
                     preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
                     readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
-
                 }
-
                 orderAdapter.setOrderList(orderList);
             }
         });
