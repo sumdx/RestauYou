@@ -15,7 +15,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.AdminAdapters.AdminBottomNavigationAdapter;
 import com.example.restauyou.Services.AdminOrderNotification;
+import com.example.restauyou.Services.DeliveredNotification;
 import com.example.restauyou.Services.PreparingNotification;
+import com.example.restauyou.Services.ReadyNotification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -84,8 +86,11 @@ public class AdminHomePageActivity extends AppCompatActivity {
             notifiManager.cancel(id);
             if (id == 1001)
                 stopService(new Intent(this, AdminOrderNotification.class));
-            else if (id != -1)
+            else if (id != -1) {
                 stopService(new Intent(this, PreparingNotification.class));
+                stopService(new Intent(this, ReadyNotification.class));
+                stopService(new Intent(this, DeliveredNotification.class));
+            }
         }
     }
 }
