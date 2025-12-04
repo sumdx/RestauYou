@@ -37,6 +37,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public void setOrderList(ArrayList<Order> newOrderList){
         this.orderList = newOrderList;
+
         notifyDataSetChanged();
     }
 
