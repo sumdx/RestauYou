@@ -25,7 +25,6 @@ public class PreparingNotification extends Service {
     private static final String CHANNEL_ID = "Order Notification";
     private ExecutorService executor;
 
-
     @Override
     public void onCreate() {
         Log.d(TAG, "The notification is created.");
