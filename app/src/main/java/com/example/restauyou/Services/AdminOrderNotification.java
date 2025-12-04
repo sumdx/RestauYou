@@ -58,17 +58,24 @@ public class AdminOrderNotification extends Service {
                 .setSmallIcon(R.drawable.baseline_fastfood_24)
                 .setContentIntent(pI).build();
 
-        // Start media
-        executor.submit(new Runnable() {
-            @Override
-            public void run() {
-                mediaPlayer.start();
-            }
-        });
-
         // Start foreground
         startForeground(NOTIFICATION_ID, noti);
 
+        // Check if sound is enabled
+        boolean sound = intent.getBooleanExtra("soundStatus", true);
+        if (sound) {
+            // Start media
+            executor.submit(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.start();
+                }
+            });
+        }
+        else {
+            getSystemService(NotificationManager.class).cancel(NOTIFICATION_ID);
+            stopForeground(false);
+        }
         return START_NOT_STICKY;
     }
 

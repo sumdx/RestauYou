@@ -49,10 +49,12 @@ public class CustomerOrdersFragment extends Fragment {
         backBtn = view.findViewById(R.id.backBtn);
         db = FirebaseFirestore.getInstance();
         user= FirebaseAuth.getInstance().getCurrentUser();
+
         // Harding-coding values for now
         orderList = new ArrayList<>();
         loadOrder();
         customerOrderAdapter =new CustomerOrderAdapter(getContext(), orderList);
+
         // Set adapter & layout manager
         customerOrderRV.setAdapter(customerOrderAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
@@ -79,39 +81,33 @@ public class CustomerOrdersFragment extends Fragment {
     }
 
     private void loadOrder() {
-
-        db.collection("orders").whereEqualTo("userId",user.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error!=null){
-                    Log.d("FirebaseError", error.getMessage());
-                    return;
-                }
-                if (value==null) return;
-                orderList.clear();
-
-                for (DocumentChange dc : value.getDocumentChanges()){
-
-                    if(dc.getType()== DocumentChange.Type.MODIFIED){
-                        Context context = requireContext();
-//                context.startService(new Intent(context, AdminOrderNotification.class));
-                        context.startService(new Intent(context, PreparingNotification.class));
-
+        if (user != null)
+            db.collection("orders").whereEqualTo("userId", user.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                    if (error!=null){
+                        Log.d("FirebaseError", error.getMessage());
+                        return;
                     }
+                    if (value==null)
+                        return;
+                    orderList.clear();
+
+                    for (DocumentChange dc: value.getDocumentChanges())
+                        if(dc.getType()== DocumentChange.Type.MODIFIED) {
+                            Context context = requireContext();
+    //                        context.startService(new Intent(context, AdminOrderNotification.class));
+                            context.startService(new Intent(context, PreparingNotification.class));
+                        }
+
+                    for(DocumentSnapshot doc : value.getDocuments()){
+                        Log.d("value",value.toString());
+                        Order newOrder = doc.toObject(Order.class);
+                        newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
+                        orderList.add(newOrder);
+                    }
+                    customerOrderAdapter.setOrderList(orderList);
                 }
-                for(DocumentSnapshot doc : value.getDocuments()){
-
-                    Log.d("value",value.toString());
-                    Order newOrder = doc.toObject(Order.class);
-                    newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
-                    orderList.add(newOrder);
-
-                }
-
-                customerOrderAdapter.setOrderList(orderList);
-            }
-        });
-
+            });
     }
-
 }

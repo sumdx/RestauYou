@@ -2,6 +2,7 @@ package com.example.restauyou.AdminFragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -34,10 +35,8 @@ public class AdminOrderManagementFragment extends Fragment {
     RecyclerView orderRV;
     ArrayList<Order> orderList;
     TextView pendingText, preparingText, readyText;
-
     OrderAdapter orderAdapter;
     FirebaseFirestore db;
-
     private int numPending, numPreparing, numReady;
     private boolean isInitialLoad = true;
 
@@ -78,14 +77,20 @@ public class AdminOrderManagementFragment extends Fragment {
                 if (value == null) return;
                 orderList.clear();
                 numPending = numPreparing = numReady = 0;
+
                 for (DocumentChange dc: value.getDocumentChanges())
                     if(!isInitialLoad && dc.getType()== DocumentChange.Type.ADDED) {
+                        // Get preference status
+                        SharedPreferences sp = requireActivity().getSharedPreferences("UserAccount", Context.MODE_PRIVATE);
+                        boolean sound = sp.getBoolean("CurrentAdminAlert", true);
+                        // Start service intent
                         Context context = requireContext();
-                        context.startService(new Intent(context, AdminOrderNotification.class));
+                        Intent i = new Intent(context, AdminOrderNotification.class);
+                        i.putExtra("soundStatus", sound);
+                        context.startService(i);
                     }
 
-                for(DocumentSnapshot doc: value.getDocuments()){
-
+                for(DocumentSnapshot doc: value.getDocuments()) {
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
                     assert newOrder != null;
@@ -115,9 +120,5 @@ public class AdminOrderManagementFragment extends Fragment {
                 isInitialLoad = false;
             }
         });
-
-
     }
-
-
 }

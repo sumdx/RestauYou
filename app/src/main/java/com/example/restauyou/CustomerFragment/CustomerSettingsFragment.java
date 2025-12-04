@@ -1,7 +1,11 @@
 package com.example.restauyou.CustomerFragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,6 +38,11 @@ public class CustomerSettingsFragment extends Fragment {
     FragmentManager fm;
     TextView addAddressText, addCardText;
     SwitchCompat notifiSwitch, orderUpdateSwitch, promotionSwitch;
+    private static final String PREFS_NAME = "UserAccount";
+    private static final String NOTIFI_KEY = "CurrentNotifi";
+    private static final String ORDER_UPDATE_KEY = "CurrentUpdate";
+    private static final String PROMO_KEY = "CurrentPromo";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +70,14 @@ public class CustomerSettingsFragment extends Fragment {
 
         // Connect to Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Shared preference
+        SharedPreferences sp = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Set switch status (if present)
+        notifiSwitch.setChecked(sp.getBoolean(NOTIFI_KEY, true));
+        orderUpdateSwitch.setChecked(sp.getBoolean(ORDER_UPDATE_KEY, true));
+        promotionSwitch.setChecked(sp.getBoolean(PROMO_KEY, true));
 
         // User linear layout listener
         userItem.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +123,9 @@ public class CustomerSettingsFragment extends Fragment {
         notifiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(NOTIFI_KEY, isChecked).apply();
+
                 String message = "Notifications ";
                 if (isChecked)
                     message += "enabled";
@@ -119,6 +139,9 @@ public class CustomerSettingsFragment extends Fragment {
         orderUpdateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(ORDER_UPDATE_KEY, isChecked).apply();
+
                 String message = "Order Updates ";
                 if (isChecked)
                     message += "enabled";
@@ -132,6 +155,9 @@ public class CustomerSettingsFragment extends Fragment {
         promotionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(PROMO_KEY, isChecked).apply();
+
                 String message = "Promotions ";
                 if (isChecked)
                     message += "enabled";

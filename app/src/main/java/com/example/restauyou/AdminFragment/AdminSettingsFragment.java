@@ -1,6 +1,10 @@
 package com.example.restauyou.AdminFragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +31,11 @@ public class AdminSettingsFragment extends Fragment {
     FirebaseUser firebaseUser;
     LinearLayout logout, notifPrefItem, backupRestoreItem, userPermItem, taxSettingsItem, receiptSettingsItem;
     SwitchCompat autoOrderSwitch, emailNotiSwitch, soundAlertSwitch;
+    private static final String PREFS_NAME = "UserAccount";
+    private static final String ALERT_KEY = "CurrentAdminAlert";
+    private static final String NOTIFI_KEY = "CurrentAdminNotifi";
+    private static final String AUTO_ORDER_KEY = "CurrentAdminAuto";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,11 +58,21 @@ public class AdminSettingsFragment extends Fragment {
         emailNotiSwitch = view.findViewById(R.id.emailNotiSwitch);
         soundAlertSwitch = view.findViewById(R.id.soundAlertSwitch);
 
+        // Shared preference
+        SharedPreferences sp = requireContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Set switch status (if present)
+        autoOrderSwitch.setChecked(sp.getBoolean(AUTO_ORDER_KEY, true));
+        emailNotiSwitch.setChecked(sp.getBoolean(NOTIFI_KEY, true));
+        soundAlertSwitch.setChecked(sp.getBoolean(ALERT_KEY, true));
 
         // Auto order switch listener
         autoOrderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(AUTO_ORDER_KEY, isChecked).apply();
+
                 String message = "Auto-accept orders ";
                 if (isChecked)
                     message += "enabled";
@@ -67,6 +86,9 @@ public class AdminSettingsFragment extends Fragment {
         emailNotiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(NOTIFI_KEY, isChecked).apply();
+
                 String message = "Email notifications ";
                 if (isChecked)
                     message += "enabled";
@@ -76,10 +98,13 @@ public class AdminSettingsFragment extends Fragment {
             }
         });
 
-        // Notification switch listener
+        // Sound switch listener
         soundAlertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                // Update shared preference
+                sp.edit().putBoolean(ALERT_KEY, isChecked).apply();
+
                 String message = "Sound alerts ";
                 if (isChecked)
                     message += "enabled";
