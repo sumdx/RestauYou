@@ -20,6 +20,9 @@ import android.widget.TextView;
 import com.example.restauyou.AdminAdapters.OrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.example.restauyou.Services.AdminOrderNotification;
+import com.example.restauyou.Services.PreparingNotification;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,7 +55,7 @@ public class AdminOrderManagementFragment extends Fragment {
         pendingText = view.findViewById(R.id.pendingText);
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
-        notiBtn = view.findViewById(R.id.testNotiBtn);
+
 
 
         db = FirebaseFirestore.getInstance();
@@ -72,15 +75,15 @@ public class AdminOrderManagementFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         orderRV.setLayoutManager(llm);
 
-        // TEST SERVICES
-        notiBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = requireContext();
-//                context.startService(new Intent(context, AdminOrderNotification.class));
-                context.startService(new Intent(context, PreparingNotification.class));
-            }
-        });
+//        // TEST SERVICES
+//        notiBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Context context = requireContext();
+////                context.startService(new Intent(context, AdminOrderNotification.class));
+//                context.startService(new Intent(context, PreparingNotification.class));
+//            }
+//        });
         return view;
     }
 
@@ -96,13 +99,21 @@ public class AdminOrderManagementFragment extends Fragment {
                 if (value==null) return;
                 orderList.clear();
                 numPending = numPreparing = numReady = 0;
+                for (DocumentChange dc : value.getDocumentChanges()){
+
+                    if(dc.getType()== DocumentChange.Type.ADDED){
+                        Context context = requireContext();
+//                      context.startService(new Intent(context, AdminOrderNotification.class));
+                        context.startService(new Intent(context, AdminOrderNotification.class));
+
+                    }
+                }
                 for(DocumentSnapshot doc : value.getDocuments()){
+
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
                     newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
                     orderList.add(newOrder);
-
-
                     for (Order order: orderList)
                         switch (order.getOrderStatus()) {
                             case "received":
