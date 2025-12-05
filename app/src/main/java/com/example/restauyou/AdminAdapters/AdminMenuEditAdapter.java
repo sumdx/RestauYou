@@ -35,7 +35,6 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
     FirebaseStorage storage;
     public ArrayList<MenuItem> getMenuItemArraylist() {
         return menuItemArraylist;
-
     }
 
     public void setMenuItemArraylist(ArrayList<MenuItem> menuItemArraylist) {

@@ -134,9 +134,8 @@ public class CustomerCartFragment extends Fragment {
                 // Show the main content (if hidden)
                 if (getActivity() != null) {
                     View mainContent = getActivity().findViewById(R.id.homeMenuContent);
-                    if (mainContent != null) {
+                    if (mainContent != null)
                         mainContent.setVisibility(View.VISIBLE);
-                    }
                 }
             }
         });
