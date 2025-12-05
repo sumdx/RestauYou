@@ -2,7 +2,6 @@ package com.example.restauyou.CustomerFragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +29,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerSettingsFragment extends Fragment {
-    LinearLayout logout, changePswdItem, getSupportItem, userItem, emailItem, phoneItem;
+    LinearLayout logout, changePswdItem, getSupportItem, profileLayout;
     Button btnApplyForJob;
     View rootView;
     FirebaseUser firebaseUser;
     View contentLayout;
     FragmentManager fm;
-    TextView addAddressText, addCardText;
+    TextView addAddressText, addCardText, nameText, emailText, phoneText, addressText, cardText, CVCText;
     SwitchCompat notifiSwitch, orderUpdateSwitch, promotionSwitch;
     private static final String PREFS_NAME = "UserAccount";
     private static final String NOTIFI_KEY = "CurrentNotifi";
@@ -64,9 +63,13 @@ public class CustomerSettingsFragment extends Fragment {
         promotionSwitch = rootView.findViewById(R.id.promotionSwitch);
         changePswdItem = rootView.findViewById(R.id.changePswdItem);
         getSupportItem = rootView.findViewById(R.id.getSupportItem);
-        userItem = rootView.findViewById(R.id.userItem);
-        emailItem = rootView.findViewById(R.id.emailItem);
-        phoneItem = rootView.findViewById(R.id.phoneItem);
+        profileLayout = rootView.findViewById(R.id.profileLayout);
+        nameText = rootView.findViewById(R.id.nameText);
+        emailText = rootView.findViewById(R.id.emailText);
+        phoneText = rootView.findViewById(R.id.phoneText);
+        addressText = rootView.findViewById(R.id.addressText);
+        cardText = rootView.findViewById(R.id.cardText);
+        CVCText = rootView.findViewById(R.id.CVCText);
 
         // Connect to Firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -74,32 +77,24 @@ public class CustomerSettingsFragment extends Fragment {
         // Shared preference
         SharedPreferences sp = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
+        // Set text
+        nameText.setText(sp.getString("name", "Guest User"));
+        emailText.setText(sp.getString("email", "guest@example.com"));
+        phoneText.setText(sp.getString("phone", "+1 (111) 111-1111"));
+        addressText.setText(sp.getString("address", "123 Example St, Earth"));
+        cardText.setText(sp.getString("card", "None"));
+        CVCText.setText(sp.getString("CVC", "N/A"));
+
         // Set switch status (if present)
         notifiSwitch.setChecked(sp.getBoolean(NOTIFI_KEY, true));
         orderUpdateSwitch.setChecked(sp.getBoolean(ORDER_UPDATE_KEY, true));
         promotionSwitch.setChecked(sp.getBoolean(PROMO_KEY, true));
 
-        // User linear layout listener
-        userItem.setOnClickListener(new View.OnClickListener() {
+        // Profile linear layout listener
+        profileLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comingSoon();
-            }
-        });
-
-        // Email linear layout listener
-        emailItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                comingSoon();
-            }
-        });
-
-        // Phone linear layout listener
-        phoneItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                comingSoon();
+                showDialog();
             }
         });
 
@@ -242,7 +237,37 @@ public class CustomerSettingsFragment extends Fragment {
                 }
             }
         });
+
+        // Listener for user edited inputs
+        fm.setFragmentResultListener("customerInputs", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                // Get inputs
+                String name = result.getString("name"),
+                       email = result.getString("email"),
+                       phone = result.getString("phone");
+
+                // Store inputs
+                SharedPreferences.Editor e = sp.edit();
+                e.putString("name", name);
+                e.putString("email", email);
+                e.putString("phone", phone);
+                e.apply();
+
+                // Confirm
+                Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+            }
+        });
         return rootView;
+    }
+
+    private void showDialog() {
+        if (firebaseUser == null) {
+            Toast.makeText(getContext(), "Please log in first before editing your profile", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        DialogCustomerEditFragment d = new DialogCustomerEditFragment();
+        d.show(fm, "CustomInputTag");
     }
 
     private void comingSoon() {

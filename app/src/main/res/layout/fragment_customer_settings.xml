@@ -40,6 +40,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/profileLayout"
                     android:background="@drawable/rounded_box"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
@@ -57,7 +58,6 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
-                        android:id="@+id/userItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -98,7 +98,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/emailItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -136,7 +135,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/phoneItem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
