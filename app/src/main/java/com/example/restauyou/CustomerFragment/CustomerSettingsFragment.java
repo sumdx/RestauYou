@@ -80,7 +80,7 @@ public class CustomerSettingsFragment extends Fragment {
         // Shared preference
         SharedPreferences sp = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        // Set text
+        // Set text (if present)
         nameText.setText(sp.getString("name", "Guest User"));
         emailText.setText(sp.getString("email", "guest@example.com"));
         phoneText.setText(sp.getString("phone", "+1 (111) 111-1111"));
@@ -280,7 +280,7 @@ public class CustomerSettingsFragment extends Fragment {
                email = emailText.getText().toString(),
                phone = phoneText.getText().toString();
         DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone);
-        d.show(fm, "CustomInputTag");
+        d.show(fm, "CustomerEditInputTag");
     }
 
     private void comingSoon() {

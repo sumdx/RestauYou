@@ -1,4 +1,4 @@
-package com.example.restauyou.CustomerFragment;
+package com.example.restauyou.AdminFragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,13 +14,14 @@ import android.widget.Toast;
 
 import com.example.restauyou.R;
 
-public class DialogCustomerEditFragment extends DialogFragment {
-    EditText editProfileName, editProfileEmail, editProfilePhone;
-    Button btnSubmit;
-    private final String name, email, phone;
+public class DialogAdminSettingsEditFragment extends DialogFragment {
+    EditText restaurantEditName, restaurantEditAddr, restaurantEditEmail, restaurantEditPhone;
+    Button submitBtn;
+    private final String name, addr, email, phone;
 
-    public DialogCustomerEditFragment(String n, String e, String p) {
+    public DialogAdminSettingsEditFragment(String n, String a, String e, String p) {
         name = n;
+        addr = a;
         email = e;
         phone = p;
     }
@@ -30,28 +31,31 @@ public class DialogCustomerEditFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_dialog_customer_edit, null);
+        View v = inflater.inflate(R.layout.fragment_dialog_admin_settings_edit, null);
 
         // Initialize objects by ids
-        editProfileName = v.findViewById(R.id.editProfileName);
-        editProfileEmail = v.findViewById(R.id.editProfileEmail);
-        editProfilePhone = v.findViewById(R.id.editProfilePhone);
-        btnSubmit = v.findViewById(R.id.btn_submit);
+        restaurantEditName = v.findViewById(R.id.editRestaurantName);
+        restaurantEditAddr = v.findViewById(R.id.editRestaurantAddr);
+        restaurantEditEmail = v.findViewById(R.id.editRestaurantEmail);
+        restaurantEditPhone = v.findViewById(R.id.editRestaurantPhone);
+        submitBtn = v.findViewById(R.id.submitBtn);
 
         // Pre-fill inputs
-        editProfileName.setText(name);
-        editProfileEmail.setText(email);
-        editProfilePhone.setText(phone);
+        restaurantEditName.setText(name);
+        restaurantEditAddr.setText(addr);
+        restaurantEditEmail.setText(email);
+        restaurantEditPhone.setText(phone);
 
         // Build dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(v);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = editProfileName.getText().toString(),
-                       email = editProfileEmail.getText().toString(),
-                       phone = editProfilePhone.getText().toString();
+                String name = restaurantEditName.getText().toString(),
+                       addr = restaurantEditAddr.getText().toString(),
+                       email = restaurantEditEmail.getText().toString(),
+                       phone = restaurantEditPhone.getText().toString();
 
                 // If empty -> error
                 if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
@@ -62,9 +66,10 @@ public class DialogCustomerEditFragment extends DialogFragment {
                 // Send data back
                 Bundle bundle = new Bundle();
                 bundle.putString("name", name);
+                bundle.putString("address", addr);
                 bundle.putString("email", email);
                 bundle.putString("phone", phone);
-                getParentFragmentManager().setFragmentResult("customerInputs", bundle);
+                getParentFragmentManager().setFragmentResult("adminInputs", bundle);
                 dismiss();
             }
         });
