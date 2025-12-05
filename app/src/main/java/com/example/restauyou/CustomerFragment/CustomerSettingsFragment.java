@@ -31,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class CustomerSettingsFragment extends Fragment {
     LinearLayout logout, changePswdItem, getSupportItem, profileLayout;
     Button btnApplyForJob;
+    TextView tvName, tvEmail;
     View rootView;
     FirebaseUser firebaseUser;
     View contentLayout;
@@ -53,6 +54,8 @@ public class CustomerSettingsFragment extends Fragment {
         fm = getParentFragmentManager();
 
         // Initialize objects by ids
+        tvEmail = rootView.findViewById(R.id.emailText);
+        tvName = rootView.findViewById(R.id.nameText);
         contentLayout = rootView.findViewById(R.id.settingsContainer);
         logout = rootView.findViewById(R.id.logoutItem);
         btnApplyForJob = rootView.findViewById(R.id.btnApplyForJob);
