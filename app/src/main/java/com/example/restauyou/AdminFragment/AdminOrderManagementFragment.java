@@ -54,7 +54,7 @@ public class AdminOrderManagementFragment extends Fragment {
         preparingText = view.findViewById(R.id.preparingText);
         readyText = view.findViewById(R.id.readyText);
 
-        // Get values from firebase
+        // Get values from Firebase
         db = FirebaseFirestore.getInstance();
         orderList = new ArrayList<>();
         orderAdapter = new OrderAdapter(getContext(), orderList);
@@ -77,14 +77,14 @@ public class AdminOrderManagementFragment extends Fragment {
                     return;
                 }
                 if (value == null) return;
-                orderList.clear();
-                numPending = numPreparing = numReady = 0;
 
+                // Notification logic
                 for (DocumentChange dc: value.getDocumentChanges())
-                    if(!isInitialLoad && dc.getType()== DocumentChange.Type.ADDED) {
+                    if(!isInitialLoad && (dc.getType()== DocumentChange.Type.ADDED)) {
                         // Get preference status
                         SharedPreferences sp = requireActivity().getSharedPreferences("UserAccount", Context.MODE_PRIVATE);
                         boolean sound = sp.getBoolean("CurrentAdminAlert", true);
+
                         // Start service intent
                         Context context = requireContext();
                         Intent i = new Intent(context, AdminOrderNotification.class);
@@ -92,30 +92,35 @@ public class AdminOrderManagementFragment extends Fragment {
                         context.startService(i);
                     }
 
+                // Data loading
+                orderList.clear();
+                numPending = numPreparing = numReady = 0;
                 for(DocumentSnapshot doc: value.getDocuments()) {
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
                     assert newOrder != null;
+
                     newOrder.setOrderId(doc.getId());
                     orderList.add(newOrder);
-                    for (Order order: orderList)
-                        switch (order.getOrderStatus()) {
-                            case "received":
-                                numPending++;
-                                break;
-                            case "preparing":
-                                numPreparing++;
-                                break;
-                            case "ready":
-                                numReady++;
-                                break;
-                        }
-
-                    // Update Text
-                    pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
-                    preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
-                    readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
                 }
+
+                for (Order order: orderList)
+                    switch (order.getOrderStatus()) {
+                        case "received":
+                            numPending++;
+                            break;
+                        case "preparing":
+                            numPreparing++;
+                            break;
+                        case "ready":
+                            numReady++;
+                            break;
+                    }
+
+                // Update Text
+                pendingText.setText(String.format(Locale.CANADA, "%d Pending", numPending));
+                preparingText.setText(String.format(Locale.CANADA, "%d Preparing", numPreparing));
+                readyText.setText(String.format(Locale.CANADA, "%d Ready", numReady));
 
                 // Update adapter & state
                 orderAdapter.setOrderList(orderList);

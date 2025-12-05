@@ -1,6 +1,5 @@
 package com.example.restauyou;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -10,13 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.restauyou.CustomerAdapters.CustomerAdapter;
-import com.example.restauyou.CustomerFragment.CustomerCartFragment;
-import com.example.restauyou.CustomerFragment.CustomerHomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +37,6 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         bnv = findViewById(R.id.userBottomNavigation);
         vp2 = findViewById(R.id.userVP2);
-        // This can be useful later on
-        //displayName.setText(user.getDisplayName());
 
         // Set adapter
         vp2.setAdapter(new CustomerAdapter(getSupportFragmentManager(), getLifecycle()));
@@ -62,18 +55,14 @@ public class CustomerHomePageActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                if (id == R.id.menuItem) {
+                if (id == R.id.menuItem)
                     vp2.setCurrentItem(0);
-                }
-                else if (id == R.id.orderItem) {
+                else if (id == R.id.orderItem)
                     vp2.setCurrentItem(1);
-                }
-                else if (id == R.id.reserveItem) {
+                else if (id == R.id.reserveItem)
                     vp2.setCurrentItem(2);
-                }
-                else {
+                else
                     vp2.setCurrentItem(3);
-                }
                 return false;
             }
         });
@@ -83,6 +72,12 @@ public class CustomerHomePageActivity extends AppCompatActivity {
     public void orderBackBtnClicked() {
         vp2.setCurrentItem(0);
         bnv.setSelectedItemId(R.id.menuItem);
+    }
+
+    // From Cart to Order Fragment
+    public void checkOutTransitToOrder() {
+        vp2.setCurrentItem(1);
+        bnv.setSelectedItemId(R.id.orderItem);
     }
 }
 

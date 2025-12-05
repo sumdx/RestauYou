@@ -13,13 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.restauyou.R;
 import com.google.android.material.button.MaterialButton;
-
-import java.util.Objects;
 
 public class CustomerReservationFragment extends Fragment {
     private Button selectedTimeButton;
@@ -28,9 +25,7 @@ public class CustomerReservationFragment extends Fragment {
     private String selectedTime = "";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_reservation, container, false);
 
         // Initialize object by ids

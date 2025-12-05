@@ -1,6 +1,7 @@
 package com.example.restauyou.CustomerFragment;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,6 @@ import com.example.restauyou.CustomerAdapters.CartAdapter;
 import com.example.restauyou.CustomerHomePageActivity;
 import com.example.restauyou.LoginActivity;
 import com.example.restauyou.ModelClass.CartItem;
-import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
@@ -41,7 +40,8 @@ import java.util.Locale;
 
 public class CustomerCartFragment extends Fragment {
     RecyclerView cartRv;
-    double cost = 0;
+    private double cost = 0;
+    private Resources res;
     Button checkoutBtn;
     TextView numItems, subTotalText, taxText, totalText;
     SharedCartModel sharedCartItemsList ;
@@ -57,6 +57,9 @@ public class CustomerCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_cart, container, false);
 
+        // Resources
+        res = getResources();
+
         // Wiring objects by ids
         cartRv = view.findViewById(R.id.cartRecyclerView);
         checkoutBtn = view.findViewById(R.id.checkoutBtn);
@@ -67,6 +70,7 @@ public class CustomerCartFragment extends Fragment {
         totalText = view.findViewById(R.id.totalText);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
+
         // Initialize selected cart items list
         sharedCartItemsList = new ViewModelProvider(requireActivity()).get(SharedCartModel.class);
         cartAdapter = new CartAdapter(getContext(), new ArrayList<>(), sharedCartItemsList);
@@ -78,7 +82,7 @@ public class CustomerCartFragment extends Fragment {
             public void onChanged(ArrayList<CartItem> cartItems) {
                 cartAdapter.setCartItems(cartItems);
                 cartAdapter.notifyDataSetChanged();
-                numItems.setText("Items: " + cartItems.size());
+                numItems.setText(String.format(Locale.CANADA, "Items: %d", cartItems.size()));
                 updateCost();
             }
         });
@@ -111,7 +115,9 @@ public class CustomerCartFragment extends Fragment {
                     @Override
                     public void onSuccess(Void unused) {
                         sharedCartItemsList.clearCart(getContext());
-                        Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Your order is placed successfully", Toast.LENGTH_SHORT).show();
+                        CustomerHomePageActivity customerHomePageActivity =(CustomerHomePageActivity) requireActivity();
+                        customerHomePageActivity.checkOutTransitToOrder();
                         sharedCartItemsList.loadSharedPrefCart(getContext());
                         updateCost();
                     }
@@ -148,9 +154,9 @@ public class CustomerCartFragment extends Fragment {
 
         // Reset Text
         if (cart == null || cart.isEmpty()) {
-            subTotalText.setText("$0.00");
-            taxText.setText("$0.00");
-            totalText.setText("$0.00");
+            subTotalText.setText(res.getString(R.string.zero_dollar));
+            taxText.setText(res.getString(R.string.zero_dollar));
+            totalText.setText(res.getString(R.string.zero_dollar));
             return;
         }
 

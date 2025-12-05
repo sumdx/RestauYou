@@ -108,7 +108,7 @@ public class ReadyNotification extends Service {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Order Status", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Order Status", NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription("Admin: Order Status Notification Channel");
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
         }
