@@ -3,11 +3,9 @@ package com.example.restauyou.CustomerAdapters;
 import static android.view.View.GONE;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,21 +19,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauyou.AdminAdapters.NestedOrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
-import com.example.restauyou.Services.DeliveredNotification;
-import com.example.restauyou.Services.PreparingNotification;
-import com.example.restauyou.Services.ReadyNotification;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdapter.ViewHolder> {
-    Context context;
+    private final Context context;
+    private final Resources res;
     private ArrayList<Order> orderList;
 
     public CustomerOrderAdapter(Context context, ArrayList<Order> orderList) {
         this.context = context;
         this.orderList = orderList;
+        res = context.getResources();
     }
 
     public void setOrderList(ArrayList<Order> orderList){
@@ -66,11 +63,11 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
 
         // Set various states
         String state = order.getOrderStatus();
-        final int LIGHT_ACCENT = context.getResources().getColor(R.color.light_accent, context.getTheme()),
-                  YELLOW = context.getResources().getColor(R.color.yellow, context.getTheme()),
-                  LIGHT_BLUE = context.getResources().getColor(R.color.light_blue, context.getTheme()),
-                  BLACK = context.getResources().getColor(R.color.black, context.getTheme()),
-                  LIGHT_GREEN = context.getResources().getColor(R.color.light_green, context.getTheme());
+        final int LIGHT_ACCENT = res.getColor(R.color.light_accent, context.getTheme()),
+                  YELLOW = res.getColor(R.color.yellow, context.getTheme()),
+                  LIGHT_BLUE = res.getColor(R.color.light_blue, context.getTheme()),
+                  BLACK = res.getColor(R.color.black, context.getTheme()),
+                  LIGHT_GREEN = res.getColor(R.color.light_green, context.getTheme());
 
         switch (state) {
             case "preparing":
@@ -78,9 +75,9 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.imgCooking.setImageTintList(ColorStateList.valueOf(LIGHT_BLUE));
                 holder.textCooking.setTextColor(BLACK);
 
-                holder.EstimatedTime.setText("Estimated time: 15-20 minutes");
+                holder.EstimatedTime.setText(res.getString(R.string.min20));
                 holder.OrderStatus.setTextColor(Color.parseColor("#001689"));
-                holder.OrderStatus.setText("Order Preparing");
+                holder.OrderStatus.setText(res.getString(R.string.order_preparing));
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CCEDFF")));
                 break;
 
@@ -90,9 +87,9 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
                 holder.textReady.setTextColor(BLACK);
 
-                holder.EstimatedTime.setText("Ready for pickup now!");
+                holder.EstimatedTime.setText(res.getString(R.string.ready_text));
                 holder.OrderStatus.setTextColor(Color.parseColor("#246F00"));
-                holder.OrderStatus.setText("Order Ready");
+                holder.OrderStatus.setText(res.getString(R.string.order_ready));
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DFFFCC")));
                 break;
 
@@ -103,8 +100,8 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.imgDone.setBackgroundTintList(ColorStateList.valueOf(LIGHT_GREEN));
                 holder.textDone.setTextColor(BLACK);
  
-                holder.EstimatedTime.setText("Enjoy your meal!");
-                holder.OrderStatus.setText("Order Delivered");
+                holder.EstimatedTime.setText(res.getString(R.string.enjoy));
+                holder.OrderStatus.setText(res.getString(R.string.order_delivered));
                 holder.OrderStatus.setTextColor(Color.parseColor("#246F00"));
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DFFFCC")));
                 break;

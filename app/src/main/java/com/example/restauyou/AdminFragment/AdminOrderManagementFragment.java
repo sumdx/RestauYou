@@ -77,8 +77,8 @@ public class AdminOrderManagementFragment extends Fragment {
                     return;
                 }
                 if (value == null) return;
-                orderList.clear();
 
+                // Notification logic
                 for (DocumentChange dc: value.getDocumentChanges())
                     if(!isInitialLoad && (dc.getType()== DocumentChange.Type.ADDED)) {
                         // Get preference status
@@ -92,12 +92,14 @@ public class AdminOrderManagementFragment extends Fragment {
                         context.startService(i);
                     }
 
+                // Data loading
                 orderList.clear();
                 numPending = numPreparing = numReady = 0;
                 for(DocumentSnapshot doc: value.getDocuments()) {
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
                     assert newOrder != null;
+
                     newOrder.setOrderId(doc.getId());
                     orderList.add(newOrder);
                 }

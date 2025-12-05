@@ -33,7 +33,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CustomerOrdersFragment extends Fragment {
     RecyclerView customerOrderRV;
@@ -46,8 +45,7 @@ public class CustomerOrdersFragment extends Fragment {
     private Context context;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_orders, container, false);
 
@@ -107,7 +105,8 @@ public class CustomerOrdersFragment extends Fragment {
                         for(DocumentSnapshot doc : value.getDocuments()){
                             Log.d("value",value.toString());
                             Order newOrder = doc.toObject(Order.class);
-                            newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
+                            assert newOrder != null;
+                            newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4));
                             orderList.add(newOrder);
                         }
                         customerOrderAdapter.setOrderList(orderList);
@@ -118,7 +117,7 @@ public class CustomerOrdersFragment extends Fragment {
                     // Update adapter
                     for (DocumentChange dc: value.getDocumentChanges()) {
                         Order updatedOrder = dc.getDocument().toObject(Order.class);
-                        updatedOrder.setOrderId(dc.getDocument().getId().substring(dc.getDocument().getId().length()-4, dc.getDocument().getId().length()));
+                        updatedOrder.setOrderId(dc.getDocument().getId().substring(dc.getDocument().getId().length()-4));
                         int oldIndex = dc.getOldIndex(),
                             newIndex = dc.getNewIndex();
 

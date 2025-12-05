@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,6 @@ public class CustomerSettingsFragment extends Fragment {
 
     LinearLayout logout, changePswdItem, getSupportItem, profileLayout;
     Button btnApplyForJob;
-    TextView tvName, tvEmail;
     View rootView;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
@@ -51,6 +51,7 @@ public class CustomerSettingsFragment extends Fragment {
     private static final String ORDER_UPDATE_KEY = "CurrentUpdate";
     private static final String PROMO_KEY = "CurrentPromo";
     private User user;
+    private Resources res;
 
 
     @Override
@@ -62,9 +63,10 @@ public class CustomerSettingsFragment extends Fragment {
         // Fragment manager
         fm = getParentFragmentManager();
 
+        // Resources
+        res = getResources();
+
         // Initialize objects by ids
-        tvEmail = rootView.findViewById(R.id.emailText);
-        tvName = rootView.findViewById(R.id.nameText);
         contentLayout = rootView.findViewById(R.id.settingsContainer);
         logout = rootView.findViewById(R.id.logoutItem);
         btnApplyForJob = rootView.findViewById(R.id.btnApplyForJob);
@@ -199,7 +201,7 @@ public class CustomerSettingsFragment extends Fragment {
         getSupportItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
                 builder.setTitle("Contact Support");
                 builder.setIcon(R.drawable.outline_contact_support_24);
                 builder.setMessage("Do you want to get support from our online staff?");
@@ -295,10 +297,9 @@ public class CustomerSettingsFragment extends Fragment {
         nameText.setText(user.getName() !=null ? user.getName():"Guest User" );
         emailText.setText(user.getEmail()!=null? user.getEmail():"guest@example.com");
         phoneText.setText(user.getPhone()!=null ? user.getPhone() :"+1 (111) 111-1111" );
-        addressText.setText("123 Example St, Earth");
-        cardText.setText( "•••• •••• •••• 4242");
-        CVCText.setText("Expires 12/25");
-
+        addressText.setText(res.getString(R.string._123_main_st_apt_4b));
+        cardText.setText(res.getString(R.string.card_test));
+        CVCText.setText(res.getString(R.string.expires_test));
     }
 
     private void showDialog() {
@@ -311,7 +312,7 @@ public class CustomerSettingsFragment extends Fragment {
         String name = nameText.getText().toString(),
                email = emailText.getText().toString(),
                phone = phoneText.getText().toString();
-        DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone,String.valueOf(firebaseUser.getUid()));
+        DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone, firebaseUser.getUid());
         d.show(fm, "CustomerEditInputTag");
     }
 

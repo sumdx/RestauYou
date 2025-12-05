@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="Table Reservation"
+                android:text="@string/table_reservation"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 android:textColor="#333333"
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content" />
 
             <TextView
-                android:text="Book a table for your visit"
+                android:text="@string/book_text"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textSize="14sp"
@@ -53,12 +53,13 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/ic_person"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
 
                 <TextView
-                    android:text="Full Name"
+                    android:text="@string/full_name"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -69,9 +70,11 @@
 
             <EditText
                 android:id="@+id/etName"
-                android:hint="Enter your name"
+                android:autofillHints="@string/enter_your_name"
+                android:hint="@string/enter_your_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:inputType="textPersonName"
                 android:padding="15dp"
                 android:textSize="15sp"
                 android:background="@drawable/input_box" />
@@ -85,12 +88,13 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/ic_phone"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
 
                 <TextView
-                    android:text="Phone Number"
+                    android:text="@string/phone_number"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -101,7 +105,8 @@
 
             <EditText
                 android:id="@+id/etPhone"
-                android:hint="Enter phone number"
+                android:autofillHints="@string/enter_phone_number"
+                android:hint="@string/enter_phone_number"
                 android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -117,13 +122,14 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/outline_calendar_today_24"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:tint="#444" />
 
                 <TextView
-                    android:text="Date"
+                    android:text="@string/date"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -135,7 +141,8 @@
 
             <EditText
                 android:id="@+id/etDate"
-                android:hint="dd/mm/yyyy"
+                android:autofillHints="@string/dd_mm_yyyy"
+                android:hint="@string/dd_mm_yyyy"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -151,13 +158,14 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/ic_time"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:tint="@null" />
 
                 <TextView
-                    android:text="Time"
+                    android:text="@string/time"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -173,17 +181,17 @@
                 android:columnCount="3"
                 android:layout_marginTop="10dp">
 
-                <com.google.android.material.button.MaterialButton android:text="17:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="17:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="18:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="18:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="18:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="19:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="20:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="20:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="21:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="21:30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
-                <com.google.android.material.button.MaterialButton android:text="22:00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_17_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_17_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_18_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_18_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_19_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_19_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_20_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_20_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_21_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_21_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_22_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
 
             </GridLayout>
 
@@ -196,13 +204,14 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/ic_people"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:tint="@null" />
 
                 <TextView
-                    android:text="Number of Guests"
+                    android:text="@string/number_of_guests"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -228,13 +237,14 @@
                 android:layout_marginBottom="6dp">
 
                 <ImageView
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/outline_chat_bubble_24"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:tint="@null" />
 
                 <TextView
-                    android:text="Special Request (Optional)"
+                    android:text="@string/special_request"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="14sp"
@@ -246,7 +256,8 @@
 
             <EditText
                 android:id="@+id/sRequest"
-                android:hint="Any special requests or dietary restriction?"
+                android:autofillHints="@string/special_requests_text"
+                android:hint="@string/special_requests_text"
                 android:gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -259,13 +270,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit Reservation"
+                android:text="@string/submit_reservation"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/accent"
                 app:cornerRadius="10dp" />
         </LinearLayout>
-
-
     </LinearLayout>
-
 </ScrollView>

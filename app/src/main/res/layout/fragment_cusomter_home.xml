@@ -36,7 +36,7 @@
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Menu"
+                        android:text="@string/your_menu"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="Order your favourite dishes" />
+                        android:text="@string/order_fav_dishes" />
                 </LinearLayout>
 
                 <ImageButton
@@ -54,7 +54,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/buttonbg"
                     app:rippleColor="#D34F00"
-                    android:contentDescription="Cart Button"
+                    android:contentDescription="@string/cart_btn"
                     android:src="@drawable/outline_add_shopping_cart_24" />
 
 

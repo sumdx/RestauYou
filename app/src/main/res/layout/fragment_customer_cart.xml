@@ -20,11 +20,11 @@
 
         <ImageButton
             android:id="@+id/menuBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:padding="10dp"
             android:background="#00FFFFFF"
-            android:contentDescription="Go Back"
+            android:contentDescription="@string/go_back"
             app:srcCompat="@drawable/outline_arrow_back_24" />
 
         <LinearLayout
@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Cart"
+                android:text="@string/your_cart"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:id="@+id/numOfItemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="# item(s)" />
+                android:text="@string/item_s" />
         </LinearLayout>
 
     </LinearLayout>
@@ -74,13 +74,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Subtotal" />
+                android:text="@string/subtotal" />
 
             <TextView
                 android:id="@+id/subTotalText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$0.00" />
+                android:text="@string/zero_dollar" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,12 +93,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tax (8%)" />
+                android:text="@string/tax" />
             <TextView
                 android:id="@+id/taxText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$0.00" />
+                android:text="@string/zero_dollar" />
         </LinearLayout>
 
         <View
@@ -118,19 +118,20 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_weight="1"
-                android:text="Total" />
+                android:text="@string/total" />
 
             <TextView
                 android:id="@+id/totalText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="$0.00" />
+                android:text="@string/zero_dollar" />
         </LinearLayout>
+
         <Button
             android:id="@+id/checkoutBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Proceed to Checkout" />
+            android:text="@string/proceed_to_checkout" />
     </LinearLayout>
 </LinearLayout>

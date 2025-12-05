@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="Settings" />
+                android:text="@string/settings" />
         </LinearLayout>
 
         <ScrollView
@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Profile"
+                        android:text="@string/profile"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -86,13 +86,13 @@
                                 android:id="@+id/nameText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Guest User"
+                                android:text="@string/guest_user"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="View and edit profile"
+                                android:text="@string/view_and_edit_profile"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
                     </LinearLayout>
@@ -105,7 +105,7 @@
                         android:padding="10dp">
 
                         <ImageView
-                            android:contentDescription="Email Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/outline_attach_email_24"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -122,14 +122,14 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Email"
+                                android:text="@string/email"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/emailText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="guest@example.com"
+                                android:text="@string/guest_example_com"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
                     </LinearLayout>
@@ -141,7 +141,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:contentDescription="Phone Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/ic_phone"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -159,14 +159,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
-                                android:text="Phone" />
+                                android:text="@string/phone_number" />
 
                             <TextView
                                 android:id="@+id/phoneText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/gray"
-                                android:text="+1 (555) 123-4567" />
+                                android:text="@string/_1_555_123_4567" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -184,7 +184,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Delivery Address"
+                        android:text="@string/delivery_address"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -196,7 +196,7 @@
                         android:padding="10dp">
 
                         <ImageView
-                            android:contentDescription="Location Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/distance_24px"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -213,14 +213,14 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Home"
+                                android:text="@string/home"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/addressText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="123 Main St, Apt 4B"
+                                android:text="@string/_123_main_st_apt_4b"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
 
@@ -233,7 +233,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/accent"
-                        android:text="+\t\t\tAdd New Address"  />
+                        android:text="@string/add_new_address"  />
 
                 </LinearLayout>
 
@@ -250,7 +250,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Payment Methods"
+                        android:text="@string/payment_methods"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -262,7 +262,7 @@
                         android:paddingEnd="10dp">
 
                         <ImageView
-                            android:contentDescription="Notification"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/outline_circle_notifications_24"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -280,14 +280,14 @@
                                 android:id="@+id/cardText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="•••• •••• •••• 4242"
+                                android:text="@string/card_test"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/CVCText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Expires 12/25"
+                                android:text="@string/expires_test"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
 
@@ -300,7 +300,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/accent"
-                        android:text="+\t\t\tAdd New Card"  />
+                        android:text="@string/add_new_card"  />
 
                 </LinearLayout>
 
@@ -317,7 +317,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Notifications"
+                        android:text="@string/notifications"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -328,7 +328,7 @@
                         android:padding="10dp">
 
                         <ImageView
-                            android:contentDescription="Credit Card Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/outline_add_card_24"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -346,13 +346,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Push Notifications"
+                                android:text="@string/push_notifications"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Enable notifications"
+                                android:text="@string/enable_notifications"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
 
@@ -382,13 +382,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Order Updates"
+                                android:text="@string/order_updates"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Get updates on your orders"
+                                android:text="@string/order_update_text"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
 
@@ -418,13 +418,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Promotions"
+                                android:text="@string/promotions"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Receive special offers"
+                                android:text="@string/promotions_text"
                                 android:textColor="@color/gray" />
                         </LinearLayout>
 
@@ -450,7 +450,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Account"
+                        android:text="@string/account"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -464,7 +464,7 @@
                         android:paddingEnd="10dp">
 
                         <ImageView
-                            android:contentDescription="Lock Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/lock_24px"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -475,7 +475,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Change Password"
+                                android:text="@string/change_password"
                                 android:textStyle="bold"
                                 android:paddingStart="5dp"
                                 android:paddingEnd="5dp" />
@@ -491,7 +491,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:contentDescription="Question Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/outline_contact_support_24"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -503,7 +503,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:padding="5dp"
-                            android:text="Help &amp; Support" />
+                            android:text="@string/help_support" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -516,7 +516,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:contentDescription="Logout Icon"
+                            android:contentDescription="@string/icon"
                             android:src="@drawable/logout_24px"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="20dp"
@@ -528,7 +528,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:padding="5dp"
-                            android:text="Log out" />
+                            android:text="@string/log_out" />
 
                     </LinearLayout>
                     <Button
@@ -536,7 +536,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Apply For Job"/>
+                        android:text="@string/apply_for_job"/>
                 </LinearLayout>
 
                 <TextView
@@ -544,14 +544,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Restaurant App v1.0.0" />
+                    android:text="@string/version" />
 
                 <TextView
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:text="© 2025 All rights reserved" />
+                    android:text="@string/_2025_all_rights_" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
