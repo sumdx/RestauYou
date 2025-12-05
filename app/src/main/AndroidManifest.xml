@@ -49,5 +49,11 @@
         <service
             android:name=".Services.PreparingNotification"
             android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name=".Services.ReadyNotification"
+            android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name=".Services.DeliveredNotification"
+            android:foregroundServiceType="mediaPlayback" />
     </application>
 </manifest>

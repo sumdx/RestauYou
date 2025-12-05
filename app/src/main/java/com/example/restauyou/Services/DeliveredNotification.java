@@ -20,8 +20,8 @@ import com.example.restauyou.R;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PreparingNotification extends Service {
-    private static final String TAG = "PreparingNotification";
+public class DeliveredNotification extends Service {
+    private static final String TAG = "ReadyNotification";
     private static final String CHANNEL_ID = "Order Notification";
     private ExecutorService executor;
 
@@ -53,8 +53,8 @@ public class PreparingNotification extends Service {
 
         // Build notification
         Notification noti = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Preparing Order")
-                .setContentText("The order is being prepared.")
+                .setContentTitle("Readying Order")
+                .setContentText("The order is ready to be delivered.")
                 .setSmallIcon(R.drawable.baseline_fastfood_24)
                 .setContentIntent(pI).build();
 
@@ -68,7 +68,7 @@ public class PreparingNotification extends Service {
                 @Override
                 public void run() {
                     // Start media
-                    MediaPlayer mediaPlayer = MediaPlayer.create(PreparingNotification.this, R.raw.preparing_notification);
+                    MediaPlayer mediaPlayer = MediaPlayer.create(DeliveredNotification.this, R.raw.delivered_notification);
                     mediaPlayer.start();
 
                     // Wait 10 seconds

@@ -4,12 +4,8 @@ import android.widget.TextView;
 
 public class MenuItem {
 
-
     private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
-
-
     private int amount, itemImg;
-
     private boolean selected;
 
     public String getItemImagePath() {

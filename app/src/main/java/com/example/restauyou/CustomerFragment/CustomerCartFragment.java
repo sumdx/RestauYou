@@ -100,7 +100,11 @@ public class CustomerCartFragment extends Fragment {
                     Toast.makeText(getContext(), "Empty Cart. Please add some food!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                // Get Timestamp
                 Date now = Calendar.getInstance().getTime();
+
+                // Upload to firebase
                 DocumentReference docRef = db.collection("orders").document();
                 Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","received",cost, now, now);
                 docRef.set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -109,6 +113,7 @@ public class CustomerCartFragment extends Fragment {
                         sharedCartItemsList.clearCart(getContext());
                         Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
                         sharedCartItemsList.loadSharedPrefCart(getContext());
+                        updateCost();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -116,7 +121,6 @@ public class CustomerCartFragment extends Fragment {
                         Toast.makeText(getContext(), "Upload unsuccessfully", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
 
@@ -130,9 +134,8 @@ public class CustomerCartFragment extends Fragment {
                 // Show the main content (if hidden)
                 if (getActivity() != null) {
                     View mainContent = getActivity().findViewById(R.id.homeMenuContent);
-                    if (mainContent != null) {
+                    if (mainContent != null)
                         mainContent.setVisibility(View.VISIBLE);
-                    }
                 }
             }
         });
@@ -142,8 +145,14 @@ public class CustomerCartFragment extends Fragment {
     // Update cost texts
     public void updateCost() {
         ArrayList<CartItem> cart = sharedCartItemsList.getCartList().getValue();
-        if (cart == null)
+
+        // Reset Text
+        if (cart == null || cart.isEmpty()) {
+            subTotalText.setText("$0.00");
+            taxText.setText("$0.00");
+            totalText.setText("$0.00");
             return;
+        }
 
         for (CartItem cartItem: cart)
             cost += cartItem.getTotalPrice();
