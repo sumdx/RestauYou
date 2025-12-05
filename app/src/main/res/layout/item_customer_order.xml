@@ -92,7 +92,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@color/accent"
-                    android:src="@drawable/outline_clock_loader_40_24_green" />
+                    android:src="@drawable/baseline_access_time_24" />
 
                 <TextView
                     android:id="@+id/textReceived"
@@ -117,8 +117,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/imgCooking"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:tint="@color/black"
-                    android:src="@drawable/cook" />
+                    app:tint="@color/blue"
+                    android:src="@drawable/cooking" />
 
                 <TextView
                     android:id="@+id/textCooking"
@@ -170,8 +170,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/imgDone"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:tint="@color/black"
-                    android:src="@drawable/done" />
+                    app:tint="#DE000000"
+                    android:src="@drawable/truck" />
 
                 <TextView
                     android:id="@+id/textDone"
