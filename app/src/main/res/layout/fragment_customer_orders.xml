@@ -19,14 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:contentDescription="Go Back"
+            android:contentDescription="@string/go_back"
             android:src="@drawable/outline_arrow_back_24" />
 
         <TextView
             android:id="@+id/MyOrdersTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Orders"
+            android:text="@string/my_orders"
             android:textStyle="bold"
             android:textSize="22sp"
             android:layout_marginStart="12dp"

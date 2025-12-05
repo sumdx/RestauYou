@@ -7,14 +7,14 @@
 
     <TextView
         android:id="@+id/itemTitleText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="2x Item" />
+        android:text="@string/item_num" />
 
     <TextView
         android:id="@+id/itemCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$Cost" />
+        android:text="@string/cost_test" />
 </LinearLayout>

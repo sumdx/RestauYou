@@ -16,10 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.restauyou.CustomerAdapters.MenuFilterAdapter;
 import com.example.restauyou.CustomerAdapters.MenuAdapter;
 import com.example.restauyou.ModelClass.CartItem;
-import com.example.restauyou.ModelClass.MenuFilter;
 import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.ModelClass.SharedCartModel;
 import com.example.restauyou.R;
