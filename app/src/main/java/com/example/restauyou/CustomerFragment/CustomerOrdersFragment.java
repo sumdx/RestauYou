@@ -20,7 +20,9 @@ import com.example.restauyou.CustomerAdapters.CustomerOrderAdapter;
 import com.example.restauyou.CustomerHomePageActivity;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.example.restauyou.Services.DeliveredNotification;
 import com.example.restauyou.Services.PreparingNotification;
+import com.example.restauyou.Services.ReadyNotification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -40,24 +42,32 @@ public class CustomerOrdersFragment extends Fragment {
     ArrayList<Order> orderList;
     ImageView backBtn;
     CustomerOrderAdapter customerOrderAdapter;
+    private boolean isInitialLoad = true;
+    private Context context;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_orders, container, false);
+
+        // Initialize objects by ids
         customerOrderRV = view.findViewById(R.id.customerOrderRV);
         backBtn = view.findViewById(R.id.backBtn);
         db = FirebaseFirestore.getInstance();
         user= FirebaseAuth.getInstance().getCurrentUser();
 
-        // Harding-coding values for now
+        // Get context
+        context = requireContext();
+
+        // Load order list
         orderList = new ArrayList<>();
         loadOrder();
-        customerOrderAdapter =new CustomerOrderAdapter(getContext(), orderList);
+        customerOrderAdapter =new CustomerOrderAdapter(context, orderList);
 
         // Set adapter & layout manager
         customerOrderRV.setAdapter(customerOrderAdapter);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         customerOrderRV.setLayoutManager(llm);
 
@@ -91,22 +101,58 @@ public class CustomerOrdersFragment extends Fragment {
                     }
                     if (value==null)
                         return;
-                    orderList.clear();
 
-                    for (DocumentChange dc: value.getDocumentChanges())
-                        if(dc.getType()== DocumentChange.Type.MODIFIED) {
-                            Context context = requireContext();
-    //                        context.startService(new Intent(context, AdminOrderNotification.class));
-                            context.startService(new Intent(context, PreparingNotification.class));
+                    if (isInitialLoad) {
+                        orderList.clear();
+                        for(DocumentSnapshot doc : value.getDocuments()){
+                            Log.d("value",value.toString());
+                            Order newOrder = doc.toObject(Order.class);
+                            newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
+                            orderList.add(newOrder);
                         }
-
-                    for(DocumentSnapshot doc : value.getDocuments()){
-                        Log.d("value",value.toString());
-                        Order newOrder = doc.toObject(Order.class);
-                        newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
-                        orderList.add(newOrder);
+                        customerOrderAdapter.setOrderList(orderList);
+                        isInitialLoad = false;
+                        return;
                     }
-                    customerOrderAdapter.setOrderList(orderList);
+
+                    // Update adapter
+                    for (DocumentChange dc: value.getDocumentChanges()) {
+                        Order updatedOrder = dc.getDocument().toObject(Order.class);
+                        updatedOrder.setOrderId(dc.getDocument().getId().substring(dc.getDocument().getId().length()-4, dc.getDocument().getId().length()));
+                        int oldIndex = dc.getOldIndex(),
+                            newIndex = dc.getNewIndex();
+
+                        switch (dc.getType()) {
+                            case ADDED: // If change is added
+                                Log.d("ADDED", updatedOrder.getOrderStatus());
+                                orderList.add(newIndex, updatedOrder);
+                                customerOrderAdapter.notifyItemInserted(newIndex);
+
+                                // Notification
+                                context.startService(new Intent(context, PreparingNotification.class));
+                                break;
+
+                            case MODIFIED: // If change is modified
+                                orderList.set(oldIndex, updatedOrder);
+                                customerOrderAdapter.notifyItemChanged(oldIndex);
+
+                                String state = updatedOrder.getOrderStatus();
+                                Intent iGo;
+                                if (state.equals("preparing"))
+                                    iGo = new Intent(context, PreparingNotification.class);
+                                else if (state.equals("ready"))
+                                    iGo = new Intent(context, ReadyNotification.class);
+                                else // "delivered"
+                                    iGo = new Intent(context, DeliveredNotification.class);
+                                context.startService(iGo);
+                                break;
+
+                            case REMOVED: // If change is removed
+                                orderList.remove(oldIndex);
+                                customerOrderAdapter.notifyItemRemoved(oldIndex);
+                                break;
+                        }
+                    }
                 }
             });
     }
