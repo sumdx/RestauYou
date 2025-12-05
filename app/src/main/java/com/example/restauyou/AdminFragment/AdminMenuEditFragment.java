@@ -82,6 +82,7 @@ public class AdminMenuEditFragment extends Fragment {
                     menuItemArraylist.clear();
                     for(DocumentSnapshot doc: value.getDocuments() ){
                         MenuItem item = doc.toObject(MenuItem.class);
+                        item.setItemId(doc.getId());
                         menuItemArraylist.add(item);
                     }
                     adminMenuEditAdapter.setMenuItemArraylist(menuItemArraylist);
