@@ -12,10 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.restauyou.AdminFragment.AdminMenuEditCustomDialog;
 import com.example.restauyou.AdminFragment.AdminMenuEditFragment;
+import com.example.restauyou.CustomerFragment.DialogCustomerEditFragment;
 import com.example.restauyou.ModelClass.MenuItem;
 import com.example.restauyou.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,6 +36,8 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
     ArrayList<MenuItem> menuItemArraylist;
     FirebaseFirestore db;
     FirebaseStorage storage;
+    AdminMenuEditCustomDialog adminMenuEditCustomDialog;
+    FragmentManager fm;
     public ArrayList<MenuItem> getMenuItemArraylist() {
         return menuItemArraylist;
     }
@@ -43,9 +48,10 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
     }
 
 
-    public AdminMenuEditAdapter (Context context, ArrayList<MenuItem> menuItemArraylist){
+    public AdminMenuEditAdapter (Context context, ArrayList<MenuItem> menuItemArraylist, FragmentManager fm){
         this.context = context;
         this.menuItemArraylist = menuItemArraylist;
+        this.fm = fm;
     }
 
     @NonNull
@@ -65,6 +71,13 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
         holder.itemDescription.setText(menuItem.getItemDescription());
         holder.itemAvailability.setText(menuItem.getItemAvailability());
         Glide.with(context).load(menuItem.getItemImageUrl()).into(holder.itemImage);
+        holder.itemEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdminMenuEditCustomDialog d = new AdminMenuEditCustomDialog(menuItem.getItemId());
+                d.show(fm, "TAG");
+            }
+        });
         holder.itemDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +127,7 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
 
         TextView itemTitle, itemDescription, itemAvailability, itemPrice ;
         ImageView itemImage;
-        MaterialButton itemDelete;
+        MaterialButton itemDelete,itemEdit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemTitle = itemView.findViewById(R.id.itemTitle);
@@ -123,6 +136,7 @@ public class AdminMenuEditAdapter extends RecyclerView.Adapter<AdminMenuEditAdap
             itemPrice = itemView.findViewById(R.id.itemPrice);
             itemImage = itemView.findViewById(R.id.itemImage);
             itemDelete = itemView.findViewById(R.id.btnDelete);
+            itemEdit = itemView.findViewById(R.id.btnEdit);
         }
     }
 }
