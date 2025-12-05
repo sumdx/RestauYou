@@ -11,6 +11,10 @@
     <color name="red">#FF0000</color>
     <color name="gold">#EFAE0A</color>
     <color name="green">#08C108</color>
+    <color name="light_green">#80FF80</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="blue">#2E50FF</color>
-
+    <color name="light_blue">#EFF3FF</color>
+    <color name="cyan">#A0FFF4</color>
+    <color name="light_accent">#FF9800</color>
 </resources>

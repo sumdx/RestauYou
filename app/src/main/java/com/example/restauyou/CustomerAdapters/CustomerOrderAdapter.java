@@ -1,7 +1,6 @@
 package com.example.restauyou.CustomerAdapters;
 
 import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -64,38 +63,45 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
 
         // Set various states
         String state = order.getOrderStatus();
-        final int ACCENT = context.getResources().getColor(R.color.accent, context.getTheme()),
-                  GREEN = context.getResources().getColor(R.color.green, context.getTheme()),
-                  BLACK = context.getResources().getColor(R.color.black, context.getTheme());
+        final int LIGHT_ACCENT = context.getResources().getColor(R.color.light_accent, context.getTheme()),
+                  YELLOW = context.getResources().getColor(R.color.yellow, context.getTheme()),
+                  LIGHT_BLUE = context.getResources().getColor(R.color.light_blue, context.getTheme()),
+                  BLACK = context.getResources().getColor(R.color.black, context.getTheme()),
+                  LIGHT_GREEN = context.getResources().getColor(R.color.light_green, context.getTheme());
 
         switch (state) {
             case "preparing":
-                holder.imgReceived.setBackgroundTintList(ColorStateList.valueOf(GREEN));
-                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(ACCENT));
+                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(LIGHT_ACCENT));
                 holder.textCooking.setTextColor(BLACK);
 
                 holder.EstimatedTime.setText("Estimated time: 15-20 minutes");
                 holder.OrderStatus.setTextColor(Color.parseColor("#001689"));
+                holder.OrderStatus.setText("Order Preparing");
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CCEDFF")));
                 break;
 
             case "ready":
-                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(GREEN));
-                holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(ACCENT));
+                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(LIGHT_ACCENT));
+                holder.imgCooking.setImageTintList(ColorStateList.valueOf(LIGHT_BLUE));
+                holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
                 holder.textReady.setTextColor(BLACK);
 
                 holder.EstimatedTime.setText("Ready for pickup now!");
                 holder.OrderStatus.setTextColor(Color.parseColor("#246F00"));
+                holder.OrderStatus.setText("Order Ready");
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DFFFCC")));
                 break;
 
             case "delivered":
-                holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(GREEN));
-                holder.imgDone.setBackgroundTintList(ColorStateList.valueOf(ACCENT));
+                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(LIGHT_ACCENT));
+                holder.imgCooking.setImageTintList(ColorStateList.valueOf(LIGHT_BLUE));
+                holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(YELLOW));
+                holder.imgDone.setBackgroundTintList(ColorStateList.valueOf(LIGHT_GREEN));
                 holder.textDone.setTextColor(BLACK);
  
                 holder.EstimatedTime.setText("Enjoy your meal!");
-                holder.removeOrderBtn.setVisibility(VISIBLE);
+                holder.OrderStatus.setText("Order Delivered");
+//                holder.removeOrderBtn.setVisibility(VISIBLE);
                 break;
         }
 
