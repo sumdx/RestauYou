@@ -48,7 +48,7 @@ public class AdminMenuEditFragment extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         // Set adapter & layout manager
-        adminMenuEditAdapter = new AdminMenuEditAdapter(getContext(),menuItemArraylist);
+        adminMenuEditAdapter = new AdminMenuEditAdapter(getContext(),menuItemArraylist, getParentFragmentManager());
         recyclerView.setAdapter(adminMenuEditAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
