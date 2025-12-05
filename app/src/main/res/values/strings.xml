@@ -1,6 +1,23 @@
 <resources>
     <string name="app_name">RestauYou</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="min20">Estimated time: 15–20 minutes</string>
+    <string name="min30">Estimated time: 20–30 minutes</string>
+    <string name="order_received">Order Received</string>
+    <string name="order_preparing">Order Preparing</string>
+    <string name="order_ready">Order Ready</string>
+    <string name="order_delivered">Order Delivered</string>
+    <string name="order_test">Order #949185</string>
+    <string name="ready_text">Ready for pickup now!</string>
+    <string name="enjoy">Enjoy your meal!</string>
+    <string name="cost_test">$42.87</string>
+    <string name="date_test">Nov 25, 2025, 12:19 PM</string>
+    <string name="received">Received</string>
+    <string name="cooking">Cooking</string>
+    <string name="ready">Ready</string>
+    <string name="done">Done</string>
+    <string name="remove_order">Remove Order</string>
+    <string name="clock_icon">Clock Icon</string>
 
     <string-array name="numGuestsArray">
         <item>1</item>
