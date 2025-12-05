@@ -1,6 +1,5 @@
 package com.example.restauyou.AdminAdapters;
 
-import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -66,7 +65,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.costText.setText(String.format(Locale.CANADA, "$%.2f", order.getTotalPrice()));
 
         holder.dateText.setText(String.format(Locale.CANADA, "%s", order.getCreatedAt()));
-        //holder.costText.setText("$0.00");
+        holder.markBtn.setVisibility(VISIBLE);
 
         String userId = order.getUserId();
 
@@ -106,6 +105,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.preparingStateText.setVisibility(GONE);
                 holder.readyStateText.setVisibility(GONE);
                 holder.deliveredStateText.setVisibility(GONE);
+
+                holder.markBtn.setVisibility(VISIBLE);
                 holder.markBtn.setText("Mark Preparing");
                 holder.markBtn.setBackgroundColor(context.getResources().getColor(R.color.gold, context.getTheme()));
                 break;
@@ -115,6 +116,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.readyStateText.setVisibility(GONE);
                 holder.deliveredStateText.setVisibility(GONE);
 
+                holder.markBtn.setVisibility(VISIBLE);
                 holder.markBtn.setText("Mark Ready");
                 holder.markBtn.setBackgroundColor(context.getResources().getColor(R.color.green, context.getTheme()));
 
@@ -125,10 +127,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 holder.readyStateText.setVisibility(VISIBLE);
                 holder.deliveredStateText.setVisibility(GONE);
 
+                holder.markBtn.setVisibility(VISIBLE);
                 holder.markBtn.setText("Mark Delivered");
                 holder.markBtn.setBackgroundColor(context.getResources().getColor(R.color.gray, context.getTheme()));
                 break;
-            default:  // For "delivered"
+            case "delivered":
                 holder.pendingStateText.setVisibility(GONE);
                 holder.preparingStateText.setVisibility(GONE);
                 holder.readyStateText.setVisibility(GONE);
@@ -184,22 +187,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 });
             }
         });
-
-        // Edit button
-        holder.editOrderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        // Delete button
-        holder.delOrderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -210,7 +197,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView orderNumText, pendingStateText, preparingStateText, readyStateText, deliveredStateText, costText, customerText, dateText;
         RecyclerView nestedOrderRV;
-        Button markBtn, editOrderBtn, delOrderBtn;
+        Button markBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -233,8 +220,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
             // Buttons
             markBtn = itemView.findViewById(R.id.markBtn);
-            editOrderBtn = itemView.findViewById(R.id.editOrderBtn);
-            delOrderBtn = itemView.findViewById(R.id.delOrderBtn);
         }
     }
 }
