@@ -118,7 +118,7 @@ public class CustomerHomeFragment extends Fragment {
 
     // Load items from Firebase
     private void loadMenuItem() {
-        firebaseFirestore.collection("menu_items").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("menu_items").whereEqualTo("itemAvailability","Available").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null){
