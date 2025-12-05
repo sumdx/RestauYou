@@ -173,6 +173,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(context, "Order marked as "+ newState + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
