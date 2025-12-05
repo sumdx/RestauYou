@@ -72,6 +72,7 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                   LIGHT_BLUE = res.getColor(R.color.light_blue, context.getTheme()),
                   BLACK = res.getColor(R.color.black, context.getTheme()),
                   LIGHT_GREEN = res.getColor(R.color.light_green, context.getTheme());
+        holder.imgCooking.setImageTintList(ColorStateList.valueOf(BLUE));
 
         Log.d("STATE", state);
         switch (state) {
