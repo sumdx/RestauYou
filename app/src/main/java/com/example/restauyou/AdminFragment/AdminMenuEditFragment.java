@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,22 +32,25 @@ public class AdminMenuEditFragment extends Fragment {
     FirebaseFirestore firebaseFirestore;
     ArrayList<MenuItem> menuItemArraylist;
     AdminMenuEditAdapter adminMenuEditAdapter;
+    View contentLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_menu_edit, container, false);
+
+        // Initialize objects & firebase
+        FragmentManager fm = getParentFragmentManager();
+        menuItemArraylist = new ArrayList<>();
+        recyclerView = view.findViewById(R.id.adminMenuItemRecyclerView);
+        Button btnAddNewItem = view.findViewById(R.id.btnAddNewItem);
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        menuItemArraylist = new ArrayList<>();
-
-
-        recyclerView = view.findViewById(R.id.adminMenuItemRecyclerView);
-
-        Button btnAddNewItem = view.findViewById(R.id.btnAddNewItem);
+        // Set adapter & layout manager
         adminMenuEditAdapter = new AdminMenuEditAdapter(getContext(),menuItemArraylist);
         recyclerView.setAdapter(adminMenuEditAdapter);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -54,18 +58,27 @@ public class AdminMenuEditFragment extends Fragment {
         btnAddNewItem.setOnClickListener(v -> {
             // Hide the default content (RecyclerView + Title)
             assert getView() != null;
-            View contentLayout = getView().findViewById(R.id.editMenuContent);
+            contentLayout = getView().findViewById(R.id.editMenuContent);
             contentLayout.setVisibility(View.GONE);
 
             // Load AddNewItemFragment
-            getParentFragmentManager()
-                    .beginTransaction()
+            fm.beginTransaction()
                     .replace(R.id.menuEditContainer, new AdminMenuItemAddFragment())
                     .addToBackStack(null)
                     .commit();
         });
 
-
+        // Handle device's back button
+        fm.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                // Checks if the Home Fragment is resumed
+                if (isResumed()) {
+                    if (contentLayout != null)
+                        contentLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         return view;
     }
 

@@ -1,144 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:id="@+id/editMenuContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AdminFragment.AdminMenuItemAddFragment">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/editMenuContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:contentDescription="Go Back Button"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/arrow_forward_24px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="Add Item"/>
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload"/>
+    </LinearLayout>
+    <LinearLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="Menu Item Name"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/accent">
 
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMenuItemName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:rotation="180"
-                android:scaleType="fitXY"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:src="@drawable/arrow_forward_24px"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:text="Add Item"/>
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload"/>
-        </LinearLayout>
-        <LinearLayout
-            android:padding="10dp"
+        <!-- Menu Item Description -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Description"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/accent">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMenuItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Menu Item Name"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/accent">
+                android:inputType="textMultiLine"
+                android:minLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMenuItemName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <!-- Price -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="$ Price"
+            app:boxBackgroundMode="outline"
+            app:prefixText="$"
+            app:boxStrokeColor="@color/accent">
 
-            <!-- Menu Item Description -->
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMenuItemPrice"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:hint="Description"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/accent">
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMenuItemDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:minLines="3" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <!-- Menu Item Image -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-            <!-- Price -->
-            <com.google.android.material.textfield.TextInputLayout
+        <FrameLayout
+            android:id="@+id/imageUpload"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivImageLogo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:hint="$ Price"
-                app:boxBackgroundMode="outline"
-                app:prefixText="$"
-                app:boxStrokeColor="@color/accent">
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Upload Logo"
+                android:background="@color/accent"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etMenuItemPrice"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Menu Item Image -->
-            <TextView
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnUploadLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Image"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:src="@drawable/outline_image_arrow_up_24"
+                android:contentDescription="Upload Logo"
+                app:backgroundTint="@color/white"/>
 
-            <FrameLayout
-                android:id="@+id/imageUpload"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/ivImageLogo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Upload Logo"
-                    android:background="@color/accent"/>
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnUploadLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/outline_image_arrow_up_24"
-                    android:contentDescription="Upload Logo"
-                    app:backgroundTint="@color/white"/>
-
-            </FrameLayout>
-
-
-
-
-        </LinearLayout>
-
-
+        </FrameLayout>
     </LinearLayout>
-
-
-</FrameLayout>
+</LinearLayout>

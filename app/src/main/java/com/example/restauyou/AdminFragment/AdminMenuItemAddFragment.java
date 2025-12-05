@@ -91,7 +91,9 @@ public class AdminMenuItemAddFragment extends Fragment {
             getParentFragmentManager().popBackStack();
             // Show the main content
             if (getActivity() != null) {
-                getActivity().findViewById(R.id.editMenuContent).setVisibility(View.VISIBLE);
+                View mainContent = getActivity().findViewById(R.id.editMenuContent);
+                if (mainContent != null)
+                    mainContent.setVisibility(View.VISIBLE);
             }
         });
 
