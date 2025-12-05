@@ -479,7 +479,6 @@
                                 android:textStyle="bold"
                                 android:paddingStart="5dp"
                                 android:paddingEnd="5dp" />
-
                     </LinearLayout>
 
                     <LinearLayout

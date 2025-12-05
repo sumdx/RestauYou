@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/restaurantInfoLayout"
                 android:background="@drawable/rounded_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/restaurantName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="The Gourmet Kitchen"
@@ -117,6 +119,7 @@
                             android:text="Address" />
 
                         <TextView
+                            android:id="@+id/restaurantAddr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="456 Restaurant Ave, City, State 12345"
@@ -154,6 +157,7 @@
                             android:text="Phone" />
 
                         <TextView
+                            android:id="@+id/restaurantPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="+1 (555) 987-6543"
@@ -191,6 +195,7 @@
                             android:text="Email" />
 
                         <TextView
+                            android:id="@+id/restaurantEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="contact@gourmetkitchen.com"
