@@ -102,7 +102,7 @@ public class CustomerApplyForEmployeeFragment extends Fragment {
 
                 Employee employee = new Employee(firebaseUser.getUid(),name, email, phone,null,position,null,0.00);
                 employee.setEmployeePending(true);
-
+                employee.setRole("user");
                 try {
                     db.collection("users").document(firebaseUser.getUid()).set(employee).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
