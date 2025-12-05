@@ -73,6 +73,9 @@ public class AdminStaffManagementFragment extends Fragment {
                         if(employee.getRole().equals("employee")){
                             employeeArrayList.add(employee);
                         }
+                        if (employee.isEmployeePending()){
+                            employeeArrayList.add(employee);
+                        }
 
 
                     }

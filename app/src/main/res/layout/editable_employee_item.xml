@@ -69,15 +69,16 @@
             android:text="17.45"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/llEditDeleteBtns"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAcceptReq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"
+            android:text="Accept Request"
             app:icon="@drawable/edit_document_24px"
             app:iconTint="@android:color/background_dark"
             android:textColor="@color/black"
@@ -86,7 +87,37 @@
             app:strokeWidth="2px"
             app:cornerRadius="10dp"
             android:layout_marginEnd="20dp"/>
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteReq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:icon="@drawable/edit_document_24px"
+            app:iconTint="@android:color/holo_red_light"
+            android:textColor="@color/red"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="2px"
+            app:cornerRadius="10dp"
+            android:layout_marginEnd="5dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:icon="@drawable/edit_document_24px"
+            app:iconTint="@android:color/holo_red_dark"
+            android:textColor="@color/red"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="2px"
+            app:cornerRadius="10dp"
+            android:layout_marginEnd="20dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteEmployee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
