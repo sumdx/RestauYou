@@ -3,8 +3,11 @@ package com.example.restauyou.CustomerAdapters;
 import static android.view.View.GONE;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauyou.AdminAdapters.NestedOrderAdapter;
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.example.restauyou.Services.DeliveredNotification;
+import com.example.restauyou.Services.PreparingNotification;
+import com.example.restauyou.Services.ReadyNotification;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -63,11 +69,15 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
 
         // Set various states
         String state = order.getOrderStatus();
+        Log.d("stateTest", state);
         final int LIGHT_ACCENT = context.getResources().getColor(R.color.light_accent, context.getTheme()),
                   YELLOW = context.getResources().getColor(R.color.yellow, context.getTheme()),
                   LIGHT_BLUE = context.getResources().getColor(R.color.light_blue, context.getTheme()),
                   BLACK = context.getResources().getColor(R.color.black, context.getTheme()),
                   LIGHT_GREEN = context.getResources().getColor(R.color.light_green, context.getTheme());
+        Intent i;
+        SharedPreferences sp = context.getSharedPreferences("UserAccount", Context.MODE_PRIVATE);
+        boolean isNotifiOn = sp.getBoolean("CurrentNotifi", true);
 
         switch (state) {
             case "preparing":
@@ -78,6 +88,11 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.OrderStatus.setTextColor(Color.parseColor("#001689"));
                 holder.OrderStatus.setText("Order Preparing");
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CCEDFF")));
+
+                if (isNotifiOn) {
+                    i = new Intent(context, PreparingNotification.class);
+                    context.startService(i);
+                }
                 break;
 
             case "ready":
@@ -90,6 +105,11 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.OrderStatus.setTextColor(Color.parseColor("#246F00"));
                 holder.OrderStatus.setText("Order Ready");
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DFFFCC")));
+
+                if (isNotifiOn) {
+                    i = new Intent(context, ReadyNotification.class);
+                    context.startService(i);
+                }
                 break;
 
             case "delivered":
@@ -102,6 +122,11 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.EstimatedTime.setText("Enjoy your meal!");
                 holder.OrderStatus.setText("Order Delivered");
 //                holder.removeOrderBtn.setVisibility(VISIBLE);
+
+                if (isNotifiOn) {
+                    i = new Intent(context, DeliveredNotification.class);
+                    context.startService(i);
+                }
                 break;
         }
 
