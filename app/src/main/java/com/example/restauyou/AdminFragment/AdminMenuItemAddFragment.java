@@ -151,7 +151,8 @@ public class AdminMenuItemAddFragment extends Fragment {
                     @Override
                     public void onSuccess(Uri uri) {
                         String imageUrl =  uri.toString();
-                        MenuItem menuItem = new MenuItem(itemName, itemDescription,"Available", itemPrice, imageUrl);
+                        MenuItem menuItem = new MenuItem(itemName, itemDescription,"Available", itemPrice, imageUrl, fileName);
+                        menuItem.setItemImagePath(fileName);
                         firebaseFirestore.collection("menu_items").add(menuItem).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {

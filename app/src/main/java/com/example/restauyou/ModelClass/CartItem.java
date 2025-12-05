@@ -26,7 +26,11 @@ public class CartItem {
     }
 
     public double getTotalPrice(){
+<<<<<<< Updated upstream
         return (double) quantity*(Integer.parseInt(menuItem.getItemPrice()));
+=======
+        return (double) quantity*(Double.parseDouble(menuItem.getItemPrice()));
+>>>>>>> Stashed changes
 
     }
 

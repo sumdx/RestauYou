@@ -4,9 +4,34 @@ import android.widget.TextView;
 
 public class MenuItem {
 
+<<<<<<< Updated upstream
     private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory;
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl;
+=======
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
+>>>>>>> Stashed changes
+=======
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
+>>>>>>> Stashed changes
+=======
+    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     private int amount, itemImg;
+
     private boolean selected;
+
+    public String getItemImagePath() {
+        return itemImagePath;
+    }
+
+    public void setItemImagePath(String itemImagePath) {
+        this.itemImagePath = itemImagePath;
+    }
 
     public String getItemImageUrl() {
         return itemImageUrl;
@@ -100,12 +125,13 @@ public class MenuItem {
         itemImg = 0;
         selected = false;
     }
-    public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice,String itemImageUrl) {
+    public MenuItem(String itemTitle, String itemDescription, String itemAvailability, String itemPrice,String itemImageUrl, String itemImagePath) {
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
         this.itemAvailability = itemAvailability;
         this.itemPrice = itemPrice;
         this.itemImageUrl= itemImageUrl;
+        this.itemImagePath = itemImagePath;
     }
     public MenuItem() {
 
