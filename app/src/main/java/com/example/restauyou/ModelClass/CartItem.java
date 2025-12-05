@@ -27,7 +27,6 @@ public class CartItem {
 
     public double getTotalPrice(){
         return (double) quantity*(Double.parseDouble(menuItem.getItemPrice()));
-
     }
 
     public CartItem(){
