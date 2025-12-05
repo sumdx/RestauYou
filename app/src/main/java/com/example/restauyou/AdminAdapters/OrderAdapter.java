@@ -1,9 +1,12 @@
 package com.example.restauyou.AdminAdapters;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.example.restauyou.Services.DeliveredNotification;
+import com.example.restauyou.Services.PreparingNotification;
+import com.example.restauyou.Services.ReadyNotification;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +36,7 @@ import java.util.Map;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private ArrayList<Order> orderList;
-    private Map<String, String> userNameCache = new HashMap<>();
+    private final Map<String, String> userNameCache = new HashMap<>();
 
 
     Context context;
@@ -42,7 +48,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public void setOrderList(ArrayList<Order> newOrderList){
         this.orderList = newOrderList;
-
         notifyDataSetChanged();
     }
 
@@ -137,26 +142,44 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.markBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String  newState;
-                if(state.equals("received")){
-                    newState = "preparing";
-                }else if((state.equals("preparing"))){
-                    newState = "ready";
-                }else if((state.equals("ready"))){
-                    newState = "delivered";
-                } else {
-                    newState = "";
+                String newState;
+                Intent i;
+                SharedPreferences sp = context.getSharedPreferences("UserAccount", Context.MODE_PRIVATE);
+                boolean sound = sp.getBoolean("CurrentAdminAlert", true);
+
+                switch (state) {
+                    case "received":
+                        newState = "preparing";
+                        i = new Intent(context, PreparingNotification.class);
+                        break;
+                    case "preparing":
+                        newState = "ready";
+                        i = new Intent(context, ReadyNotification.class);
+                        break;
+                    case "ready":
+                        newState = "delivered";
+                        i = new Intent(context, DeliveredNotification.class);
+                        break;
+                    default:
+                        newState = "";
+                        i = new Intent(context, DeliveredNotification.class);
                 }
+
+                // Play notifications
+                i.putExtra("soundStatus", sound);
+                context.startService(i);
+
                 firebaseFirestore.collection("orders").document(order.getOrderId()).update("orderStatus",newState).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Order marked as "+newState+order.getOrderId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Order marked as "+ newState + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.d("FBERROR", order.getOrderId());
-                        Log.d("FBERROR", e.getMessage().toString());
+                        Log.d("FBERROR", e.getMessage());
                         Toast.makeText(context, "Order update failed", Toast.LENGTH_SHORT).show();
                     }
                 });
