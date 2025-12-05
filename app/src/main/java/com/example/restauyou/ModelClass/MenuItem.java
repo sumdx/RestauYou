@@ -4,23 +4,10 @@ import android.widget.TextView;
 
 public class MenuItem {
 
-<<<<<<< Updated upstream
-    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory;
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl;
-=======
+
     private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
->>>>>>> Stashed changes
-=======
-    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
->>>>>>> Stashed changes
-=======
-    private String itemTitle, itemDescription, itemAvailability, itemPrice ,itemImageUrl, itemId, itemCategory, itemImagePath;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+
     private int amount, itemImg;
 
     private boolean selected;
