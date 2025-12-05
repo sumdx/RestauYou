@@ -96,7 +96,7 @@ public class AdminOrderManagementFragment extends Fragment {
                     Log.d("value",value.toString());
                     Order newOrder = doc.toObject(Order.class);
                     assert newOrder != null;
-                    newOrder.setOrderId(doc.getId().substring(doc.getId().length()-4, doc.getId().length()));
+                    newOrder.setOrderId(doc.getId());
                     orderList.add(newOrder);
                     for (Order order: orderList)
                         switch (order.getOrderStatus()) {
