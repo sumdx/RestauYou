@@ -23,6 +23,13 @@ import com.example.restauyou.R;
 public class DialogCustomerEditFragment extends DialogFragment {
     EditText editProfileName, editProfileEmail, editProfilePhone;
     Button btnSubmit;
+    private final String name, email, phone;
+
+    public DialogCustomerEditFragment(String n, String e, String p) {
+        name = n;
+        email = e;
+        phone = p;
+    }
 
     @NonNull
     @Override
@@ -37,6 +44,11 @@ public class DialogCustomerEditFragment extends DialogFragment {
         editProfilePhone = v.findViewById(R.id.editProfilePhone);
         btnSubmit = v.findViewById(R.id.btn_submit);
 
+        // Pre-fill inputs
+        editProfileName.setText(name);
+        editProfileEmail.setText(email);
+        editProfilePhone.setText(phone);
+
         // Build dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(v);
@@ -47,8 +59,7 @@ public class DialogCustomerEditFragment extends DialogFragment {
                        email = editProfileEmail.getText().toString(),
                        phone = editProfilePhone.getText().toString();
 
-
-                // Prevent empty fields
+                // If empty -> error
                 if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
                     Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
                     return;

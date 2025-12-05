@@ -82,8 +82,8 @@ public class CustomerSettingsFragment extends Fragment {
         emailText.setText(sp.getString("email", "guest@example.com"));
         phoneText.setText(sp.getString("phone", "+1 (111) 111-1111"));
         addressText.setText(sp.getString("address", "123 Example St, Earth"));
-        cardText.setText(sp.getString("card", "None"));
-        CVCText.setText(sp.getString("CVC", "N/A"));
+        cardText.setText(sp.getString("card", "•••• •••• •••• 4242"));
+        CVCText.setText(sp.getString("CVC", "Expires 12/25"));
 
         // Set switch status (if present)
         notifiSwitch.setChecked(sp.getBoolean(NOTIFI_KEY, true));
@@ -247,6 +247,11 @@ public class CustomerSettingsFragment extends Fragment {
                        email = result.getString("email"),
                        phone = result.getString("phone");
 
+                // Set text
+                nameText.setText(name);
+                emailText.setText(email);
+                phoneText.setText(phone);
+
                 // Store inputs
                 SharedPreferences.Editor e = sp.edit();
                 e.putString("name", name);
@@ -266,7 +271,12 @@ public class CustomerSettingsFragment extends Fragment {
             Toast.makeText(getContext(), "Please log in first before editing your profile", Toast.LENGTH_SHORT).show();
             return;
         }
-        DialogCustomerEditFragment d = new DialogCustomerEditFragment();
+
+        // Pass data to dialog
+        String name = nameText.getText().toString(),
+               email = emailText.getText().toString(),
+               phone = phoneText.getText().toString();
+        DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone);
         d.show(fm, "CustomInputTag");
     }
 
