@@ -61,7 +61,7 @@ public class CustomerOrdersFragment extends Fragment {
         // Load order list
         orderList = new ArrayList<>();
         loadOrder();
-        customerOrderAdapter =new CustomerOrderAdapter(context, orderList);
+        customerOrderAdapter = new CustomerOrderAdapter(context, orderList);
 
         // Set adapter & layout manager
         customerOrderRV.setAdapter(customerOrderAdapter);

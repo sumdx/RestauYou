@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,11 +65,15 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
         // Set various states
         String state = order.getOrderStatus();
         final int LIGHT_ACCENT = res.getColor(R.color.light_accent, context.getTheme()),
+                  LIGHT_GRAY = res.getColor(R.color.light_gray, context.getTheme()),
+                  BLUE = res.getColor(R.color.blue, context.getTheme()),
+                  ACCENT = res.getColor(R.color.accent, context.getTheme()),
                   YELLOW = res.getColor(R.color.yellow, context.getTheme()),
                   LIGHT_BLUE = res.getColor(R.color.light_blue, context.getTheme()),
                   BLACK = res.getColor(R.color.black, context.getTheme()),
                   LIGHT_GREEN = res.getColor(R.color.light_green, context.getTheme());
 
+        Log.d("STATE", state);
         switch (state) {
             case "preparing":
                 holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(LIGHT_ACCENT));
@@ -105,6 +110,19 @@ public class CustomerOrderAdapter extends RecyclerView.Adapter<CustomerOrderAdap
                 holder.OrderStatus.setTextColor(Color.parseColor("#246F00"));
                 holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DFFFCC")));
                 break;
+
+            default: // "received"
+                holder.imgReceived.setBackgroundTintList(ColorStateList.valueOf(ACCENT));
+                holder.imgCooking.setBackgroundTintList(ColorStateList.valueOf(LIGHT_GRAY));
+                holder.imgCooking.setImageTintList(ColorStateList.valueOf(BLUE));
+                holder.imgReady.setBackgroundTintList(ColorStateList.valueOf(LIGHT_GRAY));
+                holder.imgDone.setBackgroundTintList(ColorStateList.valueOf(LIGHT_GRAY));
+                holder.EstimatedTime.setText(res.getString(R.string.min30));
+
+                holder.OrderStatus.setTextColor(Color.parseColor("#785400"));
+                holder.OrderStatus.setText(res.getString(R.string.order_received));
+                holder.OrderStatus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FAF1A7")));
+
         }
 
         // removeOrderBtn
