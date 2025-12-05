@@ -84,5 +84,10 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         vp2.setCurrentItem(0);
         bnv.setSelectedItemId(R.id.menuItem);
     }
+
+    public void checkOutTransitToOrder() {
+        vp2.setCurrentItem(1);
+        bnv.setSelectedItemId(R.id.orderItem);
+    }
 }
 

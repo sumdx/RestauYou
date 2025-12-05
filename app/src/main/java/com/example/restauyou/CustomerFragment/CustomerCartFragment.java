@@ -111,7 +111,9 @@ public class CustomerCartFragment extends Fragment {
                     @Override
                     public void onSuccess(Void unused) {
                         sharedCartItemsList.clearCart(getContext());
-                        Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Your order is placed successfully", Toast.LENGTH_SHORT).show();
+                        CustomerHomePageActivity customerHomePageActivity =(CustomerHomePageActivity) requireActivity();
+                        customerHomePageActivity.checkOutTransitToOrder();
                         sharedCartItemsList.loadSharedPrefCart(getContext());
                         updateCost();
                     }
