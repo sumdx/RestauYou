@@ -40,7 +40,7 @@ import java.util.Locale;
 
 public class CustomerCartFragment extends Fragment {
     RecyclerView cartRv;
-    private double cost = 0;
+    private double cost = 0, tax, total;
     private Resources res;
     Button checkoutBtn;
     TextView numItems, subTotalText, taxText, totalText;
@@ -110,7 +110,7 @@ public class CustomerCartFragment extends Fragment {
 
                 // Upload to firebase
                 DocumentReference docRef = db.collection("orders").document();
-                Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","received",cost, now, now);
+                Order order = new Order(sharedCartItemsList.getCartList().getValue(), docRef.getId(), firebaseUser.getUid(),"online","received",total, now, now);
                 docRef.set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -163,7 +163,8 @@ public class CustomerCartFragment extends Fragment {
         for (CartItem cartItem: cart)
             cost += cartItem.getTotalPrice();
 
-        double tax = cost * 0.08, total = cost + tax;
+        tax = cost * 0.08;
+        total = cost + tax;
         subTotalText.setText(String.format(Locale.CANADA, "$%.2f", cost));
         taxText.setText(String.format(Locale.CANADA, "$%.2f", tax));
         totalText.setText(String.format(Locale.CANADA, "$%.2f", total));
