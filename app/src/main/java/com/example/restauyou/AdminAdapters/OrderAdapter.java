@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restauyou.ModelClass.Order;
 import com.example.restauyou.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -28,6 +31,8 @@ import java.util.Map;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private ArrayList<Order> orderList;
     private Map<String, String> userNameCache = new HashMap<>();
+
+
     Context context;
 
     public OrderAdapter(Context context, ArrayList<Order> orderList) {
@@ -50,8 +55,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         Order order = orderList.get(position);
-        holder.orderNumText.setText(String.format(Locale.CANADA, "Order#%s", order.getOrderId()));
+        holder.orderNumText.setText(String.format(Locale.CANADA, "Order#%s", order.getOrderId().substring(order.getOrderId().length()-4,order.getOrderId().length())));
         holder.costText.setText(String.format(Locale.CANADA, "$%.2f", order.getTotalPrice()));
 
         holder.dateText.setText(String.format(Locale.CANADA, "%s", order.getCreatedAt()));
@@ -65,7 +71,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         } else {
             holder.customerText.setText("Customer: loading...");
 
-            FirebaseFirestore.getInstance()
+            firebaseFirestore
                     .collection("users")
                     .document(userId)
                     .get()
@@ -131,7 +137,29 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.markBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String  newState;
+                if(state.equals("received")){
+                    newState = "preparing";
+                }else if((state.equals("preparing"))){
+                    newState = "ready";
+                }else if((state.equals("ready"))){
+                    newState = "delivered";
+                } else {
+                    newState = "";
+                }
+                firebaseFirestore.collection("orders").document(order.getOrderId()).update("orderStatus",newState).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Order marked as "+newState+order.getOrderId(), Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("FBERROR", order.getOrderId());
+                        Log.d("FBERROR", e.getMessage().toString());
+                        Toast.makeText(context, "Order update failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

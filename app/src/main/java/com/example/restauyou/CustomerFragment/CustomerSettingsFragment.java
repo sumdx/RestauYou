@@ -32,11 +32,13 @@ import com.google.firebase.auth.FirebaseUser;
 public class CustomerSettingsFragment extends Fragment {
     LinearLayout logout, changePswdItem, getSupportItem, userItem, emailItem, phoneItem;
     Button btnApplyForJob;
+    TextView tvName, tvEmail;
     View rootView;
     FirebaseUser firebaseUser;
     View contentLayout;
     FragmentManager fm;
     TextView addAddressText, addCardText;
+
     SwitchCompat notifiSwitch, orderUpdateSwitch, promotionSwitch;
     private static final String PREFS_NAME = "UserAccount";
     private static final String NOTIFI_KEY = "CurrentNotifi";
@@ -54,6 +56,8 @@ public class CustomerSettingsFragment extends Fragment {
         fm = getParentFragmentManager();
 
         // Initialize objects by ids
+        tvEmail = rootView.findViewById(R.id.emailText);
+        tvName = rootView.findViewById(R.id.nameText);
         contentLayout = rootView.findViewById(R.id.settingsContainer);
         logout = rootView.findViewById(R.id.logoutItem);
         btnApplyForJob = rootView.findViewById(R.id.btnApplyForJob);
@@ -78,6 +82,12 @@ public class CustomerSettingsFragment extends Fragment {
         notifiSwitch.setChecked(sp.getBoolean(NOTIFI_KEY, true));
         orderUpdateSwitch.setChecked(sp.getBoolean(ORDER_UPDATE_KEY, true));
         promotionSwitch.setChecked(sp.getBoolean(PROMO_KEY, true));
+
+        if(firebaseUser!=null){
+            tvName.setText(firebaseUser.getDisplayName());
+            tvEmail.setText(firebaseUser.getEmail());
+        }
+
 
         // User linear layout listener
         userItem.setOnClickListener(new View.OnClickListener() {
