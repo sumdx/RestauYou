@@ -293,6 +293,7 @@ public class CustomerSettingsFragment extends Fragment {
         return rootView;
     }
 
+
     private void loadUserData(User user) {
         nameText.setText(user.getName() !=null ? user.getName():"Guest User" );
         emailText.setText(user.getEmail()!=null? user.getEmail():"guest@example.com");
@@ -312,8 +313,9 @@ public class CustomerSettingsFragment extends Fragment {
         String name = nameText.getText().toString(),
                email = emailText.getText().toString(),
                phone = phoneText.getText().toString();
-        DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone, firebaseUser.getUid());
+        DialogCustomerEditFragment d = new DialogCustomerEditFragment(name, email, phone, firebaseUser.getUid(), getParentFragmentManager());
         d.show(fm, "CustomerEditInputTag");
+
     }
 
     private void comingSoon() {
