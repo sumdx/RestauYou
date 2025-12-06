@@ -2,6 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="accent">#FFAE00</color>
+    <color name="accent">#FF7322</color>
+    <color name="active_accent">#D34F00</color>
     <color name="dark">#2C2C2C</color>
+    <color name="gray">#7F7F7F</color>
+    <color name="light_gray">#E9E9E9</color>
+    <color name="ash">#EDEFF2</color>
+    <color name="red">#FF0000</color>
+    <color name="gold">#EFAE0A</color>
+    <color name="green">#08C108</color>
+    <color name="light_green">#80FF80</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="blue">#2E50FF</color>
+    <color name="light_blue">#EFF3FF</color>
+    <color name="cyan">#A0FFF4</color>
+    <color name="light_accent">#FF9800</color>
 </resources>

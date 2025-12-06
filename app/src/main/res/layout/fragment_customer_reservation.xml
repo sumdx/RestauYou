@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingBottom="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/table_reservation"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:text="@string/book_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#777"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_box"
+            android:orientation="vertical"
+            android:layout_margin="12dp"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_person"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:text="@string/full_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etName"
+                android:autofillHints="@string/enter_your_name"
+                android:hint="@string/enter_your_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:background="@drawable/input_box" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_phone"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:text="@string/phone_number"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:autofillHints="@string/enter_phone_number"
+                android:hint="@string/enter_phone_number"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="15dp"
+                android:background="@drawable/input_box" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/outline_calendar_today_24"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="#444" />
+
+                <TextView
+                    android:text="@string/date"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etDate"
+                android:autofillHints="@string/dd_mm_yyyy"
+                android:hint="@string/dd_mm_yyyy"
+                android:inputType="date"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="15dp"
+                android:background="@drawable/input_box"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_time"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="@null" />
+
+                <TextView
+                    android:text="@string/time"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444"/>
+            </LinearLayout>
+
+            <GridLayout
+                android:id="@+id/timeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.button.MaterialButton android:text="@string/_17_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_17_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_18_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_18_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_19_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_19_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_20_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_20_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_21_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_21_30" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+                <com.google.android.material.button.MaterialButton android:text="@string/_22_00" style="@style/timeButton"  app:backgroundTint="@null" app:rippleColor="#FF6A80" />
+
+            </GridLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_people"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="@null" />
+
+                <TextView
+                    android:text="@string/number_of_guests"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444"/>
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinnerGuests"
+                android:background="@drawable/input_box"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:entries="@array/numGuestsArray"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/outline_chat_bubble_24"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="@null" />
+
+                <TextView
+                    android:text="@string/special_request"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp"
+                    android:textColor="#444"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/sRequest"
+                android:autofillHints="@string/special_requests_text"
+                android:hint="@string/special_requests_text"
+                android:gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="textMultiLine"
+                android:padding="15dp"
+                android:background="@drawable/input_box" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReserve"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit_reservation"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/accent"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

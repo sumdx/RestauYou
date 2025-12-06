@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:background="@drawable/rounded_box"
+    android:padding="20dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/orderNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Order #ORD1" />
+
+        <TextView
+            android:id="@+id/pendingStateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:visibility="visible"
+            android:text="Pending"
+            android:textColor="#785400"
+            android:background="@drawable/rounded_box"
+            android:backgroundTint="#FFF4CC"
+            app:drawableStartCompat="@drawable/outline_clock_loader_40_24" />
+
+        <TextView
+            android:id="@+id/preparingStateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Preparing"
+            android:textColor="#001689"
+            android:background="@drawable/rounded_box"
+            android:backgroundTint="#CCEDFF"
+            app:drawableStartCompat="@drawable/outline_box_24" />
+
+        <TextView
+            android:id="@+id/readyStateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Ready"
+            android:textColor="#246F00"
+            android:background="@drawable/rounded_box"
+            android:backgroundTint="#DFFFCC"
+            app:drawableStartCompat="@drawable/baseline_check_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/deliveredStateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Delivered"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_box"
+            android:backgroundTint="@color/light_gray"
+            app:drawableStartCompat="@drawable/baseline_check_circle_outline_24_black" />
+
+        <TextView
+            android:id="@+id/costText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:textSize="15sp"
+            android:textColor="@color/accent"
+            android:text="$Cost" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/customerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:text="Customer: Guest 69" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:text="Oct 15, 01:15 PM"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Yes, another recycler view -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nestedOrderRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#d3d3d3" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/markBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mark Prepare"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/gold"
+        android:layout_marginEnd="5dp"
+        app:cornerRadius="10dp" />
+</LinearLayout>
