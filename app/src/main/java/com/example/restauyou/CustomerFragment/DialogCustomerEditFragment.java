@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,13 +24,15 @@ public class DialogCustomerEditFragment extends DialogFragment {
     EditText editProfileName, editProfileEmail, editProfilePhone;
     Button btnSubmit;
     FirebaseFirestore firebaseFirestore;
+    FragmentManager fm;
     private final String name, email, phone, userId;
 
-    public DialogCustomerEditFragment(String n, String e, String p, String u) {
+    public DialogCustomerEditFragment(String n, String e, String p, String u, FragmentManager fm) {
         name = n;
         email = e;
         phone = p;
         userId = u;
+        this.fm = fm;
     }
 
     @NonNull
@@ -68,6 +73,11 @@ public class DialogCustomerEditFragment extends DialogFragment {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(getContext(), "Profile Updated Successfully.", Toast.LENGTH_SHORT).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", name);
+                        bundle.putString("email", email);
+                        bundle.putString("phone", phone);
+                        fm.setFragmentResult("customerInputs", bundle);
                         dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -76,8 +86,6 @@ public class DialogCustomerEditFragment extends DialogFragment {
                         Toast.makeText(getContext(), "Something went wrong please try again later.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
         return builder.create();
