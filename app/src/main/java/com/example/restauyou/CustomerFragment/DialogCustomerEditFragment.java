@@ -74,9 +74,10 @@ public class DialogCustomerEditFragment extends DialogFragment {
                     public void onSuccess(Void unused) {
                         Toast.makeText(getContext(), "Profile Updated Successfully.", Toast.LENGTH_SHORT).show();
                         Bundle bundle = new Bundle();
+                        bundle.putString("phone", phone);
                         bundle.putString("name", name);
                         bundle.putString("email", email);
-                        bundle.putString("phone", phone);
+
                         fm.setFragmentResult("customerInputs", bundle);
                         dismiss();
                     }
